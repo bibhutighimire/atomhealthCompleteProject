@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AtomHealth.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,6 +26,18 @@ namespace AtomHealth
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddTransient<IEmailSender, EmailSender>(i =>
+               new EmailSender(
+                   Configuration["EmailSender:Host"],
+                   Configuration.GetValue<int>("EmailSender:Port"),
+                   Configuration.GetValue<bool>("EmailSender:EnableSSL"),
+                   Configuration["EmailSender:UserName"],
+                   Configuration["EmailSender:Password"]
+               )
+           );
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

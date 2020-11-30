@@ -1,7 +1,9 @@
 ﻿using AtomHealth.Areas.Identity.Data;
 using AtomHealth.Data;
+using AtomHealth.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,8 +20,8 @@ namespace AtomHealth.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("AtomHealthDBContextConnection")));
 
-                
-                services.AddIdentity<AtomHealthUser,IdentityRole>(options => {
+
+                services.AddIdentity<AtomHealthUser, IdentityRole>(options => {
                     options.Password.RequireLowercase = false;
                     options.Password.RequireUppercase = false;
                     options.SignIn.RequireConfirmedAccount = true;
@@ -27,7 +29,6 @@ namespace AtomHealth.Areas.Identity
                  .AddDefaultTokenProviders()
                 .AddDefaultUI()
                     .AddEntityFrameworkStores<AtomHealthDBContext>();
-
 
             });
         }

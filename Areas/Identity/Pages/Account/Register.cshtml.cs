@@ -51,7 +51,7 @@ namespace AtomHealth.Areas.Identity.Pages.Account
             [Display(Name = "First Name")]
             public string FirstName { get; set; }
 
-           
+
             [DataType(DataType.Text)]
             [Display(Name = "Middle Name")]
             public string MiddleName { get; set; }
