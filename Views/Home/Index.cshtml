@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using AtomHealth.Areas.Identity.Data
+
+@inject SignInManager<AtomHealthUser> SignInManager
+@inject UserManager<AtomHealthUser> UserManager
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+{
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <a asp-action="Index" asp-controller="UserRoleManagement" class="btn btn-outline-secondary">Configure User Roles</a>
+    </div>
+}
+else
+{
+    <h1 class="display-4 text-center">Welcome</h1>
+    <h1 class="text-center">Please login to view more...</h1>
+}
