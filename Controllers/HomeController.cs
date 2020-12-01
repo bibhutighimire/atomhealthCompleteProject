@@ -23,6 +23,31 @@ namespace AtomHealth.Controllers
             return View();
         }
 
+        public IActionResult OurSolution()
+        {
+            return View();
+        }
+
+        public IActionResult JoinUs()
+        {
+            return View();
+        }
+
+        public IActionResult FAQ()
+        {
+            return View();
+        }
+
+        public IActionResult ContactUs()
+        {
+            return View();
+        }
+
+        public IActionResult HealthNews()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

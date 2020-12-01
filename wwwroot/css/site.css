@@ -57,6 +57,10 @@ a {
   border-color: #1861ac;
 }
 
+.navbar-light .navbar-nav .nav-link:hover {
+    color: wheat;
+}
+
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -102,3 +106,633 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+.rowForProfileEdit form {
+    display: flex;
+    flex-direction: column;
+}
+
+.rowForProfile {
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    width: 97%;
+}
+
+.homepageText {
+}
+
+.container a img {
+    height: 65px;
+    width: 120px;
+}
+.rightMenu {
+    padding: 10px;
+}
+
+.formWrap {
+    border: 3px solid lightgray;
+    padding: 15px;
+    border-radius: 12px;
+    margin: 0 auto;
+    width: 100%;
+    background-color: #c3c3c352;
+}
+
+.socialMedia {
+    margin: 25px 25px 25px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.tabWrap {
+    border: 2px solid lightgray;
+    padding: 10px;
+    border-radius: 7px;
+    background-color: #c3c3c352;
+}
+
+.joinUsBtn button {
+    background-color: #42a5ff;
+    color: white;
+    font-weight: bold;
+    margin: 10px 5px 0px 0px;
+    padding: 12px;
+    border-radius: 7px;
+}
+
+.w3-container p {
+    font-size: 17px;
+}
+
+.w3-container h2 {
+    font-size: 22px;
+    color: #42a5ff;
+}
+
+.signInAndSocial {
+    display: flex;
+    flex-direction: column;
+}
+
+.topNav {
+    display: flex;
+    flex-direction: column;
+}
+
+.signinoutLink {
+    display: flex;
+    flex-direction: row;
+    height: 20px;
+    color: #42a5ff;
+    justify-content: flex-end;
+    font-size: 15px;
+    margin: 10px 0 10px 0;
+    background-color: white;
+    padding: 20px 10px 34px 0px;
+}
+
+    .signinoutLink a {
+        display: flex;
+        flex-direction: row;
+        height: 20px;
+        color: #42a5ff;
+        justify-content: flex-end;
+        font-size: 15px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+.navbar-collapse {
+    padding: 7px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+    background-color: #42a5ff;
+    font-size: 12px;
+    padding: 12px;
+    margin-bottom: 1.5px;
+    display: flex;
+    flex-direction: column;
+    float: right;
+    width: 100%;
+}
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+.text-center {
+    width: 100%;
+}
+
+
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+    color: black;
+}
+
+.containerforcontactform form label {
+    color: #42a5ff;
+    text-align: left;
+    float: left;
+    margin: 10px;
+    padding: 0px;
+}
+
+input[type=submit] {
+    background-color: #42a5ff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+
+.containerforcontactform {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    width: 100%;
+    margin: 25px 0px;
+}
+
+.text-center img {
+    height: 350px;
+    width: 100%;
+}
+/* Provide sufficient contrast against white background */
+a {
+    color: darkblue;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.midSector {
+    margin: 0 auto;
+    height: auto;
+}
+
+/*.bottom-left {
+    border: 2px solid white;
+    border-radius: 15px;
+    padding: 17px;
+}*/
+
+.bottom-left h1 {
+    font-size: 25px;
+    color: #42a5ff;
+}
+
+.bottom-left p {
+    margin: 15px 0 25px 0;
+    font-size: 18px;
+    color: black;
+}
+
+.bottom-left a {
+    background-color: #42a5ff;
+    padding: 12px;
+    border-radius: 7px;
+    margin-top: 10px;
+    font-size: 20px;
+    color: white;
+    margin-bottom: 5px;
+    text-decoration: none;
+}
+
+.bottom-bottom {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-content: space-evenly;
+}
+
+.blockBox {
+    background-color: white;
+    color: gray;
+    border-radius: 15px;
+    padding: 12px;
+    margin: 13px auto;
+    border: 8px solid lightgrey;
+}
+
+    .blockBox h1 {
+        font-size: 30px;
+        text-decoration: underline;
+        color: #42a5ff;
+        text-align: center;
+    }
+
+.navLinksLogin {
+    display: flex;
+}
+
+.navLinks ul li a {
+    justify-content: flex-start;
+}
+
+.blockBox p {
+    font-size: 18px;
+}
+
+
+
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 576px) {
+
+    .rowForProfileEdit form {
+        display: grid;
+        grid-template-columns: 45% 45%;
+        grid-gap: 30px;
+    }
+
+    .rowForProfile {
+        display: grid;
+        grid-template-columns: 45% 45%;
+        grid-gap: 30px;
+    }
+
+    .editForm form {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-column-gap: 30px;
+    }
+
+    .container {
+        max-width: 97%;
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+        color: white;
+        background-color: #42a5ff;
+        font-size: 12px;
+        padding: 12px;
+        margin-bottom: 1.5px;
+        display: flex;
+        flex-direction: column;
+        float: right;
+    }
+
+        .navbar-light .navbar-nav .nav-link:hover {
+            color: wheat;
+        }
+}
+
+@media (min-width: 960px) {
+    .container {
+        max-width: 100%;
+    }
+
+    .midSector {
+        margin: 0 auto;
+        height: auto;
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+        color: white;
+        background-color: #42a5ff;
+        font-size: 15px;
+        padding: 12px;
+        margin-bottom: 1.5px;
+        display: flex;
+        flex-direction: column;
+        float: right;
+    }
+
+    .bottom-left {
+        bottom: 424px;
+        position: absolute;
+        width: 353px;
+        left: 350px;
+        top: 280px;
+        height: 280px;
+    }
+
+    .bottom-bottom {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .blockBox {
+        margin: 5px;
+    }
+
+        .blockBox h1 {
+            font-size: 25px;
+        }
+
+        .blockBox p {
+            font-size: 18px;
+        }
+}
+
+@media (min-width: 990px) {
+    .container {
+        max-width: 90%;
+    }
+
+    .midSector {
+        margin: 0 auto;
+        height: auto;
+    }
+
+    .bottom-left {
+        bottom: 424px;
+        position: absolute;
+        width: 353px;
+        left: 350px;
+        top: 280px;
+        height: 280px;
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+        color: white;
+        background-color: #42a5ff;
+        font-size: 15px;
+        padding: 12px;
+        margin-bottom: 1.5px;
+        display: flex;
+        flex-direction: column;
+        float: right;
+    }
+
+    .bottom-bottom {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .blockBox {
+        margin: 5px;
+    }
+
+        .blockBox h1 {
+            font-size: 25px;
+        }
+
+        .blockBox p {
+            font-size: 18px;
+        }
+}
+
+
+@media (min-width: 767px) {
+    .formWrap {
+        border: 3px solid lightgray;
+        padding: 15px;
+        border-radius: 12px;
+        margin: 0 auto;
+        width: 80%;
+    }
+
+    html {
+        font-size: 14px;
+    }
+
+    .bottom-bottom {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .blockBox {
+        margin: 5px;
+    }
+
+
+    .navLinks ul li a {
+        justify-content: flex-start;
+    }
+
+    .blockBox h1 {
+        font-size: 20px;
+    }
+
+    .blockBox p {
+        font-size: 15px;
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+        color: white;
+        background-color: #42a5ff;
+        font-size: 12px;
+        padding: 10px;
+        margin-bottom: 1.5px;
+        display: flex;
+        flex-direction: column;
+        float: right;
+    }
+
+    .container {
+        width: 100%;
+    }
+
+        .container a img {
+            height: 100px;
+            width: 180px;
+        }
+
+    .text-center {
+        width: 100%;
+    }
+
+        .text-center img {
+            height: 450px;
+            width: 100%;
+        }
+
+    .bottom-left {
+        bottom: 424px;
+        position: absolute;
+        width: 320px;
+        left: 148px;
+        top: 280px;
+        height: 280px;
+    }
+
+        .bottom-left h1 {
+            font-size: 35px;
+            color: #42a5ff;
+        }
+
+        .bottom-left p {
+            width: 353px;
+            margin-top: 10px;
+            font-size: 20px;
+            color: black;
+        }
+
+        .bottom-left a {
+            background-color: #42a5ff;
+            padding: 12px;
+            border-radius: 7px;
+            margin-top: 10px;
+            font-size: 20px;
+            color: white;
+            margin-bottom: 5px;
+            text-decoration: none;
+        }
+
+    .midSector {
+        margin: 0 auto;
+        height: auto;
+    }
+}
+
+@media (min-width: 1024px) {
+    .formWrap {
+        border: 3px solid lightgray;
+        padding: 15px;
+        border-radius: 12px;
+        margin: 0 auto;
+        width: 80%;
+    }
+
+    .container {
+        max-width: 80%;
+    }
+
+    .midSector {
+        margin: 0 auto;
+        height: auto;
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+        color: white;
+        background-color: #42a5ff;
+        font-size: 12px;
+        margin-bottom: 1.5px;
+        display: flex;
+        flex-direction: column;
+        float: right;
+    }
+
+    .bottom-bottom {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .blockBox {
+        margin: 5px;
+    }
+
+        .blockBox h1 {
+            font-size: 25px;
+        }
+
+        .blockBox p {
+            font-size: 18px;
+        }
+
+    .bottom-left {
+        bottom: 424px;
+        position: absolute;
+        width: 353px;
+        left: 365px;
+        top: 280px;
+        height: 280px;
+    }
+}
+
+
+@media (min-width: 1100px) {
+    .bottom-left {
+        bottom: 424px;
+        position: absolute;
+        width: 353px;
+        left: 600px;
+        top: 280px;
+        height: 280px;
+    }
+
+    .formWrap {
+        border: 3px solid lightgray;
+        padding: 15px;
+        border-radius: 12px;
+        margin: 0 auto;
+        width: 80%;
+    }
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    /*margin-bottom: 60px;*/
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin: 10px auto 0 auto;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+.containerFooter {
+    background-color: #42a5ff;
+}
+
