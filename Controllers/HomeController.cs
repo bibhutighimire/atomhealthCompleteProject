@@ -48,7 +48,22 @@ namespace AtomHealth.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Patient()
+        {
+            return View();
+        }
+
+        public IActionResult Doctor()
+        {
+            return View();
+        }
+
+        public IActionResult EMR()
+        {
+            return View();
+        }
+
+        public IActionResult Insurance()
         {
             return View();
         }
