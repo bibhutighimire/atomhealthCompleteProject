@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using AtomHealth.Models;
+using System.Net;
+using Newtonsoft.Json;
+using static AtomHealth.Models.News;
 
 namespace AtomHealth.Controllers
 {
@@ -43,9 +46,20 @@ namespace AtomHealth.Controllers
             return View();
         }
 
-        public IActionResult HealthNews()
+        public IActionResult News()
         {
-            return View();
+            string url = string.Format("http://newsapi.org/v2/top-headlines?country=ca&category=health&apiKey=aa93bb23607b4762b8ce8a1704b8e5cb");
+
+
+            using (WebClient client = new WebClient())
+            {
+                string json = client.DownloadString(url);
+                var jsonstring = JsonConvert.DeserializeObject<Example>(json);
+
+                var a = jsonstring.articles;
+
+                return View(a);
+            }
         }
 
         public IActionResult Patient()
