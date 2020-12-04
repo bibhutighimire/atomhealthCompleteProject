@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,23 +15,9 @@ namespace AtomHealth.Controllers
 {
     public class SubscribeController : Controller
     {
-        private readonly UserManager<AtomHealthUser> _userManager;
-        private readonly SignInManager<AtomHealthUser> _signInManager;
-        private readonly ILogger<LoginModel> _logger;
+        private readonly ConnectionDB _context;
 
-        public LoginModel(SignInManager<AtomHealthUser> signInManager,
-            ILogger<LoginModel> logger,
-            UserManager<AtomHealthUser> userManager)
-        {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _logger = logger;
-        }
-
-
-        private readonly AtomHealthDBContext _context;
-
-        public SubscribeController(AtomHealthDBContext context)
+        public SubscribeController(ConnectionDB context)
         {
             _context = context;
         }
@@ -46,33 +32,31 @@ namespace AtomHealth.Controllers
                 return View(_context.tblSubscribe.ToList());
             }
             return RedirectToAction("Signin", "SignUpAtom");
-          
+
         }
-        [HttpGet]
-        public IActionResult Create()
-        {
-          
-            return View();
-        }
+
         [HttpPost]
         public IActionResult Create(Subscribe s)
         {
-            Subscribe tblS = new Subscribe();
-            var target = _context.tblSubscribe.Where(x => x.email == s.email).FirstOrDefault();
-            if(target!=null)
+            if (ModelState.IsValid)
             {
-                ViewBag.alreadysub = "We already have your email address on our subscription list. Thanks!";
-                return View();
+                Subscribe tblS = new Subscribe();
+                var target = _context.tblSubscribe.Where(x => x.email == s.email).FirstOrDefault();
+                if (target != null)
+                {
+                    ViewBag.alreadysub = "We already have your email address on our subscription list. Thanks!";
+                    return View();
+                }
+                else
+                {
+                    tblS.email = s.email;
+                    _context.tblSubscribe.Add(tblS);
+                    _context.SaveChanges();
+                    ViewBag.msg = " You are now Subscribed. Thanks!";
+                    return View();
+                }
             }
-            else
-            {
-                tblS.email = s.email;
-                _context.tblSubscribe.Add(tblS);
-                _context.SaveChanges();
-                ViewBag.msg = " You are now Subscribed. Thanks!";
-                return View();
-            }           
+            return View();
         }
     }
 }
-*/

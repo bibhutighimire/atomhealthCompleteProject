@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AtomHealth.Models;
 using AtomHealth.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,6 +28,8 @@ namespace AtomHealth
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddDbContextPool<ConnectionDB>(options => options.UseSqlServer(Configuration.GetConnectionString("AtomHealthDBContextConnection")));
 
             services.AddTransient<IEmailSender, EmailSender>(i =>
                new EmailSender(
