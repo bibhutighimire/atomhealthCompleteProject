@@ -23,6 +23,9 @@ namespace AtomHealth.Areas.Identity.Pages.Account.Manage
             _signInManager = signInManager;
         }
 
+        public string Firstname { get; set; }
+        public string Middlename { get; set; }
+        public string Lastname { get; set; }
         public string Username { get; set; }
 
         [TempData]
@@ -41,7 +44,14 @@ namespace AtomHealth.Areas.Identity.Pages.Account.Manage
         private async Task LoadAsync(AtomHealthUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
+            var firstName = user.FirstName;
+            var middleName = user.MiddleName;
+            var lastName = user.LastName;
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+
+            Firstname = firstName;
+            Middlename = middleName;
+            Lastname = lastName;
 
             Username = userName;
 
