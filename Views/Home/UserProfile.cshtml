@@ -1,0 +1,123 @@
+﻿@model AtomHealth.Areas.Identity.Data.AtomHealthUser
+
+<link rel="stylesheet" href="~/css/site.css" />
+<link rel="stylesheet" href="~/css/ViewProfile.css" />
+@{
+    ViewData["Title"] = "Profile Details";
+
+}
+@*<h1 style="color:#42a5ff; font-size:large; font-weight:bold">View Your Profile</h1>*@
+
+<div class="panelbio">
+
+    <div class="bio-graph-heading">
+        @Html.DisplayFor(model => model.FirstName)'s  Profile
+    </div>
+    <div class="panelbio-body bio-graph-info">
+
+        <div class="rowForProfile">
+            <div class="bio-row">
+                <p><span>First Name:</span>@Html.DisplayFor(model => model.FirstName)</p>
+            </div>
+            <div class="bio-row">
+                <p><span>Middle Name:</span>@Html.DisplayFor(model => model.MiddleName)</p>
+            </div>
+            <div class="bio-row">
+                <p><span>Last Name:</span>@Html.DisplayFor(model => model.LastName)</p>
+            </div>
+            <div class="bio-row">
+                <p><span>Sex:</span>@Html.DisplayFor(model => model.Sex)</p>
+            </div>
+            <div class="bio-row">
+                <p><span>Date of Birth:</span>@Html.DisplayFor(model => model.DOB)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Height:</span>@Html.DisplayFor(model => model.Height)</p>
+            </div>
+            <div class="bio-row">
+                <p><span>Weight:</span>@Html.DisplayFor(model => model.Weight)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Phone:</span>@Html.DisplayFor(model => model.PhoneNumber)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Health ID:</span>@Html.DisplayFor(model => model.Country)</p>
+            </div>
+
+
+            <div class="bio-row">
+                <p><span>Health Care Plan:</span>@Html.DisplayFor(model => model.HealthCarePlan)</p>
+            </div>
+            <div class="bio-row">
+                <p><span>Health ID:</span>@Html.DisplayFor(model => model.HealthID)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Family Doctor's Name:</span>@Html.DisplayFor(model => model.FamilyDoctorName)</p>
+            </div>
+        </div>
+
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="panelbio-body">
+                <div class="bio-desk">
+                    <h4 class="red">Emergency Contact</h4>
+                    <p><span>Emergency Contact Name:</span>&nbsp;&nbsp;@Html.DisplayFor(model => model.EmergencyContactName)</p>
+                    <p><span>Emergency Contact Phone Number:</span>&nbsp;&nbsp;@Html.DisplayFor(model => model.EmergencyContactPhone)</p>
+                </div>
+            </div>
+
+        </div>
+        <br />
+        <div class="col-md-6">
+
+            <div class="panelbio-body">
+                <div class="bio-desk">
+                    <h4 class="terques">Medications</h4>
+                    <p><span>Medical Conditions:</span>&nbsp;&nbsp;@Html.DisplayFor(model => model.MedicalConditions)</p>
+                    <p><span>Medication Details:</span>&nbsp;&nbsp;@Html.DisplayFor(model => model.Medicines)</p>
+                </div>
+            </div>
+
+        </div>
+        <br />
+        <div class="col-md-6">
+
+            <div class="panelbio-body">
+                <div class="bio-desk">
+                    <h4 class="green">Diseases</h4>
+                    <p><span>Diseases:</span>@Html.DisplayFor(model => model.Diseases)</p>
+                    <p><span>Allergies:</span>@Html.DisplayFor(model => model.Allergies)</p>
+
+                </div>
+            </div>
+
+        </div>
+
+        <br />
+        <div class="col-md-6">
+
+            <div class="panelbio-body">
+                <div class="bio-desk">
+                    <h4 class="green">History</h4>
+                    <p><span>Past Surgeries:</span>@Html.DisplayFor(model => model.PastSurgeries)</p>
+                    <p><span>Family History:</span>@Html.DisplayFor(model => model.FamilyHistory)</p>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <br />
+    <br />
+
+</div>
+<div class="bio-desk">
+    <a asp-action="Edit" asp-route-id="@ViewBag.userid"><i class="fa fa-edit"></i> Edit profile</a>
+</div>

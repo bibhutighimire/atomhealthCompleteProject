@@ -9,21 +9,37 @@ using AtomHealth.Models;
 using System.Net;
 using Newtonsoft.Json;
 using static AtomHealth.Models.News;
+using Microsoft.AspNetCore.Identity;
+using AtomHealth.Areas.Identity.Data;
 
 namespace AtomHealth.Controllers
 {
     public class HomeController : Controller
     {
+       
+        private readonly UserManager<AtomHealthUser> _userManager;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, UserManager<AtomHealthUser> userManager)
         {
             _logger = logger;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
         {
-            return View();
+           return View();
+        }
+
+
+
+        public IActionResult UserProfile()
+        {
+            var userid = _userManager.GetUserId(HttpContext.User);
+            AtomHealthUser user = _userManager.FindByIdAsync(userid).Result;
+            //ViewBag.username = _userManager.GetUserAsync(HttpContext.User);
+            //AtomHealthUser userName = _userManager.FindByNameAsync(userName).Result;
+            return View(user);
         }
 
         public IActionResult OurSolution()

@@ -28,6 +28,8 @@ namespace AtomHealth.Areas.Identity.Pages.Account.Manage
         public string Lastname { get; set; }
         public string Username { get; set; }
 
+        
+
         [TempData]
         public string StatusMessage { get; set; }
 
@@ -39,6 +41,10 @@ namespace AtomHealth.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+           
+            [Display(Name = "Date of Birth")]
+            public DateTime DOB { get; set; }
         }
 
         private async Task LoadAsync(AtomHealthUser user)
@@ -47,6 +53,7 @@ namespace AtomHealth.Areas.Identity.Pages.Account.Manage
             var firstName = user.FirstName;
             var middleName = user.MiddleName;
             var lastName = user.LastName;
+            
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
             Firstname = firstName;
@@ -58,6 +65,7 @@ namespace AtomHealth.Areas.Identity.Pages.Account.Manage
             Input = new InputModel
             {
                 PhoneNumber = phoneNumber
+              
             };
         }
 

@@ -1,0 +1,159 @@
+﻿@model AtomHealth.Areas.Identity.Data.AtomHealthUser
+
+<link rel="stylesheet" href="~/css/site.css" />
+<link rel="stylesheet" href="~/css/ViewProfile.css" />
+@{
+    ViewData["Title"] = "Edit Profile";
+
+}
+<h1 style="color:#42a5ff; font-size:large; font-weight:bold; text-align:center;">Edit Your Profile</h1>
+<hr />
+<div class="formWrap">
+    <div class="rowForProfileEdit">
+
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                First Name
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                Middle Name
+                <input asp-for="MiddleName" class="form-control" />
+                <span asp-validation-for="MiddleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                Last Name
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Sex" class="control-label">Gender</label>
+                <br />
+                @Html.RadioButtonFor(m => m.Sex, "Male", Model.Sex == "Male" ? "checked" : string.Empty)
+                <span>Male</span>
+                @Html.RadioButtonFor(m => m.Sex, "Female", Model.Sex == "Female" ? "checked" : string.Empty)
+                <span>Female</span>
+                @Html.RadioButtonFor(m => m.Sex, "Other", Model.Sex == "Other" ? "checked" : string.Empty)
+                <span>Other</span>
+
+                <span asp-validation-for="Sex" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                Date of Birth
+                <input asp-for="DOB" class="form-control" type="date" />
+                <span asp-validation-for="DOB" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                Height
+                <input asp-for="Height" class="form-control" />
+                <span asp-validation-for="Height" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                Weight
+                <input asp-for="Weight" class="form-control" />
+                <span asp-validation-for="Weight" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                Phone Number
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                Country
+                <input asp-for="Country" class="form-control" />
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                Health Care Plan
+                <input asp-for="HealthCarePlan" class="form-control" />
+                <span asp-validation-for="HealthCarePlan" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                Health ID
+                <input asp-for="HealthID" class="form-control" />
+                <span asp-validation-for="HealthID" class="text-danger"></span>
+            </div>
+
+
+            @*<div class="form-group">
+
+            <label asp-for="ismarried" class="control-label">Status</label>
+            <br />
+            @Html.RadioButtonFor(m => m.ismarried, "Married", Model.ismarried == "Married" ? "checked" : string.Empty)
+            <span>Married</span>
+            @Html.RadioButtonFor(m => m.ismarried, "Unmarried", Model.ismarried == "Unmarried" ? "checked" : string.Empty)
+            <span>Unmarried</span>
+            @Html.RadioButtonFor(m => m.ismarried, "Single", Model.ismarried == "Single" ? "checked" : string.Empty)
+            <span>Single</span>
+
+
+
+            <span asp-validation-for="ismarried" class="text-danger"></span>
+        </div>*@
+            <div class="form-group">
+                Emergency Contact Name
+                <input asp-for="EmergencyContactName" class="form-control" type="tel" />
+                <span asp-validation-for="EmergencyContactName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                Emergency Contact Phone Number
+                <input asp-for="EmergencyContactPhone" class="form-control" />
+                <span asp-validation-for="EmergencyContactPhone" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+
+            <label asp-for="inmedicationnow" class="control-label">In Medication Now?</label>
+            <br />
+            @Html.RadioButtonFor(m => m.inmedicationnow, "Yes", Model.inmedicationnow == "Yes" ? "checked" : string.Empty)
+            <span>Yes</span>
+            @Html.RadioButtonFor(m => m.inmedicationnow, "No", Model.inmedicationnow == "No" ? "checked" : string.Empty)
+            <span>No</span>
+
+            <span asp-validation-for="inmedicationnow" class="text-danger"></span>
+        </div>*@
+            <div class="form-group">
+                Medical Conditions
+                @Html.TextArea("MedicalConditions", new { rows = 5, columns = 40 })
+                <span asp-validation-for="MedicalConditions" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                Medications
+                @Html.TextArea("Medicines", new { rows = 5, columns = 40 })
+                <span asp-validation-for="Medicines" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                Diseases
+                @Html.TextArea("Diseases", new { rows = 5, columns = 40 })
+                <span asp-validation-for="Diseases" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                Allergies
+                @Html.TextArea("Allergies", new { rows = 5, columns = 40 })
+                <span asp-validation-for="Allergies" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+
+            </div>
+
+        </form>
+        <div><a class="btn btn-primary" asp-controller="Atom" asp-route-id="@ViewBag.atomid" asp-action="Profile"> Go Back</a></div>
+    </div>
+</div>
+
+
