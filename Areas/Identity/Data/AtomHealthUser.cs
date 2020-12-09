@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AtomHealth.Areas.Identity.Data
 {
@@ -23,7 +24,7 @@ namespace AtomHealth.Areas.Identity.Data
         public string LastName { get; set; }
 
        [PersonalData]
-        [Column(TypeName = "nvarchar(10)")]
+        [Column(TypeName = "nvarchar(100)")]
         public string Sex { get; set; }
 
     [PersonalData]

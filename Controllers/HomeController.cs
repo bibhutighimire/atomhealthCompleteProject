@@ -32,14 +32,105 @@ namespace AtomHealth.Controllers
         }
 
 
-
+       
         public IActionResult UserProfile()
         {
             var userid = _userManager.GetUserId(HttpContext.User);
+            ViewBag.userid= _userManager.GetUserId(HttpContext.User);
             AtomHealthUser user = _userManager.FindByIdAsync(userid).Result;
             //ViewBag.username = _userManager.GetUserAsync(HttpContext.User);
             //AtomHealthUser userName = _userManager.FindByNameAsync(userName).Result;
             return View(user);
+        }
+
+        public IActionResult EditUserProfile()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> EditUserProfile(string id)
+        {
+            var edituser = await _userManager.FindByIdAsync(id);
+            if(edituser==null)
+            {
+                ViewBag.ErrorMessage = $"User with id = {id} cannot be found.";
+                return View("Not Found");
+            }
+            var model = new AtomHealthUser
+            {
+                FirstName = edituser.FirstName,
+                MiddleName = edituser.MiddleName,
+                LastName = edituser.LastName,
+                Sex = edituser.Sex,
+                DOB = edituser.DOB,
+                Height = edituser.Height,
+                Weight = edituser.Weight,
+                PhoneNumber = edituser.PhoneNumber,
+                Country = edituser.Country,
+                HealthCarePlan = edituser.HealthCarePlan,
+                HealthID = edituser.HealthID,
+                FamilyDoctorName = edituser.FamilyDoctorName,
+                EmergencyContactName = edituser.EmergencyContactName,
+                EmergencyContactPhone = edituser.EmergencyContactPhone,
+                MedicalConditions = edituser.MedicalConditions,
+                Medicines = edituser.Medicines,
+                Diseases = edituser.Diseases,
+                Allergies = edituser.Allergies,
+                PastSurgeries = edituser.PastSurgeries,
+                FamilyHistory = edituser.FamilyHistory
+            };
+            return View(model);
+           
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditUserProfile(AtomHealthUser model)
+        {
+            var edituser = await _userManager.FindByIdAsync(model.Id);
+
+            if (edituser == null)
+            {
+                ViewBag.ErrorMessage = $"User with Id = {model.Id} cannot be found";
+                return View("NotFound");
+            }
+            else
+            {
+                edituser.FirstName = model.FirstName;
+                edituser.MiddleName = model.MiddleName;
+                edituser.LastName = model.LastName;
+                edituser.Sex = model.Sex;
+                edituser.DOB = model.DOB;
+                edituser.Height = model.Height;
+                edituser.Weight = model.Weight;
+                edituser.PhoneNumber = model.PhoneNumber;
+                edituser.Country = model.Country;
+                edituser.HealthCarePlan = model.HealthCarePlan;
+                edituser.HealthID = model.HealthID;
+                edituser.FamilyDoctorName = model.FamilyDoctorName;
+                edituser.EmergencyContactName = model.EmergencyContactName;
+                edituser.EmergencyContactPhone = model.EmergencyContactPhone;
+                edituser.MedicalConditions = model.MedicalConditions;
+                edituser.Medicines = model.Medicines;
+                edituser.Diseases = model.Diseases;
+                edituser.Allergies = model.Allergies;
+                edituser.PastSurgeries = model.PastSurgeries;
+                edituser.FamilyHistory = model.FamilyHistory;
+
+                var result = await _userManager.UpdateAsync(edituser);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("UserProfile");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+
+                return View(model);
+            }
         }
 
         public IActionResult OurSolution()

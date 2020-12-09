@@ -44,7 +44,7 @@
             </div>
 
             <div class="bio-row">
-                <p><span>Health ID:</span>@Html.DisplayFor(model => model.Country)</p>
+                <p><span>Country:</span>@Html.DisplayFor(model => model.Country)</p>
             </div>
 
 
@@ -119,5 +119,5 @@
 
 </div>
 <div class="bio-desk">
-    <a asp-action="Edit" asp-route-id="@ViewBag.userid"><i class="fa fa-edit"></i> Edit profile</a>
+    <a asp-action="EditUserProfile" asp-controller="Home" asp-route-id="@ViewBag.userid"><i class="fa fa-edit"></i> Edit profile</a>
 </div>
