@@ -34,19 +34,19 @@
             <div class="form-group">
                 <label asp-for="Sex" class="control-label">Gender</label>
                 <br />
-                @* @Html.RadioButtonFor(m => m.Sex, "Male", Model.Sex == "Male" ? "checked" : string.Empty)
-        <span>Male</span>
-        @Html.RadioButtonFor(m => m.Sex, "Female", Model.Sex == "Female" ? "checked" : string.Empty)
-        <span>Female</span>
-        @Html.RadioButtonFor(m => m.Sex, "Other", Model.Sex == "Other" ? "checked" : string.Empty)
-        <span>Other</span>*@
-
+                @Html.RadioButtonFor(m => m.Sex, "Male", Model.Sex == "Male" ? "checked" : string.Empty)
                 <span>Male</span>
-                @Html.RadioButtonFor(model => model.Sex, "Male")
+                @Html.RadioButtonFor(m => m.Sex, "Female", Model.Sex == "Female" ? "checked" : string.Empty)
                 <span>Female</span>
-                @Html.RadioButtonFor(model => model.Sex, "Female")
+                @Html.RadioButtonFor(m => m.Sex, "Other", Model.Sex == "Other" ? "checked" : string.Empty)
                 <span>Other</span>
-                @Html.RadioButtonFor(model => model.Sex, "Other")
+                @*
+        <span>Male</span>
+        @Html.RadioButtonFor(model => model.Sex, "Male")
+        <span>Female</span>
+        @Html.RadioButtonFor(model => model.Sex, "Female")
+        <span>Other</span>
+        @Html.RadioButtonFor(model => model.Sex, "Other")*@
 
                 <span asp-validation-for="Sex" class="text-danger"></span>
             </div>
@@ -80,7 +80,7 @@
                 @Html.DropDownList("Country", new List<SelectListItem>
 {
     new SelectListItem { Text = "CA", Value = "CA", Selected=true},
-    new SelectListItem { Text = "US", Value = "CA"}
+    new SelectListItem { Text = "US", Value = "US"}
     
 }, "Select Country")
                 <span asp-validation-for="Country" class="text-danger"></span>
