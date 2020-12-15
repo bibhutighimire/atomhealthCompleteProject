@@ -12,9 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Http;
-using JavaScriptEngineSwitcher.V8;
-using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
-using React.AspNet;
+
 
 
 
@@ -33,9 +31,7 @@ namespace AtomHealth
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddReact();
-            services.AddJsEngineSwitcher(options => options.DefaultEngineName = V8JsEngine.EngineName)
-              .AddV8();
+            
 
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -67,10 +63,7 @@ namespace AtomHealth
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseReact(config=>
-            { 
-            
-            });
+          
 
             app.UseStaticFiles();
 
