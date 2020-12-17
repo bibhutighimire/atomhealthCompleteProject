@@ -53,6 +53,12 @@ namespace AtomHealth.Areas.Identity.Pages.Account
 
             [Display(Name = "Remember me?")]
             public bool RememberMe { get; set; }
+
+            public string ReturnUrl { get; set; }
+
+            // AuthenticationScheme is in Microsoft.AspNetCore.Authentication namespace
+            public IList<AuthenticationScheme> ExternalLogins { get; set; }
+
         }
 
         public async Task OnGetAsync(string returnUrl = null)

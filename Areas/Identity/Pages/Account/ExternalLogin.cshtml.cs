@@ -52,6 +52,8 @@ namespace AtomHealth.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             public string Email { get; set; }
+            public string ReturnUrl { get; internal set; }
+            public object ExternalLogins { get; internal set; }
         }
 
         public IActionResult OnGetAsync()

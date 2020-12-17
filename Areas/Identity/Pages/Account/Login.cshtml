@@ -7,7 +7,7 @@
 }
 
 <div class="col-md-10 offset-1">
-    
+
     <form id="account" method="post">
         <div asp-validation-summary="All" class="text-danger"></div>
         <div class="form-group">
@@ -44,15 +44,45 @@
             <p>
                 <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
             </p>
-            <p>
+            @*<p>
                 <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-            </p>
+                </p>*@
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block">Log in</button>
         </div>
+
     </form>
+
+
 </div>
+
+@*<div class="col-md-10 offset-1">
+        <h3>External Login</h3>
+        <h6>(Login using your gmail account)</h6>
+        <hr />
+         @{
+                if (Model.ExternalLogins.Count == 0)
+                {
+                    <div>No external logins configured</div>
+                }
+                else
+                {
+                    <form method="post" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
+                        <div>
+                            @foreach (var provider in Model.ExternalLogins)
+                            {
+                                <button type="submit" class="btn btn-primary"
+                                        name="provider" value="@provider.Name"
+                                        title="Log in using your @provider.DisplayName account">
+                                    @provider.DisplayName
+                                </button>
+                            }
+                        </div>
+                    </form>
+                }
+            }
+    </div>*@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
