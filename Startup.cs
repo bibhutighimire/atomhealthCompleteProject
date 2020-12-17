@@ -49,6 +49,7 @@ namespace AtomHealth
            );
 
 
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,6 +71,7 @@ namespace AtomHealth
             app.UseRouting();
 
             app.UseAuthentication();
+
 
             app.UseAuthorization();
 

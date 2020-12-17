@@ -30,6 +30,12 @@ namespace AtomHealth.Areas.Identity
                 .AddDefaultUI()
                     .AddEntityFrameworkStores<AtomHealthDBContext>();
 
+                services.AddAuthentication().AddGoogle(options =>
+                {
+                    options.ClientId = "569055857064-75u919tme1flvcb75dfjd1kfo5mvlht7.apps.googleusercontent.com";
+                    options.ClientSecret = "kEw0n3WLYcKiQ1gHixQ2Ekss";
+                });
+
             });
         }
     }
