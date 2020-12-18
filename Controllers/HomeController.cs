@@ -22,14 +22,14 @@ namespace AtomHealth.Controllers
     {
        
         private readonly UserManager<AtomHealthUser> _userManager;
-        private readonly SignInManager<AtomHealthUser> _signInManager;
+        //private readonly SignInManager<AtomHealthUser> _signInManager;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger, UserManager<AtomHealthUser> userManager, SignInManager<AtomHealthUser> signInManager)
+        public HomeController(ILogger<HomeController> logger, UserManager<AtomHealthUser> userManager)
         {
             _logger = logger;
             _userManager = userManager;
-            _signInManager = signInManager;
+            //_signInManager = signInManager;
         }
 
         public IActionResult Index()
@@ -37,7 +37,7 @@ namespace AtomHealth.Controllers
            return View();
         }
 
-        [HttpGet]
+       /*  [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> Login(string returnUrl)
         {
@@ -51,7 +51,7 @@ namespace AtomHealth.Controllers
             return View(model);
         }
 
-        [AllowAnonymous]
+       [AllowAnonymous]
         [HttpPost]
         public IActionResult ExternalLogin(string provider, string returnUrl)
         {
@@ -61,9 +61,9 @@ namespace AtomHealth.Controllers
                 .ConfigureExternalAuthenticationProperties(provider, redirectUrl);
             return new ChallengeResult(provider, properties);
         }
+*/
 
-
-        [AllowAnonymous]
+      /*  [AllowAnonymous]
         public async Task<IActionResult>
             ExternalLoginCallback(string returnUrl = null, string remoteError = null)
         {
@@ -139,7 +139,7 @@ namespace AtomHealth.Controllers
 
                 return View("Error");
             }
-        }
+        }*/
 
 
 
