@@ -9,9 +9,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - AtomHealth</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/reset.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" data-rocket-async="style" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+  
 </head>
 <body>
     <header>
@@ -38,27 +46,27 @@
 
                             @if (SignInManager.IsSignedIn(User))
                             {
-                            <ul class="navbar-nav col-md-12 col-sm-12">
-                                <li class="nav-item">
-                                    <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Manage Profile</a>
-                                </li>
-                                @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
-                                {
+                                <ul class="navbar-nav col-md-12 col-sm-12">
                                     <li class="nav-item">
-                                        <a id="manage" class="nav-link" asp-action="Index" asp-controller="UserRoleManagement">Configure User Roles</a>
+                                        <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Manage Profile</a>
+                                    </li>
+                                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                                    {
+                                        <li class="nav-item">
+                                            <a id="manage" class="nav-link" asp-action="Index" asp-controller="UserRoleManagement">Configure User Roles</a>
+                                        </li>
 
-                                }
-                                <li class="nav-item">
-                                    <form id="logoutForm" class="nav-item" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                        <button id="logout" type="submit" class="nav-link" style="height:38px;border:none;">Logout</button>
-                                    </form>
+                                    }
+                                    <li class="nav-item">
+                                        <form id="logoutForm" class="nav-item" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                            <button id="logout" type="submit" class="nav-link" style="height:38px;border:none;">Logout</button>
+                                        </form>
                                     </li>
-                            </ul>
-                                
+                                </ul>
+
 
 
 
@@ -113,42 +121,35 @@
         </main>
     </div>
 
-    <footer class="container-fluid" id="footerid">
-        <hr/>
+    <footer id="footer1">
         <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                    <div class="row" id="footerrow1">
-                        @*<div class="container">
-                           <div class="row">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" alt="logoimage" /></a>
-        </div>
+            @*<div class="row" id="logorow">
 
-                            <div class="row">*@
-                        <a class="nav-link" asp-controller="Home" asp-action="Index">HOME</a>
-                        <a class="nav-link" asp-controller="Home" asp-action="OurSolution">OUR SOLUTION</a>
-                        <a class="nav-link" asp-controller="Home" asp-action="JoinUs">JOIN US</a>
-                        <a class="nav-link" asp-controller="Home" asp-action="FAQ">FAQ</a>
-                        <a class="nav-link" asp-controller="Home" asp-action="ContactUs">CONTACT US</a>
-                        <a class="nav-link" asp-controller="Home" asp-action="News">HEALTH NEWS</a>
-                        @*</div>
+            <a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" alt="logoimage" style="width:80px;height:80px;" /></a>
         </div>*@
-                    </div>
-                                <br />
-                                <div class="row" id="footerrow2">
-                                    <p id="footerp"> Copyright &copy; AtomHealth @DateTime.Now.Year - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a></p>
-                                </div>
+            <div class="row" id="menurow">
+                <a class="nav-link" asp-controller="Home" asp-action="Index">HOME</a>
+                <a class="nav-link" asp-controller="Home" asp-action="OurSolution">OUR SOLUTION</a>
+                <a class="nav-link" asp-controller="Home" asp-action="JoinUs">JOIN US</a>
+                <a class="nav-link" asp-controller="Home" asp-action="FAQ">FAQ</a>
+                <a class="nav-link" asp-controller="Home" asp-action="ContactUs">CONTACT US</a>
+                <a class="nav-link" asp-controller="Home" asp-action="News">HEALTH NEWS</a>
+            </div>
 
-                            </div>
-                     </div>
+            <div class="footersocialMedia">
+                <a href="https://www.linkedin.com/" target="_blank"><img src="~/images/linkedin.png" style="width:30px; height:30px; margin-right:10px;" /></a>
+                <a href="https://www.facebook.com/" target="_blank"><img src="~/images/facebook.png" style="width:30px; height:30px;margin-right:10px;" /></a>
+                <a href="https://www.instagram.com/" target="_blank"><img src="~/images/instagram.png" style="width:30px; height:30px;margin-right:10px;" /></a>
+                <a href="https://www.twitter.com/" target="_blank"><img src="~/images/twitter.png" style="width:30px; height:30px" /></a>
+            </div>
 
-                </div>
-
-
-            </footer>
-            <script src="~/lib/jquery/dist/jquery.min.js"></script>
-            <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="~/js/site.js" asp-append-version="true"></script>
-            @RenderSection("Scripts", required: false)
-        </body>
-        </html>
+            <div class="row" id="privacyrow">
+                &copy; @DateTime.Now.Year - AtomHealth - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </div>
+</footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
