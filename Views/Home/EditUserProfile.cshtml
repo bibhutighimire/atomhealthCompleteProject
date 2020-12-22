@@ -48,16 +48,24 @@
                 @Html.RadioButtonFor(m => m.Gender, "LGBTQ+", Model.Gender == "LGBTQ+" ? "checked" : string.Empty)
                 <span>LGBTQ+</span>
 
-                @*<span>Male</span>
-            @Html.RadioButtonFor(model => model.Sex, "Male")
-            <span>Female</span>
-            @Html.RadioButtonFor(model => model.Sex, "Female")
-            <span>Other</span>
-            @Html.RadioButtonFor(model => model.Sex, "Other")*@
 
                 <span asp-validation-for="Gender" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                Marital Status
+                @Html.DropDownListFor(m => m.Country, new List<SelectListItem>
+{new SelectListItem { Text = "Select Country", Value = "NotSelected"},
+    new SelectListItem { Text = "Married", Value = "Married"},
+    new SelectListItem { Text = "Living with partner", Value = "Livingwithpartner"},
+    new SelectListItem { Text = "Single or never married", Value = "Single"},
+    new SelectListItem { Text = "Seperated", Value = "Seperated"},
+    new SelectListItem { Text = "Divorced", Value = "Divorced"},
+    new SelectListItem { Text = "Widowed", Value = "Widowed"}
 
+
+})
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 Height (in cm)
                 <input asp-for="Height" class="form-control" />
@@ -69,6 +77,24 @@
                 <span asp-validation-for="Weight" class="text-danger"></span>
             </div>
             <div class="form-group">
+                Blood Type
+                @Html.DropDownListFor(m => m.BloodType, new List<SelectListItem>
+{new SelectListItem { Text = "Select Blood Type", Value = "NotSelected"},
+    new SelectListItem { Text = "A RhD positive (A+)", Value = "A RhD positive (A+)"},
+    new SelectListItem { Text = " A RhD negative (A-)", Value = " A RhD negative (A-)"},
+    new SelectListItem { Text = "B RhD positive (B+)", Value = "B RhD positive (B+)"},
+    new SelectListItem { Text = "B RhD negative (B-)", Value = "B RhD negative (B-)"},
+    new SelectListItem { Text = "O RhD positive (O+)", Value = "O RhD positive (O+)"},
+    new SelectListItem { Text = "O RhD negative (O-)", Value = "O RhD negative (O-)"},
+    new SelectListItem { Text = "AB RhD positive (AB+)", Value = "AB RhD positive (AB+)"},
+    new SelectListItem { Text = "AB RhD negative (AB-)", Value = "AB RhD negative (AB-)"}
+
+
+})
+                <span asp-validation-for="BloodType" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
                 Date of Birth
                 <input asp-for="DOB" class="form-control" type="text" id="datepicker" />
                 <span asp-validation-for="DOB" class="text-danger"></span>
@@ -76,11 +102,11 @@
             <div class="form-group">
                 Country
                 @Html.DropDownList("Country", new List<SelectListItem>
-{
-    new SelectListItem { Text = "CA", Value = "CA", Selected=true},
-    new SelectListItem { Text = "US", Value = "US"}
+{new SelectListItem { Text = "Select", Value = "None", Selected=true},
+    new SelectListItem { Text = "Canada", Value = "CA"},
+    new SelectListItem { Text = "USA", Value = "USA"}
 
-}, "Select Country")
+})
                 <span asp-validation-for="Country" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -131,31 +157,31 @@
                 <span asp-validation-for="EmergencyContactPhone" class="text-danger"></span>
             </div>
             @*<div class="form-group">
-                Relationship to emergency contact
-                <input asp-for="RelationshipToEmergencyContact" class="form-control" />
-                <span asp-validation-for="RelationshipToEmergencyContact" class="text-danger"></span>
-            </div>*@
+            Relationship to emergency contact
+            <input asp-for="RelationshipToEmergencyContact" class="form-control" />
+            <span asp-validation-for="RelationshipToEmergencyContact" class="text-danger"></span>
+        </div>*@
             <div class="form-group">
                 Family Doctor's Name
                 <input asp-for="FamilyDoctorName" class="form-control" />
                 <span asp-validation-for="FamilyDoctorName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                Health Care Plan
-                <input asp-for="HealthCarePlan" class="form-control" />
-                <span asp-validation-for="HealthCarePlan" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                Coverge
-                <input asp-for="Coverage" class="form-control" />
-                <span asp-validation-for="Coverage" class="text-danger"></span>
-            </div>
+            @*<div class="form-group">
+            Health Care Plan
+            <input asp-for="HealthCarePlan" class="form-control" />
+            <span asp-validation-for="HealthCarePlan" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            Coverge
+            <input asp-for="Coverage" class="form-control" />
+            <span asp-validation-for="Coverage" class="text-danger"></span>
+        </div>
 
-            <div class="form-group">
-                Health ID
-                <input asp-for="HealthID" class="form-control" />
-                <span asp-validation-for="HealthID" class="text-danger"></span>
-            </div>
+        <div class="form-group">
+            Health ID
+            <input asp-for="HealthID" class="form-control" />
+            <span asp-validation-for="HealthID" class="text-danger"></span>
+        </div>*@
 
 
             <div class="form-group">
@@ -212,6 +238,8 @@
                 <span>Yes</span>
                 @Html.RadioButtonFor(m => m.HasAllergy, "No", Model.HasAllergy == "No" ? "checked" : string.Empty)
                 <span>No</span>
+                @Html.RadioButtonFor(m => m.HasAllergy, "NotSure", Model.HasAllergy == "NotSure" ? "checked" : string.Empty)
+                <span>Not Sure</span>
 
                 <span asp-validation-for="HasAllergy" class="text-danger"></span>
             </div>
@@ -229,7 +257,7 @@
 
             <div class="form-group">
 
-                Do you have Genetic Test?
+                Have you done any genetics test?
                 <br />
                 @Html.RadioButtonFor(m => m.hasGeneticTest, "Yes", Model.hasGeneticTest == "Yes" ? "checked" : string.Empty)
                 <span>Yes</span>
@@ -239,14 +267,14 @@
                 <span asp-validation-for="hasGeneticTest" class="text-danger"></span>
             </div>
             <div class="form-group">
-                Genetic Test (if any)
+                If yes, please provide details on the test outcomes or any highlighted risks.
                 @Html.TextArea("GeneticTest", new { rows = 5, columns = 40 })
                 <span asp-validation-for="GeneticTest" class="text-danger"></span>
             </div>
 
             <div class="form-group">
 
-                Do you smoke?
+                Do you use or do you have history of smoking or using tobacco?
                 <br />
                 @Html.RadioButtonFor(m => m.doYouSmoke, "Yes", Model.doYouSmoke == "Yes" ? "checked" : string.Empty)
                 <span>Yes</span>
@@ -259,7 +287,7 @@
 
             <div class="form-group">
 
-                Have you done illegal drugs?
+                Do you use or do you have history of using illegal drugs?
                 <br />
                 @Html.RadioButtonFor(m => m.doYouIllegalDrugs, "Yes", Model.doYouIllegalDrugs == "Yes" ? "checked" : string.Empty)
                 <span>Yes</span>
@@ -272,7 +300,7 @@
 
             <div class="form-group">
 
-                Do you consume alcohol?
+                Do you use or do you have history of consuming alcohol?
                 <br />
                 @Html.RadioButtonFor(m => m.doYouConsumeAlcohol, "Yes", Model.doYouConsumeAlcohol == "Yes" ? "checked" : string.Empty)
                 <span>Yes</span>
@@ -283,9 +311,56 @@
                 <span asp-validation-for="doYouConsumeAlcohol" class="text-danger"></span>
             </div>
             <div class="form-group">
+                Do you follow any specific diet?
+                @Html.DropDownListFor(m => m.Diet, new List<SelectListItem>
+{   new SelectListItem { Text = "Select Diet Plan", Value = "NotSelected"},
+    new SelectListItem { Text = "The Paleo Diet", Value = "The Paleo Diet"},
+    new SelectListItem { Text = "The Blood Type Diet", Value = "The Blood Type Diet"},
+    new SelectListItem { Text = "The Vegan Diet", Value = "The Vegan Diet"},
+    new SelectListItem { Text = "The South Beach Diet", Value = "The South Beach Diet"},
+    new SelectListItem { Text = "The Mediterranean Diet", Value = "The Mediterranean Diet"},
+    new SelectListItem { Text = "Raw Food Diet", Value = "Raw Food Diet"},
+      new SelectListItem { Text = "The Zone Diet", Value = "The Zone Diet"},
+    new SelectListItem { Text = "The Keto Diet", Value = "The Keto Diet"},
+    new SelectListItem { Text = "Low-Carb Diets", Value = "Low-Carb Diets"},
+    new SelectListItem { Text = "The Ultra-Low-Fat Diet", Value = "The Ultra-Low-Fat Diet"},
+    new SelectListItem { Text = "The Dukan Diet", Value = "The Dukan Diet"},
+    new SelectListItem { Text = "The Atkins Diet", Value = "The Atkins Diet"},
+      new SelectListItem { Text = "The HCG Diet", Value = "The HCG Diet"},
+    new SelectListItem { Text = "Intermittent Fasting", Value = "Intermittent Fasting"},
+    new SelectListItem { Text = "Flexitarian or Semi-Vegetarian Diet", Value = "Flexitarian or Semi-Vegetarian Diet"},
+    new SelectListItem { Text = "Cleanse Diets", Value = "Cleanse Diets"},
+    new SelectListItem { Text = "Whole30", Value = "Whole30"},
+    new SelectListItem { Text = "Carnivore Diet", Value = "Carnivore Diet"}
+
+
+})
+                <span asp-validation-for="Diet" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                How often do you exercise?
+                @Html.DropDownListFor(m => m.Exercise, new List<SelectListItem>
+{new SelectListItem { Text = "Select Exercise Level", Value = "NotSelected"},
+    new SelectListItem { Text = "Sedentary: little or no exercise", Value = "Sedentary: little or no exercise"},
+    new SelectListItem { Text = "Light: exercise 1-3 times/week", Value = "Light: exercise 1-3 times/week"},
+    new SelectListItem { Text = "Moderate: exercise 4-5 times/week", Value = "Moderate: exercise 4-5 times/week"},
+    new SelectListItem { Text = "Active: daily exercise or intense exercise 3-4 times/week", Value = "Active: daily exercise or intense exercise 3-4 times/week"},
+    new SelectListItem { Text = "Very Active: intense exercise 6-7 times/week", Value = "Very Active: intense exercise 6-7 times/week"},
+    new SelectListItem { Text = "Extra Active: very intense exercise daily, or physical job", Value = "Extra Active: very intense exercise daily, or physical job"}
+
+})
+                <span asp-validation-for="Exercise" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
                 Covid Test Details
                 <input asp-for="CovidDetails" class="form-control" />
                 <span asp-validation-for="CovidDetails" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                Check ALL the vaccines that you are up to date with.
+                <input asp-for="ImmunizationRecord" class="form-control" />
+                <span asp-validation-for="ImmunizationRecord" class="text-danger"></span>
             </div>
             <hr />
             <div class="form-group">

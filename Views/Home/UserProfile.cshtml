@@ -29,12 +29,19 @@
                 <p><span>Gender</span>@Html.DisplayFor(model => model.Gender)</p>
             </div>
 
+            <div class="bio-row">
+                <p><span>Marital Status</span>@Html.DisplayFor(model => model.MaritalStatus)</p>
+            </div>
+
 
             <div class="bio-row">
                 <p><span>Height (in cm)</span>@Html.DisplayFor(model => model.Height)</p>
             </div>
             <div class="bio-row">
                 <p><span>Weight (in lbs)</span>@Html.DisplayFor(model => model.Weight)</p>
+            </div>
+            <div class="bio-row">
+                <p><span>Blood Type</span>@Html.DisplayFor(model => model.BloodType)</p>
             </div>
             <div class="bio-row">
                 <p><span>Date of Birth</span>@Html.DisplayFor(model => model.DOB)</p>
@@ -89,17 +96,17 @@
                 <p><span>Family Doctor Name</span>@Html.DisplayFor(model => model.FamilyDoctorName)</p>
             </div>
 
-            <div class="bio-row">
-                <p><span>Health Care Plan</span>@Html.DisplayFor(model => model.HealthCarePlan)</p>
-            </div>
+            @*<div class="bio-row">
+            <p><span>Health Care Plan</span>@Html.DisplayFor(model => model.HealthCarePlan)</p>
+        </div>
 
-            <div class="bio-row">
-                <p><span>Coverage</span>@Html.DisplayFor(model => model.Coverage)</p>
-            </div>
+        <div class="bio-row">
+            <p><span>Coverage</span>@Html.DisplayFor(model => model.Coverage)</p>
+        </div>
 
-            <div class="bio-row">
-                <p><span>HealthID</span>@Html.DisplayFor(model => model.HealthID)</p>
-            </div>
+        <div class="bio-row">
+            <p><span>HealthID</span>@Html.DisplayFor(model => model.HealthID)</p>
+        </div>*@
 
             <div class="bio-row">
                 <p><span>Medical Conditions (if any)</span>@Html.DisplayFor(model => model.MedicalConditions)</p>
@@ -157,12 +164,21 @@
             <div class="bio-row">
                 <p><span>Do you consume alcohol?</span>@Html.DisplayFor(model => model.doYouConsumeAlcohol)</p>
             </div>
+            <div class="bio-row">
+                <p><span>Do you follow any specific diet?</span>@Html.DisplayFor(model => model.Diet)</p>
+            </div>
+            <div class="bio-row">
+                <p><span>How often do you exercise?</span>@Html.DisplayFor(model => model.Exercise)</p>
+            </div>
 
             <div class="bio-row">
                 <p><span>Covid Test Details:</span>@Html.DisplayFor(model => model.CovidDetails)</p>
             </div>
+            <div class="bio-row">
+                <p><span>Immunization Record</span>@Html.DisplayFor(model => model.ImmunizationRecord)</p>
+            </div>
         </div>
-   
+   </div>
 
 </div>
 <div class="bio-desk">

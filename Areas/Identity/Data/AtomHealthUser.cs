@@ -28,14 +28,20 @@ namespace AtomHealth.Areas.Identity.Data
         [Column(TypeName = "varchar(50)")]
         public string Gender { get; set; }
 
-    [PersonalData]
+        [PersonalData]
+        [Column(TypeName = "varchar(100)")]
+        public string MaritalStatus { get; set; }
+
+        [PersonalData]
         [Column(TypeName = "int")]
         public int? Height { get; set; }
 
         [PersonalData]
         [Column(TypeName = "int")]
         public int? Weight { get; set; }
-
+        [PersonalData]
+        [Column(TypeName = "varchar(100)")]
+        public string BloodType { get; set; }
         [PersonalData]
         [DataType(DataType.Date, ErrorMessage = "Invalid Date")]
         public DateTime? DOB { get; set; }
@@ -95,21 +101,23 @@ namespace AtomHealth.Areas.Identity.Data
         [Column(TypeName = "varchar(200)")]
         public string FamilyDoctorName { get; set; }
 
+        //[PersonalData]
+        //[Column(TypeName = "varchar(100)")]
+        //public string HasMedicalCoverage { get; set; }
+
+        //[PersonalData]
+        //[Column(TypeName = "nvarchar(200)")]
+        //public string HealthCarePlan { get; set; }
+
+        //[PersonalData]
+        //[Column(TypeName = "nvarchar(200)")]
+        //public string Coverage { get; set; }
+
+        //[PersonalData]
+        //[Column(TypeName = "nvarchar(100)")]
+        //public string HealthID { get; set; }
 
 
-        [PersonalData]
-        [Column(TypeName = "nvarchar(200)")]
-        public string HealthCarePlan { get; set; }
-
-        [PersonalData]
-        [Column(TypeName = "nvarchar(200)")]
-        public string Coverage { get; set; }
-
-        [PersonalData]
-        [Column(TypeName = "nvarchar(100)")]
-        public string HealthID { get; set; }
-
-       
         [PersonalData]
         [Column(TypeName = "nvarchar(max)")]
         public string MedicalConditions { get; set; }
@@ -163,8 +171,20 @@ namespace AtomHealth.Areas.Identity.Data
         public string doYouConsumeAlcohol { get; set; }
 
         [PersonalData]
+        [Column(TypeName = "varchar(200)")]
+        public string Diet { get; set; }
+
+        [PersonalData]
+        [Column(TypeName = "varchar(200)")]
+        public string Exercise { get; set; }
+
+        [PersonalData]
         [Column(TypeName = "nvarchar(500)")]
         public string CovidDetails { get; set; }
+
+        [PersonalData]
+        [Column(TypeName = "nvarchar(1000)")]
+        public string ImmunizationRecord { get; set; }
 
 
 

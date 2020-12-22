@@ -208,9 +208,9 @@ namespace AtomHealth.Controllers
                 edituser.FamilyDoctorName = model.FamilyDoctorName;
 
 
-                edituser.HealthCarePlan = model.HealthCarePlan;
-                edituser.Coverage = model.Coverage;
-                edituser.HealthID = model.HealthID;
+                //edituser.HealthCarePlan = model.HealthCarePlan;
+                //edituser.Coverage = model.Coverage;
+                //edituser.HealthID = model.HealthID;
                 edituser.MedicalConditions = model.MedicalConditions;
                
                 edituser.PastMedicalHistory = model.PastMedicalHistory;
