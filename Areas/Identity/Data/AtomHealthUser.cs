@@ -64,9 +64,7 @@ namespace AtomHealth.Areas.Identity.Data
         [Column(TypeName = "nvarchar(200)")]
         public string PostalCode { get; set; }
 
-        [PersonalData]
-        [DataType(DataType.EmailAddress, ErrorMessage = "E-mail is not valid")]
-        public string Email { get; set; }
+       
 
         [PersonalData]
         [Column(TypeName = "nvarchar(100)")]
@@ -121,21 +119,21 @@ namespace AtomHealth.Areas.Identity.Data
         public string PastMedicalHistory { get; set; }
 
         [PersonalData]
-        public bool IsInMedicaion { get; set; }
+        public string IsInMedicaion { get; set; }
 
         [PersonalData]
         [Column(TypeName = "nvarchar(max)")]
         public string Medications { get; set; }
 
         [PersonalData]
-        public bool HasPastSurgery { get; set; }
+        public string HasPastSurgery { get; set; }
 
         [PersonalData]
         [Column(TypeName = "nvarchar(max)")]
         public string PastSurgeries { get; set; }
 
         [PersonalData]
-        public bool HasAllergy { get; set; }
+        public string HasAllergy { get; set; }
 
         [PersonalData]
         [Column(TypeName = "nvarchar(max)")]
@@ -145,15 +143,15 @@ namespace AtomHealth.Areas.Identity.Data
         [Column(TypeName = "nvarchar(max)")]
         public string FamilyHistory { get; set; }
 
-        public bool hasGeneticTest { get; set; }
+        public string hasGeneticTest { get; set; }
 
         [PersonalData]
         [Column(TypeName = "nvarchar(max)")]
         public string GeneticTest { get; set; }
 
-        public bool doYouSmoke { get; set; }
-        public bool doYouIllegalDrugs { get; set; }
-        public bool doYouConsumeAlcohol { get; set; }
+        public string doYouSmoke { get; set; }
+        public string doYouIllegalDrugs { get; set; }
+        public string doYouConsumeAlcohol { get; set; }
 
         [PersonalData]
         [Column(TypeName = "nvarchar(500)")]

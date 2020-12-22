@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Authorization;
 using static AtomHealth.Areas.Identity.Pages.Account.ExternalLoginModel;
 using Microsoft.AspNet.Identity.Owin;
 using System.Security.Claims;
+using AtomHealth.Data;
 
 namespace AtomHealth.Controllers
 {
@@ -22,13 +23,16 @@ namespace AtomHealth.Controllers
     {
        
         private readonly UserManager<AtomHealthUser> _userManager;
+        private readonly SignInManager<AtomHealthUser> _SignInManager;
+        private readonly AtomHealthDBContext _context;
         //private readonly SignInManager<AtomHealthUser> _signInManager;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger, UserManager<AtomHealthUser> userManager)
+        public HomeController(ILogger<HomeController> logger, UserManager<AtomHealthUser> userManager, AtomHealthDBContext context)
         {
             _logger = logger;
             _userManager = userManager;
+            _context = context;
             //_signInManager = signInManager;
         }
 
@@ -37,160 +41,136 @@ namespace AtomHealth.Controllers
            return View();
         }
 
-       /*  [HttpGet]
+        /*  [HttpGet]
+         [AllowAnonymous]
+         public async Task<IActionResult> Login(string returnUrl)
+         {
+             InputModel model = new InputModel
+             {
+                 ReturnUrl = returnUrl,
+                 ExternalLogins =
+                 (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList()
+             };
+
+             return View(model);
+         }
+
         [AllowAnonymous]
-        public async Task<IActionResult> Login(string returnUrl)
+         [HttpPost]
+         public IActionResult ExternalLogin(string provider, string returnUrl)
+         {
+             var redirectUrl = Url.Action("ExternalLoginCallback", "Home",
+                                 new { ReturnUrl = returnUrl });
+             var properties = _signInManager
+                 .ConfigureExternalAuthenticationProperties(provider, redirectUrl);
+             return new ChallengeResult(provider, properties);
+         }
+ */
+
+        /*  [AllowAnonymous]
+          public async Task<IActionResult>
+              ExternalLoginCallback(string returnUrl = null, string remoteError = null)
+          {
+              returnUrl = returnUrl ?? Url.Content("~/");
+
+              InputModel loginViewModel = new InputModel
+              {
+                  ReturnUrl = returnUrl,
+                  ExternalLogins =
+                          (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList()
+              };
+
+              if (remoteError != null)
+              {
+                  ModelState
+                      .AddModelError(string.Empty, $"Error from external provider: {remoteError}");
+
+                  return View("Login", loginViewModel);
+              }
+
+              // Get the login information about the user from the external login provider
+              var info = await _signInManager.GetExternalLoginInfoAsync();
+              if (info == null)
+              {
+                  ModelState
+                      .AddModelError(string.Empty, "Error loading external login information.");
+
+                  return View("Login", loginViewModel);
+              }
+
+              // If the user already has a login (i.e if there is a record in AspNetUserLogins
+              // table) then sign-in the user with this external login provider
+              var signInResult = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider,
+                  info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
+
+              if (signInResult.Succeeded)
+              {
+                  return LocalRedirect(returnUrl);
+              }
+              // If there is no record in AspNetUserLogins table, the user may not have
+              // a local account
+              else
+              {
+                  // Get the email claim value
+                  var email = info.Principal.FindFirstValue(ClaimTypes.Email);
+
+                  if (email != null)
+                  {
+                      // Create a new user without password if we do not have a user already
+                      var user = await _userManager.FindByEmailAsync(email);
+
+                      if (user == null)
+                      {
+                          user = new AtomHealthUser
+                          {
+                              UserName = info.Principal.FindFirstValue(ClaimTypes.Email),
+                              Email = info.Principal.FindFirstValue(ClaimTypes.Email)
+                          };
+
+                          await _userManager.CreateAsync(user);
+                      }
+
+                      // Add a login (i.e insert a row for the user in AspNetUserLogins table)
+                      await _userManager.AddLoginAsync(user, info);
+                      await _signInManager.SignInAsync(user, isPersistent: false);
+
+                      return LocalRedirect(returnUrl);
+                  }
+
+                  // If we cannot find the user email we cannot continue
+                  ViewBag.ErrorTitle = $"Email claim not received from: {info.LoginProvider}";
+                  ViewBag.ErrorMessage = "Please contact support on atomhealth1@gmail.com";
+
+                  return View("Error");
+              }
+          }*/
+
+
+
+        public async Task<IActionResult> UserProfile()
         {
-            InputModel model = new InputModel
-            {
-                ReturnUrl = returnUrl,
-                ExternalLogins =
-                (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList()
-            };
-
-            return View(model);
-        }
-
-       [AllowAnonymous]
-        [HttpPost]
-        public IActionResult ExternalLogin(string provider, string returnUrl)
-        {
-            var redirectUrl = Url.Action("ExternalLoginCallback", "Home",
-                                new { ReturnUrl = returnUrl });
-            var properties = _signInManager
-                .ConfigureExternalAuthenticationProperties(provider, redirectUrl);
-            return new ChallengeResult(provider, properties);
-        }
-*/
-
-      /*  [AllowAnonymous]
-        public async Task<IActionResult>
-            ExternalLoginCallback(string returnUrl = null, string remoteError = null)
-        {
-            returnUrl = returnUrl ?? Url.Content("~/");
-
-            InputModel loginViewModel = new InputModel
-            {
-                ReturnUrl = returnUrl,
-                ExternalLogins =
-                        (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList()
-            };
-
-            if (remoteError != null)
-            {
-                ModelState
-                    .AddModelError(string.Empty, $"Error from external provider: {remoteError}");
-
-                return View("Login", loginViewModel);
-            }
-
-            // Get the login information about the user from the external login provider
-            var info = await _signInManager.GetExternalLoginInfoAsync();
-            if (info == null)
-            {
-                ModelState
-                    .AddModelError(string.Empty, "Error loading external login information.");
-
-                return View("Login", loginViewModel);
-            }
-
-            // If the user already has a login (i.e if there is a record in AspNetUserLogins
-            // table) then sign-in the user with this external login provider
-            var signInResult = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider,
-                info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
-
-            if (signInResult.Succeeded)
-            {
-                return LocalRedirect(returnUrl);
-            }
-            // If there is no record in AspNetUserLogins table, the user may not have
-            // a local account
-            else
-            {
-                // Get the email claim value
-                var email = info.Principal.FindFirstValue(ClaimTypes.Email);
-
-                if (email != null)
-                {
-                    // Create a new user without password if we do not have a user already
-                    var user = await _userManager.FindByEmailAsync(email);
-
-                    if (user == null)
-                    {
-                        user = new AtomHealthUser
-                        {
-                            UserName = info.Principal.FindFirstValue(ClaimTypes.Email),
-                            Email = info.Principal.FindFirstValue(ClaimTypes.Email)
-                        };
-
-                        await _userManager.CreateAsync(user);
-                    }
-
-                    // Add a login (i.e insert a row for the user in AspNetUserLogins table)
-                    await _userManager.AddLoginAsync(user, info);
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-
-                    return LocalRedirect(returnUrl);
-                }
-
-                // If we cannot find the user email we cannot continue
-                ViewBag.ErrorTitle = $"Email claim not received from: {info.LoginProvider}";
-                ViewBag.ErrorMessage = "Please contact support on atomhealth1@gmail.com";
-
-                return View("Error");
-            }
-        }*/
-
-
-
-        public IActionResult UserProfile()
-        {
-            var userid = _userManager.GetUserId(HttpContext.User);
-            ViewBag.userid= _userManager.GetUserId(HttpContext.User);
-            AtomHealthUser user = _userManager.FindByIdAsync(userid).Result;
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            ViewBag.id = user.Id;
+            
             //ViewBag.username = _userManager.GetUserAsync(HttpContext.User);
             //AtomHealthUser userName = _userManager.FindByNameAsync(userName).Result;
             return View(user);
         }
 
-        public IActionResult EditUserProfile()
-        {
-            return View();
-        }
+        
 
         [HttpGet]
         public async Task<IActionResult> EditUserProfile(string id)
         {
-            var edituser = await _userManager.FindByIdAsync(id);
-            if(edituser==null)
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            ViewBag.id = user.Id;
+            if (user == null)
             {
                 ViewBag.ErrorMessage = $"User with id = {id} cannot be found.";
                 return View("Not Found");
             }
-            var model = new AtomHealthUser
-            {
-                FirstName = edituser.FirstName,
-                MiddleName = edituser.MiddleName,
-                LastName = edituser.LastName,
-                Sex = edituser.Sex,
-                DOB = edituser.DOB,
-                Height = edituser.Height,
-                Weight = edituser.Weight,
-                PhoneNumber = edituser.PhoneNumber,
-                Country = edituser.Country,
-                HealthCarePlan = edituser.HealthCarePlan,
-                HealthID = edituser.HealthID,
-                FamilyDoctorName = edituser.FamilyDoctorName,
-                EmergencyContactName = edituser.EmergencyContactName,
-                EmergencyContactPhone = edituser.EmergencyContactPhone,
-                MedicalConditions = edituser.MedicalConditions,
-                Medicines = edituser.Medicines,
-                Diseases = edituser.Diseases,
-                Allergies = edituser.Allergies,
-                PastSurgeries = edituser.PastSurgeries,
-                FamilyHistory = edituser.FamilyHistory
-            };
-            return View(model);
+           
+            return View(user);
            
         }
 
@@ -209,23 +189,46 @@ namespace AtomHealth.Controllers
                 edituser.FirstName = model.FirstName;
                 edituser.MiddleName = model.MiddleName;
                 edituser.LastName = model.LastName;
-                edituser.Sex = model.Sex;
-                edituser.DOB = model.DOB;
+                edituser.Gender = model.Gender;
+                
                 edituser.Height = model.Height;
                 edituser.Weight = model.Weight;
-                edituser.PhoneNumber = model.PhoneNumber;
+                edituser.DOB = model.DOB;
                 edituser.Country = model.Country;
-                edituser.HealthCarePlan = model.HealthCarePlan;
-                edituser.HealthID = model.HealthID;
-                edituser.FamilyDoctorName = model.FamilyDoctorName;
+                edituser.Province = model.Province;
+                edituser.City = model.City;
+                edituser.AddressLineOne = model.AddressLineOne;
+                edituser.AddressLineTwo = model.AddressLineTwo;
+                edituser.PostalCode = model.PostalCode; 
+                edituser.HomePhone = model.HomePhone;
+                edituser.MobilePhone = model.MobilePhone;
                 edituser.EmergencyContactName = model.EmergencyContactName;
                 edituser.EmergencyContactPhone = model.EmergencyContactPhone;
+                edituser.RelationshipToEmergencyContact = model.RelationshipToEmergencyContact;
+                edituser.FamilyDoctorName = model.FamilyDoctorName;
+
+
+                edituser.HealthCarePlan = model.HealthCarePlan;
+                edituser.Coverage = model.Coverage;
+                edituser.HealthID = model.HealthID;
                 edituser.MedicalConditions = model.MedicalConditions;
-                edituser.Medicines = model.Medicines;
-                edituser.Diseases = model.Diseases;
-                edituser.Allergies = model.Allergies;
+               
+                edituser.PastMedicalHistory = model.PastMedicalHistory;
+                edituser.IsInMedicaion = model.IsInMedicaion;
+                edituser.Medications = model.Medications;
+                edituser.HasPastSurgery = model.HasPastSurgery;
                 edituser.PastSurgeries = model.PastSurgeries;
+                edituser.HasAllergy = model.HasAllergy;
+
+                edituser.Allergies = model.Allergies;
                 edituser.FamilyHistory = model.FamilyHistory;
+                edituser.hasGeneticTest = model.hasGeneticTest;
+                edituser.GeneticTest = model.GeneticTest;
+                edituser.doYouSmoke = model.doYouSmoke;
+                edituser.doYouIllegalDrugs = model.doYouIllegalDrugs;
+                edituser.doYouConsumeAlcohol = model.doYouConsumeAlcohol;
+                edituser.CovidDetails = model.CovidDetails;
+            
 
                 var result = await _userManager.UpdateAsync(edituser);
 

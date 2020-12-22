@@ -4,14 +4,16 @@ using AtomHealth.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AtomHealth.Migrations
 {
     [DbContext(typeof(AtomHealthDBContext))]
-    partial class AtomHealthDBContextModelSnapshot : ModelSnapshot
+    [Migration("20201222020219_changes")]
+    partial class changes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,11 +85,11 @@ namespace AtomHealth.Migrations
                     b.Property<string>("GeneticTest")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("HasAllergy")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("HasAllergy")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("HasPastSurgery")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("HasPastSurgery")
+                        .HasColumnType("bit");
 
                     b.Property<string>("HealthCarePlan")
                         .HasColumnType("nvarchar(200)");
@@ -101,8 +103,8 @@ namespace AtomHealth.Migrations
                     b.Property<string>("HomePhone")
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("IsInMedicaion")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("IsInMedicaion")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(100)");
@@ -170,17 +172,17 @@ namespace AtomHealth.Migrations
                     b.Property<int>("Weight")
                         .HasColumnType("int");
 
-                    b.Property<string>("doYouConsumeAlcohol")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("doYouConsumeAlcohol")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("doYouIllegalDrugs")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("doYouIllegalDrugs")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("doYouSmoke")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("doYouSmoke")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("hasGeneticTest")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("hasGeneticTest")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 

@@ -12,9 +12,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Http;
-
-
-
+using AtomHealth.Data;
+using AtomHealth.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace AtomHealth
 {
@@ -30,6 +30,21 @@ namespace AtomHealth
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AtomHealthDBContext>(options =>
+                    options.UseSqlServer(
+                        Configuration.GetConnectionString("AtomHealthDBContextConnection")));
+
+            services.AddScoped<DbContext, AtomHealthDBContext>();
+
+            services.AddIdentity<AtomHealthUser, IdentityRole>(options => {
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.SignIn.RequireConfirmedAccount = true;
+            })
+                  .AddDefaultTokenProviders()
+                 .AddDefaultUI()
+                     .AddEntityFrameworkStores<AtomHealthDBContext>();
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             
 
