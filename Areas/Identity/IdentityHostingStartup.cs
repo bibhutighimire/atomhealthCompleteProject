@@ -16,19 +16,7 @@ namespace AtomHealth.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<AtomHealthDBContext>(options =>
-                    options.UseSqlServer(
-                        context.Configuration.GetConnectionString("AtomHealthDBContextConnection")));
-
-
-                services.AddIdentity<AtomHealthUser, IdentityRole>(options => {
-                    options.Password.RequireLowercase = false;
-                    options.Password.RequireUppercase = false;
-                    options.SignIn.RequireConfirmedAccount = true;
-                })
-                 .AddDefaultTokenProviders()
-                .AddDefaultUI()
-                    .AddEntityFrameworkStores<AtomHealthDBContext>();
+               
 
                 services.AddAuthentication().AddGoogle(options =>
                 {

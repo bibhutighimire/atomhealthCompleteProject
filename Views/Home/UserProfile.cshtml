@@ -17,107 +17,154 @@
 
         <div class="rowForProfile">
             <div class="bio-row">
-                <p><span>First Name:</span>@Html.DisplayFor(model => model.FirstName)</p>
+                <p><span>First Name</span>@Html.DisplayFor(model => model.FirstName)</p>
             </div>
             <div class="bio-row">
-                <p><span>Middle Name:</span>@Html.DisplayFor(model => model.MiddleName)</p>
+                <p><span>Middle Name</span>@Html.DisplayFor(model => model.MiddleName)</p>
             </div>
             <div class="bio-row">
-                <p><span>Last Name:</span>@Html.DisplayFor(model => model.LastName)</p>
+                <p><span>Last Name</span>@Html.DisplayFor(model => model.LastName)</p>
             </div>
             <div class="bio-row">
-                <p><span>Sex:</span>@Html.DisplayFor(model => model.Sex)</p>
-            </div>
-            <div class="bio-row">
-                <p><span>Date of Birth:</span>@Html.DisplayFor(model => model.DOB)</p>
-            </div>
-
-            <div class="bio-row">
-                <p><span>Height:</span>@Html.DisplayFor(model => model.Height)</p>
-            </div>
-            <div class="bio-row">
-                <p><span>Weight:</span>@Html.DisplayFor(model => model.Weight)</p>
-            </div>
-
-            <div class="bio-row">
-                <p><span>Phone:</span>@Html.DisplayFor(model => model.PhoneNumber)</p>
-            </div>
-
-            <div class="bio-row">
-                <p><span>Country:</span>@Html.DisplayFor(model => model.Country)</p>
+                <p><span>Gender</span>@Html.DisplayFor(model => model.Gender)</p>
             </div>
 
 
             <div class="bio-row">
-                <p><span>Health Care Plan:</span>@Html.DisplayFor(model => model.HealthCarePlan)</p>
+                <p><span>Height (in cm)</span>@Html.DisplayFor(model => model.Height)</p>
             </div>
             <div class="bio-row">
-                <p><span>Health ID:</span>@Html.DisplayFor(model => model.HealthID)</p>
+                <p><span>Weight (in lbs)</span>@Html.DisplayFor(model => model.Weight)</p>
+            </div>
+            <div class="bio-row">
+                <p><span>Date of Birth</span>@Html.DisplayFor(model => model.DOB)</p>
+            </div>
+
+
+            <div class="bio-row">
+                <p><span>Country</span>@Html.DisplayFor(model => model.Country)</p>
             </div>
 
             <div class="bio-row">
-                <p><span>Family Doctor's Name:</span>@Html.DisplayFor(model => model.FamilyDoctorName)</p>
+                <p><span>Province</span>@Html.DisplayFor(model => model.Province)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>City</span>@Html.DisplayFor(model => model.City)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>AddressLineOne</span>@Html.DisplayFor(model => model.AddressLineOne)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>AddressLineTwo</span>@Html.DisplayFor(model => model.AddressLineTwo)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Postal Code:</span>@Html.DisplayFor(model => model.PostalCode)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Home Phone</span>@Html.DisplayFor(model => model.HomePhone)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Mobile Phone</span>@Html.DisplayFor(model => model.MobilePhone)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Emergency Contact Person Name</span>@Html.DisplayFor(model => model.EmergencyContactName)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Emergency Contact Number</span>@Html.DisplayFor(model => model.EmergencyContactPhone)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Relationship To Emergency Contact</span>@Html.DisplayFor(model => model.RelationshipToEmergencyContact)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Family Doctor Name</span>@Html.DisplayFor(model => model.FamilyDoctorName)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Health Care Plan</span>@Html.DisplayFor(model => model.HealthCarePlan)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Coverage</span>@Html.DisplayFor(model => model.Coverage)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>HealthID</span>@Html.DisplayFor(model => model.HealthID)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Medical Conditions (if any)</span>@Html.DisplayFor(model => model.MedicalConditions)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Past Medical History (if any)</span>@Html.DisplayFor(model => model.PastMedicalHistory)</p>
+            </div>
+
+
+            <div class="bio-row">
+                <p><span>Are you in medicaion now?</span>@Html.DisplayFor(model => model.IsInMedicaion)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Medications (if any)</span>@Html.DisplayFor(model => model.Medications)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Have you had surgery in the past?</span>@Html.DisplayFor(model => model.HasPastSurgery)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Past Surgeries (if any)</span>@Html.DisplayFor(model => model.PastSurgeries)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Do you have any Allergy?</span>@Html.DisplayFor(model => model.HasAllergy)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Allergies (if any)</span>@Html.DisplayFor(model => model.Allergies)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Family medical history (if any)</span>@Html.DisplayFor(model => model.FamilyHistory)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Has Genetic Test?</span>@Html.DisplayFor(model => model.hasGeneticTest)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Genetic Test (if any)</span>@Html.DisplayFor(model => model.GeneticTest)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Do you smoke?</span>@Html.DisplayFor(model => model.doYouSmoke)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Have you done illegal drugs?</span>@Html.DisplayFor(model => model.doYouIllegalDrugs)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Do you consume alcohol?</span>@Html.DisplayFor(model => model.doYouConsumeAlcohol)</p>
+            </div>
+
+            <div class="bio-row">
+                <p><span>Covid Test Details:</span>@Html.DisplayFor(model => model.CovidDetails)</p>
             </div>
         </div>
-
-    </div>
-    <br />
-    <div class="row">
-        <div class="col-md-6">
-
-            <div class="panelbio-body">
-                <div class="bio-desk">
-                    <h4 class="red">Emergency Contact</h4>
-                    <p><span>Emergency Contact Name:</span>&nbsp;&nbsp;@Html.DisplayFor(model => model.EmergencyContactName)</p>
-                    <p><span>Emergency Contact Phone Number:</span>&nbsp;&nbsp;@Html.DisplayFor(model => model.EmergencyContactPhone)</p>
-                </div>
-            </div>
-
-        </div>
-        <br />
-        <div class="col-md-6">
-
-            <div class="panelbio-body">
-                <div class="bio-desk">
-                    <h4 class="terques">Medications</h4>
-                    <p><span>Medical Conditions:</span>&nbsp;&nbsp;@Html.DisplayFor(model => model.MedicalConditions)</p>
-                    <p><span>Medication Details:</span>&nbsp;&nbsp;@Html.DisplayFor(model => model.Medicines)</p>
-                </div>
-            </div>
-
-        </div>
-        <br />
-        <div class="col-md-6">
-
-            <div class="panelbio-body">
-                <div class="bio-desk">
-                    <h4 class="green">Diseases</h4>
-                    <p><span>Diseases:</span>@Html.DisplayFor(model => model.Diseases)</p>
-                    <p><span>Allergies:</span>@Html.DisplayFor(model => model.Allergies)</p>
-
-                </div>
-            </div>
-
-        </div>
-
-        <br />
-        <div class="col-md-6">
-
-            <div class="panelbio-body">
-                <div class="bio-desk">
-                    <h4 class="green">History</h4>
-                    <p><span>Past Surgeries:</span>@Html.DisplayFor(model => model.PastSurgeries)</p>
-                    <p><span>Family History:</span>@Html.DisplayFor(model => model.FamilyHistory)</p>
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <br />
-    <br />
+   
 
 </div>
 <div class="bio-desk">
-    <a asp-action="EditUserProfile" asp-controller="Home" asp-route-id="@ViewBag.userid"><i class="fa fa-edit"></i> Edit profile</a>
+    <a asp-action="EditUserProfile" asp-controller="Home" asp-route-id="@ViewBag.id"><i class="fa fa-edit"></i> Edit profile</a>
 </div>
