@@ -37,8 +37,7 @@
 
             <div class="form-group">
 
-                Gender <i class="fa fa-question-circle" style="font-size:20px" data-toggle="tooltip" title="We require this field because one of many ways to use this information is in communicating with your
-                         insurance provider. Please make sure the sex you provide here is the same as what your insurance provider has on file. Our entire team is commited to making
+                Gender <i class="fa fa-question-circle" style="font-size:20px" data-toggle="tooltip" title="Please make sure the gender you provide here is the same as what your insurance provider has on file. Our entire team is commited to making
                          sure every member feels safe, welcome and respected."></i>
 
                 <br />
@@ -95,12 +94,12 @@
                 <span asp-validation-for="City" class="text-danger"></span>
             </div>
             <div class="form-group">
-                Address Line One
+                Address Line 1
                 <input asp-for="AddressLineOne" class="form-control" />
                 <span asp-validation-for="AddressLineOne" class="text-danger"></span>
             </div>
             <div class="form-group">
-                Address Line Two
+                Address Line 2
                 <input asp-for="AddressLineTwo" class="form-control" />
                 <span asp-validation-for="AddressLineTwo" class="text-danger"></span>
             </div>
@@ -131,11 +130,11 @@
                 <input asp-for="EmergencyContactPhone" class="form-control" placeholder="(123) 456-7890" type="text" onkeydown="javascript:backspacerDOWN(this,event);" onkeyup="javascript:backspacerUP(this,event);" />
                 <span asp-validation-for="EmergencyContactPhone" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 Relationship to emergency contact
                 <input asp-for="RelationshipToEmergencyContact" class="form-control" />
                 <span asp-validation-for="RelationshipToEmergencyContact" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 Family Doctor's Name
                 <input asp-for="FamilyDoctorName" class="form-control" />

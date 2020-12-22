@@ -13,43 +13,43 @@ namespace AtomHealth.Areas.Identity.Data
     public class AtomHealthUser : IdentityUser
     {
         [PersonalData]
-        [Column(TypeName = "nvarchar(100)")]
+        [Column(TypeName = "varchar(100)")]
         public string FirstName { get; set; }
 
         [PersonalData]
-        [Column(TypeName = "nvarchar(100)")]
+        [Column(TypeName = "varchar(100)")]
         public string MiddleName { get; set; }
 
         [PersonalData]
-        [Column(TypeName = "nvarchar(100)")]
+        [Column(TypeName = "varchar(100)")]
         public string LastName { get; set; }
 
        [PersonalData]
-        [Column(TypeName = "nvarchar(100)")]
+        [Column(TypeName = "varchar(50)")]
         public string Gender { get; set; }
 
     [PersonalData]
         [Column(TypeName = "int")]
-        public int Height { get; set; }
+        public int? Height { get; set; }
 
         [PersonalData]
         [Column(TypeName = "int")]
-        public int Weight { get; set; }
+        public int? Weight { get; set; }
 
         [PersonalData]
         [DataType(DataType.Date, ErrorMessage = "Invalid Date")]
         public DateTime? DOB { get; set; }
 
         [PersonalData]
-        [Column(TypeName = "nvarchar(100)")]
+        [Column(TypeName = "varchar(100)")]
         public string Country { get; set; }
 
         [PersonalData]
-        [Column(TypeName = "nvarchar(100)")]
+        [Column(TypeName = "varchar(100)")]
         public string Province { get; set; }
 
         [PersonalData]
-        [Column(TypeName = "nvarchar(100)")]
+        [Column(TypeName = "varchar(100)")]
         public string City { get; set; }
 
         [PersonalData]
@@ -79,7 +79,7 @@ namespace AtomHealth.Areas.Identity.Data
         
 
         [PersonalData]
-        [Column(TypeName = "nvarchar(200)")]
+        [Column(TypeName = "varchar(200)")]
         public string EmergencyContactName { get; set; }
 
         [PersonalData]
@@ -92,7 +92,7 @@ namespace AtomHealth.Areas.Identity.Data
         public string RelationshipToEmergencyContact { get; set; }
 
         [PersonalData]
-        [Column(TypeName = "nvarchar(200)")]
+        [Column(TypeName = "varchar(200)")]
         public string FamilyDoctorName { get; set; }
 
 
@@ -119,6 +119,7 @@ namespace AtomHealth.Areas.Identity.Data
         public string PastMedicalHistory { get; set; }
 
         [PersonalData]
+        [Column(TypeName = "varchar(20)")]
         public string IsInMedicaion { get; set; }
 
         [PersonalData]
@@ -126,6 +127,7 @@ namespace AtomHealth.Areas.Identity.Data
         public string Medications { get; set; }
 
         [PersonalData]
+        [Column(TypeName = "varchar(20)")]
         public string HasPastSurgery { get; set; }
 
         [PersonalData]
@@ -133,6 +135,7 @@ namespace AtomHealth.Areas.Identity.Data
         public string PastSurgeries { get; set; }
 
         [PersonalData]
+        [Column(TypeName = "varchar(20)")]
         public string HasAllergy { get; set; }
 
         [PersonalData]
@@ -142,15 +145,21 @@ namespace AtomHealth.Areas.Identity.Data
         [PersonalData]
         [Column(TypeName = "nvarchar(max)")]
         public string FamilyHistory { get; set; }
-
+        [PersonalData]
+        [Column(TypeName = "varchar(20)")]
         public string hasGeneticTest { get; set; }
 
         [PersonalData]
         [Column(TypeName = "nvarchar(max)")]
         public string GeneticTest { get; set; }
-
+        [PersonalData]
+        [Column(TypeName = "varchar(20)")]
         public string doYouSmoke { get; set; }
+        [PersonalData]
+        [Column(TypeName = "varchar(20)")]
         public string doYouIllegalDrugs { get; set; }
+        [PersonalData]
+        [Column(TypeName = "varchar(20)")]
         public string doYouConsumeAlcohol { get; set; }
 
         [PersonalData]
