@@ -4,14 +4,16 @@ using AtomHealth.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AtomHealth.Migrations
 {
     [DbContext(typeof(AtomHealthDBContext))]
-    partial class AtomHealthDBContextModelSnapshot : ModelSnapshot
+    [Migration("20201222173107_changesthree")]
+    partial class changesthree
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -98,8 +100,8 @@ namespace AtomHealth.Migrations
                     b.Property<int?>("Height")
                         .HasColumnType("int");
 
-                    b.Property<string>("HomePhone")
-                        .HasColumnType("nvarchar(100)");
+                    b.Property<int>("HomePhone")
+                        .HasColumnType("int");
 
                     b.Property<string>("IsInMedicaion")
                         .HasColumnType("varchar(20)");
