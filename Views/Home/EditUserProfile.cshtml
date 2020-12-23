@@ -53,10 +53,11 @@
             </div>
             <div class="form-group">
                 Marital Status
-                @Html.DropDownListFor(m => m.Country, new List<SelectListItem>
-{new SelectListItem { Text = "Select Country", Value = "NotSelected"},
+                @Html.DropDownList("MaritalStatus", new List<SelectListItem>
+{new SelectListItem { Text = "Select", Value = "None", Selected=true},
+                    new SelectListItem { Text = "Select Country", Value = "Not Selected"},
     new SelectListItem { Text = "Married", Value = "Married"},
-    new SelectListItem { Text = "Living with partner", Value = "Livingwithpartner"},
+    new SelectListItem { Text = "Living with partner", Value = "Living with partner"},
     new SelectListItem { Text = "Single or never married", Value = "Single"},
     new SelectListItem { Text = "Seperated", Value = "Seperated"},
     new SelectListItem { Text = "Divorced", Value = "Divorced"},
@@ -78,8 +79,10 @@
             </div>
             <div class="form-group">
                 Blood Type
-                @Html.DropDownListFor(m => m.BloodType, new List<SelectListItem>
-{new SelectListItem { Text = "Select Blood Type", Value = "NotSelected"},
+                @Html.DropDownList("BloodType", new List<SelectListItem>
+{
+               new SelectListItem { Text = "Select", Value = "None", Selected=true},
+               new SelectListItem { Text = "Select Blood Type", Value = "NotSelected"},
     new SelectListItem { Text = "A RhD positive (A+)", Value = "A RhD positive (A+)"},
     new SelectListItem { Text = " A RhD negative (A-)", Value = " A RhD negative (A-)"},
     new SelectListItem { Text = "B RhD positive (B+)", Value = "B RhD positive (B+)"},
@@ -106,12 +109,22 @@
     new SelectListItem { Text = "Canada", Value = "CA"},
     new SelectListItem { Text = "USA", Value = "USA"}
 
+
+
 })
                 <span asp-validation-for="Country" class="text-danger"></span>
             </div>
+           
             <div class="form-group">
-                Province
-                <input asp-for="Province" class="form-control" />
+                Province / State
+                @Html.DropDownList("Province/State", new List<SelectListItem>
+{new SelectListItem { Text = "Select", Value = "None", Selected=true},
+    new SelectListItem { Text = "Virginia", Value = "Virginia"},
+    new SelectListItem { Text = "Maryland", Value = "Maryland"}
+
+
+
+})
                 <span asp-validation-for="Province" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -166,6 +179,8 @@
                 <input asp-for="FamilyDoctorName" class="form-control" />
                 <span asp-validation-for="FamilyDoctorName" class="text-danger"></span>
             </div>
+
+
             @*<div class="form-group">
             Health Care Plan
             <input asp-for="HealthCarePlan" class="form-control" />
@@ -181,8 +196,11 @@
             Health ID
             <input asp-for="HealthID" class="form-control" />
             <span asp-validation-for="HealthID" class="text-danger"></span>
-        </div>*@
+        </div>
 
+            <div class="bio-desk">
+                <a asp-action="AddToMedicalCoverage" asp-controller="Home" asp-route-id="@ViewBag.id"><i class="fa fa-add"></i> Add</a>
+            </div>*@
 
             <div class="form-group">
                 Medical Conditions (if any)

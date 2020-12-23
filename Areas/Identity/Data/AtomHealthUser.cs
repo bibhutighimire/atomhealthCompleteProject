@@ -24,7 +24,7 @@ namespace AtomHealth.Areas.Identity.Data
         [Column(TypeName = "varchar(100)")]
         public string LastName { get; set; }
 
-       [PersonalData]
+        [PersonalData]
         [Column(TypeName = "varchar(50)")]
         public string Gender { get; set; }
 
@@ -70,7 +70,7 @@ namespace AtomHealth.Areas.Identity.Data
         [Column(TypeName = "nvarchar(200)")]
         public string PostalCode { get; set; }
 
-       
+
 
         [PersonalData]
         [Column(TypeName = "nvarchar(100)")]
@@ -82,7 +82,7 @@ namespace AtomHealth.Areas.Identity.Data
         [DataType(DataType.PhoneNumber, ErrorMessage = "Phone number is not valid")]
         public string MobilePhone { get; set; }
 
-        
+
 
         [PersonalData]
         [Column(TypeName = "varchar(200)")]

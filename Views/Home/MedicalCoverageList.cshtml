@@ -1,0 +1,53 @@
+﻿@model IEnumerable<AtomHealth.Models.MedicalCoverage>
+@*@model AtomHealth<AtomHealth.Models.MedicalCoverage, IEnumerable<ProjectX.Models.Student>>*@
+@{
+    ViewData["Title"] = "MedicalCoverageList";
+}
+
+<h1>MedicalCoverageList</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                Health Care Plan
+            </th>
+            <th>
+                Coverage
+            </th>
+            <th>
+                Health ID
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.HealthCarePlan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Coverage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HealthID)
+                </td>
+
+                <td>
+
+                    <a asp-action="DeleteCoverage" asp-route-id="@item.MedicalCoverageID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<button><a asp-action="MedicalCoverageAdd">Add Medical Coverage</a></button>
