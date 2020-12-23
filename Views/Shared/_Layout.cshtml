@@ -46,26 +46,29 @@
 
                             @if (SignInManager.IsSignedIn(User))
                             {
-                                <ul class="navbar-nav col-md-12 col-sm-12">
+                            <ul class="navbar-nav col-md-12 col-sm-12">
+                                <li class="nav-item">
+                                    <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Manage Profile</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="manage" class="nav-link" asp-action="MedicalCoverageList" asp-controller="Home">Medical Coverage</a>
+                                </li>
+                                @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                                {
                                     <li class="nav-item">
-                                        <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                                        <a id="manage" class="nav-link" asp-action="Index" asp-controller="UserRoleManagement">Configure User Roles</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Manage Profile</a>
-                                    </li>
-                                    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
-                                    {
-                                        <li class="nav-item">
-                                            <a id="manage" class="nav-link" asp-action="Index" asp-controller="UserRoleManagement">Configure User Roles</a>
-                                        </li>
 
-                                    }
-                                    <li class="nav-item">
-                                        <form id="logoutForm" class="nav-item" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                            <button id="logout" type="submit" class="nav-link" style="height:38px;border:none;">Logout</button>
-                                        </form>
-                                    </li>
-                                </ul>
+                                }
+                                <li class="nav-item">
+                                    <form id="logoutForm" class="nav-item" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                        <button id="logout" type="submit" class="nav-link" style="height:38px;border:none;">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
 
 
 

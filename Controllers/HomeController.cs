@@ -23,7 +23,7 @@ namespace AtomHealth.Controllers
     {
        
         private readonly UserManager<AtomHealthUser> _userManager;
-        private readonly SignInManager<AtomHealthUser> _SignInManager;
+        //private readonly SignInManager<AtomHealthUser> _signInManager;
         private readonly AtomHealthDBContext _context;
         //private readonly SignInManager<AtomHealthUser> _signInManager;
         private readonly ILogger<HomeController> _logger;
@@ -40,6 +40,8 @@ namespace AtomHealth.Controllers
         {
            return View();
         }
+
+
 
         /*  [HttpGet]
          [AllowAnonymous]
@@ -145,15 +147,50 @@ namespace AtomHealth.Controllers
               }
           }*/
 
+        public IActionResult DeleteCoverage(Guid id)
+        {
+            var user =  _context.MedicalCoverage.Where(x => x.MedicalCoverageID == id).FirstOrDefault();
+            
+            _context.MedicalCoverage.Remove(user);
+            _context.SaveChanges();
+
+            return RedirectToAction("MedicalCoverageList");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> MedicalCoverageAdd()
+        {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            ViewBag.id = user.Id;
 
 
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> MedicalCoverageAddNew(MedicalCoverage medicalCoverage)
+        {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            ViewBag.id = user.Id;
+            _context.MedicalCoverage.Add(medicalCoverage);
+            _context.SaveChanges();
+
+            return RedirectToAction("MedicalCoverageList");
+        }
+        [HttpGet]
+        public async Task<IActionResult> MedicalCoverageList()
+        {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            ViewBag.id = user.Id;
+
+
+            return View(_context.MedicalCoverage.ToList());
+        }
         public async Task<IActionResult> UserProfile()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
             ViewBag.id = user.Id;
-            
-            //ViewBag.username = _userManager.GetUserAsync(HttpContext.User);
-            //AtomHealthUser userName = _userManager.FindByNameAsync(userName).Result;
+
+        
             return View(user);
         }
 
@@ -190,9 +227,10 @@ namespace AtomHealth.Controllers
                 edituser.MiddleName = model.MiddleName;
                 edituser.LastName = model.LastName;
                 edituser.Gender = model.Gender;
-                
+                edituser.MaritalStatus = model.MaritalStatus;
                 edituser.Height = model.Height;
                 edituser.Weight = model.Weight;
+                edituser.BloodType = model.BloodType;
                 edituser.DOB = model.DOB;
                 edituser.Country = model.Country;
                 edituser.Province = model.Province;
@@ -227,8 +265,10 @@ namespace AtomHealth.Controllers
                 edituser.doYouSmoke = model.doYouSmoke;
                 edituser.doYouIllegalDrugs = model.doYouIllegalDrugs;
                 edituser.doYouConsumeAlcohol = model.doYouConsumeAlcohol;
+                edituser.Diet = model.Diet;
+                edituser.Exercise = model.Exercise;
                 edituser.CovidDetails = model.CovidDetails;
-            
+                edituser.ImmunizationRecord = model.ImmunizationRecord;
 
                 var result = await _userManager.UpdateAsync(edituser);
 
