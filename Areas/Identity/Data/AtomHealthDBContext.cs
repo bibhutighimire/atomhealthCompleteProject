@@ -25,5 +25,8 @@ namespace AtomHealth.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
         public DbSet<MedicalCoverage> MedicalCoverage { get; set; }
+        public DbSet<Immunization> Immunization { get; set; }
+        public DbSet<PatientImmunizationRec> PatientImmunizationRec { get; set; }
+
     }
 }

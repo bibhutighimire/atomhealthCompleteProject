@@ -14,14 +14,17 @@ namespace AtomHealth.Areas.Identity.Data
     {
         [PersonalData]
         [Column(TypeName = "varchar(100)")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
         public string FirstName { get; set; }
 
         [PersonalData]
         [Column(TypeName = "varchar(100)")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
         public string MiddleName { get; set; }
 
         [PersonalData]
         [Column(TypeName = "varchar(100)")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
         public string LastName { get; set; }
 
         [PersonalData]
@@ -186,8 +189,10 @@ namespace AtomHealth.Areas.Identity.Data
         [Column(TypeName = "nvarchar(1000)")]
         public string ImmunizationRecord { get; set; }
 
-
-
+        public string ImmunizationRecordCbox1 { get; set; }
+        public string ImmunizationRecordCbox2 { get; set; }
+        public string ImmunizationRecordCbox3 { get; set; }
+        public string ImmunizationRecordCbox4 { get; set; }
 
     }
 }

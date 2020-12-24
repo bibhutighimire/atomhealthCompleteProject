@@ -177,6 +177,51 @@
             <div class="bio-row">
                 <p><span>Immunization Record</span>@Html.DisplayFor(model => model.ImmunizationRecord)</p>
             </div>
+
+            @*<div class="bio-row">
+                <p>
+                    <span>Immunization Checkbox Value</span>
+                  
+                    @if (@Html.DisplayFor(model => model.ImmunizationRecordCbox1).Equals(false))
+                    {
+                    <p>""</p>
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.ImmunizationRecordCbox1)
+                }
+
+                    @if (@Html.DisplayFor(model => model.ImmunizationRecordCbox2).Equals(false))
+                    {
+                        <p></p>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(model => model.ImmunizationRecordCbox2)
+                    }
+
+                    @if (@Html.DisplayFor(model => model.ImmunizationRecordCbox3).Equals(false))
+                    {
+                        <p></p>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(model => model.ImmunizationRecordCbox3)
+                    }
+
+                    @if (@Html.DisplayFor(model => model.ImmunizationRecordCbox4).Equals(false))
+                    {
+                        <p></p>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(model => model.ImmunizationRecordCbox4)
+
+                    }
+
+
+                    </p>
+                </div>*@
         </div>
    </div>
 
