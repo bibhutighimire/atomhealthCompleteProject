@@ -171,7 +171,12 @@ namespace AtomHealth.Controllers
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
             ViewBag.id = user.Id;
-            _context.MedicalCoverage.Add(medicalCoverage);
+            MedicalCoverage mc = new MedicalCoverage();
+            mc.AtomHealthUserID = user.Id;
+            mc.HealthCarePlan = medicalCoverage.HealthCarePlan;
+            mc.Coverage = medicalCoverage.Coverage;
+            mc.HealthID = medicalCoverage.HealthID;
+            _context.MedicalCoverage.Add(mc);
             _context.SaveChanges();
 
             return RedirectToAction("MedicalCoverageList");
@@ -183,7 +188,7 @@ namespace AtomHealth.Controllers
             ViewBag.id = user.Id;
 
 
-            return View(_context.MedicalCoverage.ToList());
+            return View(_context.MedicalCoverage.Where(x=>x.AtomHealthUserID==user.Id).ToList());
         }
         public async Task<IActionResult> UserProfile()
         {
@@ -243,7 +248,10 @@ namespace AtomHealth.Controllers
                 edituser.EmergencyContactName = model.EmergencyContactName;
                 edituser.EmergencyContactPhone = model.EmergencyContactPhone;
                 edituser.RelationshipToEmergencyContact = model.RelationshipToEmergencyContact;
-                edituser.FamilyDoctorName = model.FamilyDoctorName;
+                //edituser.ImmunizationRecordCbox1 = model.ImmunizationRecordCbox1;
+                //edituser.ImmunizationRecordCbox2 = model.ImmunizationRecordCbox2;
+                //edituser.ImmunizationRecordCbox3 = model.ImmunizationRecordCbox3;
+                //edituser.ImmunizationRecordCbox4 = model.ImmunizationRecordCbox4;
 
 
                 //edituser.HealthCarePlan = model.HealthCarePlan;

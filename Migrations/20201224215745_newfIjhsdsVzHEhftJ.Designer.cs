@@ -4,14 +4,16 @@ using AtomHealth.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AtomHealth.Migrations
 {
     [DbContext(typeof(AtomHealthDBContext))]
-    partial class AtomHealthDBContextModelSnapshot : ModelSnapshot
+    [Migration("20201224215745_newfIjhsdsVzHEhftJ")]
+    partial class newfIjhsdsVzHEhftJ
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -213,23 +215,6 @@ namespace AtomHealth.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("AtomHealth.Models.Immunization", b =>
-                {
-                    b.Property<Guid>("ImmunizationID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ImmunizationName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("isChecked")
-                        .HasColumnType("bit");
-
-                    b.HasKey("ImmunizationID");
-
-                    b.ToTable("Immunization");
-                });
-
             modelBuilder.Entity("AtomHealth.Models.MedicalCoverage", b =>
                 {
                     b.Property<Guid>("MedicalCoverageID")
@@ -256,30 +241,6 @@ namespace AtomHealth.Migrations
                     b.HasIndex("AtomHealthUserID");
 
                     b.ToTable("MedicalCoverage");
-                });
-
-            modelBuilder.Entity("AtomHealth.Models.PatientImmunizationRec", b =>
-                {
-                    b.Property<Guid>("PatientImmunizationRecID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("AtomHealthUserID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ImmunizationID")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("ImmunizationID1")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("PatientImmunizationRecID");
-
-                    b.HasIndex("AtomHealthUserID");
-
-                    b.HasIndex("ImmunizationID1");
-
-                    b.ToTable("PatientImmunizationRec");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -420,21 +381,6 @@ namespace AtomHealth.Migrations
                         .HasForeignKey("AtomHealthUserID");
 
                     b.Navigation("AtomHealthUser");
-                });
-
-            modelBuilder.Entity("AtomHealth.Models.PatientImmunizationRec", b =>
-                {
-                    b.HasOne("AtomHealth.Areas.Identity.Data.AtomHealthUser", "AtomHealthUser")
-                        .WithMany()
-                        .HasForeignKey("AtomHealthUserID");
-
-                    b.HasOne("AtomHealth.Models.Immunization", "Immunization")
-                        .WithMany()
-                        .HasForeignKey("ImmunizationID1");
-
-                    b.Navigation("AtomHealthUser");
-
-                    b.Navigation("Immunization");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
