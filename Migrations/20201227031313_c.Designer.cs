@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AtomHealth.Migrations
 {
     [DbContext(typeof(AtomHealthDBContext))]
-    [Migration("20201224234825_newfIjhsdsSSSSVzHEhfJJtJ")]
-    partial class newfIjhsdsSSSSVzHEhfJJtJ
+    [Migration("20201227031313_c")]
+    partial class c
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -105,18 +105,6 @@ namespace AtomHealth.Migrations
 
                     b.Property<string>("ImmunizationRecord")
                         .HasColumnType("nvarchar(1000)");
-
-                    b.Property<string>("ImmunizationRecordCbox1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImmunizationRecordCbox2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImmunizationRecordCbox3")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImmunizationRecordCbox4")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IsInMedicaion")
                         .HasColumnType("varchar(20)");

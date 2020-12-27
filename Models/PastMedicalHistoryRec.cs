@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace AtomHealth.Models
 {
-    public class PatientImmunizationRec
+    public class PastMedicalHistoryRec
     {
-        public Guid PatientImmunizationRecID { get; set; }
+        public Guid PastMedicalHistoryRecID { get; set; }
 
-        public string ImmunizationID { get; set; }
-        public Immunization Immunization { get; set; }
+        public string PastMedicalHistoryID { get; set; }
+        public PastMedicalHistory PastMedicalHistory { get; set; }
         public string AtomHealthUserID { get; set; }
         public AtomHealthUser AtomHealthUser { get; set; }
-       
     }
 }

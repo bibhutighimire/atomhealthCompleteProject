@@ -10,6 +10,10 @@ namespace AtomHealth.Models
     {
         public AtomHealthUser ListOfAtomHealthUser { get; set; }
         public MedicalCoverage ListOfMedicalCoverage { get; set; }
+
+        public Immunization ListOfImmunization { get; set; }
+
+        public PatientImmunizationRec ListOfPatientImmunizationRec { get; set; }
         public Employee ListOfEmployee { get; set; }
 
     }

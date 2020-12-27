@@ -16,6 +16,7 @@ using static AtomHealth.Areas.Identity.Pages.Account.ExternalLoginModel;
 using Microsoft.AspNet.Identity.Owin;
 using System.Security.Claims;
 using AtomHealth.Data;
+using Microsoft.AspNetCore.Http;
 
 namespace AtomHealth.Controllers
 {
@@ -40,112 +41,6 @@ namespace AtomHealth.Controllers
         {
            return View();
         }
-
-
-
-        /*  [HttpGet]
-         [AllowAnonymous]
-         public async Task<IActionResult> Login(string returnUrl)
-         {
-             InputModel model = new InputModel
-             {
-                 ReturnUrl = returnUrl,
-                 ExternalLogins =
-                 (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList()
-             };
-
-             return View(model);
-         }
-
-        [AllowAnonymous]
-         [HttpPost]
-         public IActionResult ExternalLogin(string provider, string returnUrl)
-         {
-             var redirectUrl = Url.Action("ExternalLoginCallback", "Home",
-                                 new { ReturnUrl = returnUrl });
-             var properties = _signInManager
-                 .ConfigureExternalAuthenticationProperties(provider, redirectUrl);
-             return new ChallengeResult(provider, properties);
-         }
- */
-
-        /*  [AllowAnonymous]
-          public async Task<IActionResult>
-              ExternalLoginCallback(string returnUrl = null, string remoteError = null)
-          {
-              returnUrl = returnUrl ?? Url.Content("~/");
-
-              InputModel loginViewModel = new InputModel
-              {
-                  ReturnUrl = returnUrl,
-                  ExternalLogins =
-                          (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList()
-              };
-
-              if (remoteError != null)
-              {
-                  ModelState
-                      .AddModelError(string.Empty, $"Error from external provider: {remoteError}");
-
-                  return View("Login", loginViewModel);
-              }
-
-              // Get the login information about the user from the external login provider
-              var info = await _signInManager.GetExternalLoginInfoAsync();
-              if (info == null)
-              {
-                  ModelState
-                      .AddModelError(string.Empty, "Error loading external login information.");
-
-                  return View("Login", loginViewModel);
-              }
-
-              // If the user already has a login (i.e if there is a record in AspNetUserLogins
-              // table) then sign-in the user with this external login provider
-              var signInResult = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider,
-                  info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
-
-              if (signInResult.Succeeded)
-              {
-                  return LocalRedirect(returnUrl);
-              }
-              // If there is no record in AspNetUserLogins table, the user may not have
-              // a local account
-              else
-              {
-                  // Get the email claim value
-                  var email = info.Principal.FindFirstValue(ClaimTypes.Email);
-
-                  if (email != null)
-                  {
-                      // Create a new user without password if we do not have a user already
-                      var user = await _userManager.FindByEmailAsync(email);
-
-                      if (user == null)
-                      {
-                          user = new AtomHealthUser
-                          {
-                              UserName = info.Principal.FindFirstValue(ClaimTypes.Email),
-                              Email = info.Principal.FindFirstValue(ClaimTypes.Email)
-                          };
-
-                          await _userManager.CreateAsync(user);
-                      }
-
-                      // Add a login (i.e insert a row for the user in AspNetUserLogins table)
-                      await _userManager.AddLoginAsync(user, info);
-                      await _signInManager.SignInAsync(user, isPersistent: false);
-
-                      return LocalRedirect(returnUrl);
-                  }
-
-                  // If we cannot find the user email we cannot continue
-                  ViewBag.ErrorTitle = $"Email claim not received from: {info.LoginProvider}";
-                  ViewBag.ErrorMessage = "Please contact support on atomhealth1@gmail.com";
-
-                  return View("Error");
-              }
-          }*/
 
         public IActionResult DeleteCoverage(Guid id)
         {
@@ -190,17 +85,45 @@ namespace AtomHealth.Controllers
 
             return View(_context.MedicalCoverage.Where(x=>x.AtomHealthUserID==user.Id).ToList());
         }
+        [HttpGet]
+        public IActionResult AddImmunization()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddImmunization(Immunization immunization)
+        {
+            _context.Immunization.Add(immunization);
+            _context.SaveChanges();
+             return View();
+        }
+       
         public async Task<IActionResult> UserProfile()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
             ViewBag.id = user.Id;
+            ViewBag.listOfMedicalCoverage = _context.MedicalCoverage.Where(x => x.AtomHealthUserID == user.Id).ToList();
 
-        
+            
+            List<Immunization> ListOfImmunization = _context.Immunization.ToList();
+
+            //ViewBag.ListOfPatientImmunizationRecn = _context.PatientImmunizationRec.Where(x => x.AtomHealthUserID == user.Id).Select(n => new {n.ImmunizationID}).ToList();
+
+            ViewBag.ListOfPatientImmunizationRecn = _context.PatientImmunizationRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
+
+            ViewBag.listOfPatientMedicalHistory = _context.PatientMedicalHistoryRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
+
+            ViewBag.ListOfCovidHistoryRec = _context.CovidHistoryRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
+
+            ViewBag.ListOfFamilyMedicalHistoryRec = _context.FamilyMedicalHistoryRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
+
+            ViewBag.ListOfCurrentMedicalConditionRec = _context.CurrentMedicalConditionRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
+
+            ViewBag.ListOfPastMedicalHistoryRec = _context.PastMedicalHistoryRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
+
             return View(user);
         }
-
         
-
         [HttpGet]
         public async Task<IActionResult> EditUserProfile(string id)
         {
@@ -211,24 +134,103 @@ namespace AtomHealth.Controllers
                 ViewBag.ErrorMessage = $"User with id = {id} cannot be found.";
                 return View("Not Found");
             }
-           
+            ViewBag.immunization = _context.Immunization.ToList();
+            ViewBag.medicalhistory = _context.MedicalHistory.ToList();
+            ViewBag.currentmedicalconditions = _context.CurrentMedicalCondition.ToList();
+            ViewBag.pastmedicalhistory = _context.PastMedicalHistory.ToList();
+            ViewBag.familyMedicalHistory = _context.FamilyMedicalHistory.ToList();
+            ViewBag.CovidHistory = _context.CovidHistory.ToList();
             return View(user);
            
         }
 
+
         [HttpPost]
-        public async Task<IActionResult> EditUserProfile(AtomHealthUser model)
+        public async Task<IActionResult> EditUserProfile(AtomHealthUser model,IFormCollection formval, string key, string fallback)
         {
             var edituser = await _userManager.FindByIdAsync(model.Id);
-
-            if (edituser == null)
+            
+                string ImmunizationID = formval["ImmunizationID"];
+            if (ImmunizationID != null)
             {
-                ViewBag.ErrorMessage = $"User with Id = {model.Id} cannot be found";
-                return View("NotFound");
+                string[] c = ImmunizationID.Split(",");
+            int countImmu = c.Count();
+            
+                for (int i = 0; i <= countImmu - 1; i++)
+                {
+                    PatientImmunizationRec prec = new PatientImmunizationRec();
+                    prec.AtomHealthUserID = edituser.Id;
+                    prec.ImmunizationID = c[i];
+                    _context.PatientImmunizationRec.Add(prec);
+                    _context.SaveChanges();
+                }
             }
-            else
+            string FamilyMedicalHistoryID = formval["FamilyMedicalHistoryID"];
+            if (FamilyMedicalHistoryID != null)
             {
-                edituser.FirstName = model.FirstName;
+                string[] mh = FamilyMedicalHistoryID.Split(",");
+            int countMh = mh.Count();
+            
+                for (int i = 0; i <= countMh - 1; i++)
+                {
+                    FamilyMedicalHistoryRec mhr = new FamilyMedicalHistoryRec();
+                    mhr.AtomHealthUserID = edituser.Id;
+                    mhr.FamilyMedicalHistoryID = mh[i];
+                    _context.FamilyMedicalHistoryRec.Add(mhr);
+                    _context.SaveChanges();
+                }
+            }
+
+            string CovidHistoryID = formval["CovidHistoryID"];
+            if (CovidHistoryID != null)
+            {
+                string[] ch = CovidHistoryID.Split(",");
+            int countch = ch.Count();
+            
+                for (int i = 0; i <= countch - 1; i++)
+                {
+                    CovidHistoryRec mhr = new CovidHistoryRec();
+                    mhr.AtomHealthUserID = edituser.Id;
+                    mhr.CovidHistoryID = ch[i];
+                    _context.CovidHistoryRec.Add(mhr);
+                    _context.SaveChanges();
+                }
+            }
+
+            string PastMedicalHistoryID = formval["PastMedicalHistoryID"];
+            if (PastMedicalHistoryID != null)
+            {
+                string[] pmh = PastMedicalHistoryID.Split(",");
+            int countpmh = pmh.Count();
+            
+                for (int i = 0; i <= countpmh - 1; i++)
+                {
+                    PastMedicalHistoryRec mhr = new PastMedicalHistoryRec();
+                    mhr.AtomHealthUserID = edituser.Id;
+                    mhr.PastMedicalHistoryID = pmh[i];
+                    _context.PastMedicalHistoryRec.Add(mhr);
+                    _context.SaveChanges();
+                }
+            }
+
+            string CurrentMedicalConditionID = formval["CurrentMedicalConditionID"];
+            if (CurrentMedicalConditionID != null)
+            {
+                string[] cmc = CurrentMedicalConditionID.Split(",");
+            int countcmc = cmc.Count();
+            
+                for (int i = 0; i <= countcmc - 1; i++)
+                {
+                    CurrentMedicalConditionRec mhr = new CurrentMedicalConditionRec();
+                    mhr.AtomHealthUserID = edituser.Id;
+                    mhr.CurrentMedicalConditionID = cmc[i];
+                    _context.CurrentMedicalConditionRec.Add(mhr);
+                    _context.SaveChanges();
+                }
+            }
+
+
+            edituser.FirstName = model.FirstName;
                 edituser.MiddleName = model.MiddleName;
                 edituser.LastName = model.LastName;
                 edituser.Gender = model.Gender;
@@ -248,24 +250,17 @@ namespace AtomHealth.Controllers
                 edituser.EmergencyContactName = model.EmergencyContactName;
                 edituser.EmergencyContactPhone = model.EmergencyContactPhone;
                 edituser.RelationshipToEmergencyContact = model.RelationshipToEmergencyContact;
-                //edituser.ImmunizationRecordCbox1 = model.ImmunizationRecordCbox1;
-                //edituser.ImmunizationRecordCbox2 = model.ImmunizationRecordCbox2;
-                //edituser.ImmunizationRecordCbox3 = model.ImmunizationRecordCbox3;
-                //edituser.ImmunizationRecordCbox4 = model.ImmunizationRecordCbox4;
-
-
+               
                 //edituser.HealthCarePlan = model.HealthCarePlan;
                 //edituser.Coverage = model.Coverage;
                 //edituser.HealthID = model.HealthID;
-                edituser.MedicalConditions = model.MedicalConditions;
-               
-                edituser.PastMedicalHistory = model.PastMedicalHistory;
+                edituser.MedicalConditions = model.MedicalConditions;               
+                edituser.PastMedicalHistoryDetails = model.PastMedicalHistoryDetails;
                 edituser.IsInMedicaion = model.IsInMedicaion;
                 edituser.Medications = model.Medications;
                 edituser.HasPastSurgery = model.HasPastSurgery;
                 edituser.PastSurgeries = model.PastSurgeries;
                 edituser.HasAllergy = model.HasAllergy;
-
                 edituser.Allergies = model.Allergies;
                 edituser.FamilyHistory = model.FamilyHistory;
                 edituser.hasGeneticTest = model.hasGeneticTest;
@@ -277,8 +272,17 @@ namespace AtomHealth.Controllers
                 edituser.Exercise = model.Exercise;
                 edituser.CovidDetails = model.CovidDetails;
                 edituser.ImmunizationRecord = model.ImmunizationRecord;
+                edituser.ImmunizationID = model.ImmunizationID;
 
                 var result = await _userManager.UpdateAsync(edituser);
+                //PatientImmunizationRec p = new PatientImmunizationRec();
+                //Immunization im= new Immunization();
+
+                //im.ImmunizationID = immu.ImmunizationID;
+                //im.ImmunizationID = immu.ImmunizationID;
+                //_context.Immunization.Add(im);
+                _context.SaveChanges();
+
 
                 if (result.Succeeded)
                 {
@@ -291,7 +295,7 @@ namespace AtomHealth.Controllers
                 }
 
                 return View(model);
-            }
+            
         }
 
         public IActionResult OurSolution()

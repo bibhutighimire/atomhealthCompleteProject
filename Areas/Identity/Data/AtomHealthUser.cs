@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using AtomHealth.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -104,30 +105,14 @@ namespace AtomHealth.Areas.Identity.Data
         [Column(TypeName = "varchar(200)")]
         public string FamilyDoctorName { get; set; }
 
-        //[PersonalData]
-        //[Column(TypeName = "varchar(100)")]
-        //public string HasMedicalCoverage { get; set; }
-
-        //[PersonalData]
-        //[Column(TypeName = "nvarchar(200)")]
-        //public string HealthCarePlan { get; set; }
-
-        //[PersonalData]
-        //[Column(TypeName = "nvarchar(200)")]
-        //public string Coverage { get; set; }
-
-        //[PersonalData]
-        //[Column(TypeName = "nvarchar(100)")]
-        //public string HealthID { get; set; }
-
-
         [PersonalData]
         [Column(TypeName = "nvarchar(max)")]
+
         public string MedicalConditions { get; set; }
 
         [PersonalData]
         [Column(TypeName = "nvarchar(max)")]
-        public string PastMedicalHistory { get; set; }
+        public string PastMedicalHistoryDetails { get; set; }
 
         [PersonalData]
         [Column(TypeName = "varchar(20)")]
@@ -188,11 +173,20 @@ namespace AtomHealth.Areas.Identity.Data
         [PersonalData]
         [Column(TypeName = "nvarchar(1000)")]
         public string ImmunizationRecord { get; set; }
+        [NotMapped]
+        public int[] ImmunizationID { get; set; }
+        [NotMapped]
+        public int[] MedicalHistoryID { get; set; }
+        [NotMapped]
+        public int[] CurrentMedicalConditionID { get; set; }
+        [NotMapped]
+        public int[] PastMedicalHistoryID { get; set; }
 
-        public string ImmunizationRecordCbox1 { get; set; }
-        public string ImmunizationRecordCbox2 { get; set; }
-        public string ImmunizationRecordCbox3 { get; set; }
-        public string ImmunizationRecordCbox4 { get; set; }
+        [NotMapped]
+        public int[] FamilyMedicalHistoryID { get; set; }
+      
+        [NotMapped]
+        public int[] CovidHistoryID { get; set; }
 
     }
 }

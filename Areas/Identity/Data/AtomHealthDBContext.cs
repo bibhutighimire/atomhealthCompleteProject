@@ -28,5 +28,20 @@ namespace AtomHealth.Data
         public DbSet<Immunization> Immunization { get; set; }
         public DbSet<PatientImmunizationRec> PatientImmunizationRec { get; set; }
 
+        public DbSet<PatientMedicalHistoryRec> PatientMedicalHistoryRec { get; set; }
+        public DbSet<MedicalHistory> MedicalHistory { get; set; }
+
+
+
+
+        public DbSet<CurrentMedicalCondition> CurrentMedicalCondition { get; set; }
+        public DbSet<CurrentMedicalConditionRec> CurrentMedicalConditionRec { get; set; }
+        public DbSet<PastMedicalHistory> PastMedicalHistory { get; set; }
+
+        public DbSet<PastMedicalHistoryRec> PastMedicalHistoryRec { get; set; }
+        public DbSet<FamilyMedicalHistory> FamilyMedicalHistory { get; set; }
+        public DbSet<FamilyMedicalHistoryRec> FamilyMedicalHistoryRec { get; set; }
+        public DbSet<CovidHistory> CovidHistory { get; set; }
+        public DbSet<CovidHistoryRec> CovidHistoryRec { get; set; }
     }
 }
