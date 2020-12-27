@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AtomHealth.Migrations
 {
     [DbContext(typeof(AtomHealthDBContext))]
-    [Migration("20201222031522_changestwo")]
-    partial class changestwo
+    [Migration("20201226002508_n")]
+    partial class n
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,24 +38,27 @@ namespace AtomHealth.Migrations
                     b.Property<string>("Allergies")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("BloodType")
+                        .HasColumnType("varchar(100)");
+
                     b.Property<string>("City")
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Country")
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Coverage")
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("CovidDetails")
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<DateTime?>("DOB")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Diet")
+                        .HasColumnType("varchar(200)");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -65,55 +68,58 @@ namespace AtomHealth.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("EmergencyContactName")
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("varchar(200)");
 
                     b.Property<string>("EmergencyContactPhone")
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("Exercise")
+                        .HasColumnType("varchar(200)");
+
                     b.Property<string>("FamilyDoctorName")
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("varchar(200)");
 
                     b.Property<string>("FamilyHistory")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Gender")
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("GeneticTest")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HasAllergy")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(20)");
 
                     b.Property<string>("HasPastSurgery")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(20)");
 
-                    b.Property<string>("HealthCarePlan")
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("HealthID")
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("Height")
+                    b.Property<int?>("Height")
                         .HasColumnType("int");
 
                     b.Property<string>("HomePhone")
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("ImmunizationRecord")
+                        .HasColumnType("nvarchar(1000)");
+
                     b.Property<string>("IsInMedicaion")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(20)");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("MaritalStatus")
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("MedicalConditions")
                         .HasColumnType("nvarchar(max)");
@@ -122,7 +128,7 @@ namespace AtomHealth.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MiddleName")
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("MobilePhone")
                         .HasColumnType("nvarchar(100)");
@@ -154,7 +160,7 @@ namespace AtomHealth.Migrations
                         .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("Province")
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("RelationshipToEmergencyContact")
                         .HasColumnType("nvarchar(100)");
@@ -169,20 +175,20 @@ namespace AtomHealth.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<int>("Weight")
+                    b.Property<int?>("Weight")
                         .HasColumnType("int");
 
                     b.Property<string>("doYouConsumeAlcohol")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(20)");
 
                     b.Property<string>("doYouIllegalDrugs")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(20)");
 
                     b.Property<string>("doYouSmoke")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(20)");
 
                     b.Property<string>("hasGeneticTest")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(20)");
 
                     b.HasKey("Id");
 
@@ -195,6 +201,75 @@ namespace AtomHealth.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("AtomHealth.Models.Immunization", b =>
+                {
+                    b.Property<Guid>("ImmunizationID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ImmunizationName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isChecked")
+                        .HasColumnType("bit");
+
+                    b.HasKey("ImmunizationID");
+
+                    b.ToTable("Immunization");
+                });
+
+            modelBuilder.Entity("AtomHealth.Models.MedicalCoverage", b =>
+                {
+                    b.Property<Guid>("MedicalCoverageID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AtomHealthUserID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Coverage")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("HasMedicalCoverage")
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("HealthCarePlan")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("HealthID")
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("MedicalCoverageID");
+
+                    b.HasIndex("AtomHealthUserID");
+
+                    b.ToTable("MedicalCoverage");
+                });
+
+            modelBuilder.Entity("AtomHealth.Models.PatientImmunizationRec", b =>
+                {
+                    b.Property<Guid>("PatientImmunizationRecID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AtomHealthUserID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ImmunizationID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ImmunizationID1")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("PatientImmunizationRecID");
+
+                    b.HasIndex("AtomHealthUserID");
+
+                    b.HasIndex("ImmunizationID1");
+
+                    b.ToTable("PatientImmunizationRec");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -326,6 +401,30 @@ namespace AtomHealth.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("AtomHealth.Models.MedicalCoverage", b =>
+                {
+                    b.HasOne("AtomHealth.Areas.Identity.Data.AtomHealthUser", "AtomHealthUser")
+                        .WithMany()
+                        .HasForeignKey("AtomHealthUserID");
+
+                    b.Navigation("AtomHealthUser");
+                });
+
+            modelBuilder.Entity("AtomHealth.Models.PatientImmunizationRec", b =>
+                {
+                    b.HasOne("AtomHealth.Areas.Identity.Data.AtomHealthUser", "AtomHealthUser")
+                        .WithMany()
+                        .HasForeignKey("AtomHealthUserID");
+
+                    b.HasOne("AtomHealth.Models.Immunization", "Immunization")
+                        .WithMany()
+                        .HasForeignKey("ImmunizationID1");
+
+                    b.Navigation("AtomHealthUser");
+
+                    b.Navigation("Immunization");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

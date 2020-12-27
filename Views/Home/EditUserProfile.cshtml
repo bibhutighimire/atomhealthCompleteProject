@@ -16,7 +16,10 @@
 
         <form method="post" action="EditUserProfile">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<input type="hidden" asp-for="ImmunizationID" />
+            <input type="hidden" asp-for="MedicalHistoryID" />*@
             <input type="hidden" asp-for="Id" />
+
             <input type="hidden" asp-for="UserName" />
 
             <div class="form-group">
@@ -179,28 +182,34 @@
                 <input asp-for="FamilyDoctorName" class="form-control" />
                 <span asp-validation-for="FamilyDoctorName" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <p>Check ALL the current medical conditions that you are up to date with</p>
+                
+                @foreach (var item in ViewBag.currentmedicalconditions)
+                {
+            <p>
+                <input id="@item.CurrentMedicalConditionID" type="checkbox" name="CurrentMedicalConditionID" value="@item.CurrentMedicalConditionName" />
+                <label for="@item.CurrentMedicalConditionID">
+                    @item.CurrentMedicalConditionName
+                </label>
+            </p>
+                   
+                }
+            </div>
 
+            <div class="form-group">
 
-            @*<div class="form-group">
-            Health Care Plan
-            <input asp-for="HealthCarePlan" class="form-control" />
-            <span asp-validation-for="HealthCarePlan" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            Coverge
-            <input asp-for="Coverage" class="form-control" />
-            <span asp-validation-for="Coverage" class="text-danger"></span>
-        </div>
+                Check ALL the past medical conditions that you are up to date with
+                @foreach (var item in ViewBag.pastmedicalhistory)
+                {
 
-        <div class="form-group">
-            Health ID
-            <input asp-for="HealthID" class="form-control" />
-            <span asp-validation-for="HealthID" class="text-danger"></span>
-        </div>
+                    <input id="@item.PastMedicalHistoryID" type="checkbox" name="PastMedicalHistoryID" value="@item.PastMedicalHistoryName" />
+                    <label for="@item.PastMedicalHistoryID">
+                        @item.PastMedicalHistoryName
+                    </label>
 
-            <div class="bio-desk">
-                <a asp-action="AddToMedicalCoverage" asp-controller="Home" asp-route-id="@ViewBag.id"><i class="fa fa-add"></i> Add</a>
-            </div>*@
+                }
+            </div>
 
             <div class="form-group">
                 Medical Conditions (if any)
@@ -210,8 +219,8 @@
 
             <div class="form-group">
                 Past Medical History (if any)
-                @Html.TextArea("PastMedicalHistory", new { rows = 5, columns = 40 })
-                <span asp-validation-for="PastMedicalHistory" class="text-danger"></span>
+                @Html.TextArea("PastMedicalHistoryDetails", new { rows = 5, columns = 40 })
+                <span asp-validation-for="PastMedicalHistoryDetails" class="text-danger"></span>
             </div>
 
             <div class="form-group">
@@ -265,6 +274,20 @@
                 Allergies (if any)
                 @Html.TextArea("Allergies", new { rows = 5, columns = 40 })
                 <span asp-validation-for="Allergies" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+
+                Check ALL the vaccines that you are up to date with
+                @foreach (var item in ViewBag.familyMedicalHistory)
+                {
+
+                    <input id="@item.FamilyMedicalHistoryID" type="checkbox" name="FamilyMedicalHistoryID" value="@item.FamilyMedicalHistoryName" />
+                    <label for="@item.FamilyMedicalHistoryID">
+                        @item.FamilyMedicalHistoryName
+                    </label>
+
+                }
             </div>
 
             <div class="form-group">
@@ -380,21 +403,50 @@
                 <input asp-for="ImmunizationRecord" class="form-control" />
                 <span asp-validation-for="ImmunizationRecord" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label for="checkbox-1">Immunication Checkbox 1</label>
-                <input type="checkbox" asp-for="ImmunizationRecordCbox1" name="ImmunizationRecordCbox1" id="ImmunizationRecordCbox1" value="immu box one selected">
-                <label for="checkbox-2">Immunication Checkbox 2</label>
-                <input type="checkbox" asp-for="ImmunizationRecordCbox2" name="ImmunizationRecordCbox2" id="ImmunizationRecordCbox2" value="immu box two selected">
-                <label for="checkbox-3">Immunication Checkbox 3</label>
-                <input type="checkbox" asp-for="ImmunizationRecordCbox3" name="ImmunizationRecordCbox3" id="ImmunizationRecordCbox3" value="immu box three selected">
-                <label for="checkbox-4">Immunication Checkbox 4</label>
-                <input type="checkbox" asp-for="ImmunizationRecordCbox4" name="ImmunizationRecordCbox4" id="ImmunizationRecordCbox4" value="immu box four selected">
-            </div>*@
-                <hr />
-                <div class="form-group">
-                    <input type="submit" value="Save" class="btn btn-primary" />
 
-                </div>
+            <div class="form-group">
+
+                Have you been diagnosed with COVID in the past?
+                @foreach (var item in ViewBag.CovidHistory)
+                {
+
+                    <input id="@item.CovidHistoryID" type="checkbox" name="CovidHistoryID" value="@item.CovidHistoryName" />
+                    <label for="@item.CovidHistoryID">
+                        @item.CovidHistoryName
+                    </label>
+
+                }
+            </div>
+
+            <div class="form-group">
+
+                Check ALL the vaccines that you are up to date with
+                @foreach (var item in ViewBag.immunization)
+                {
+
+                    <input id="@item.ImmunizationID" type="checkbox" name="ImmunizationID" value="@item.ImmunizationName" />
+                    <label for="@item.ImmunizationID">
+                        @item.ImmunizationName
+                    </label>
+
+                }
+            </div>
+
+
+
+            @*@Html.HiddenFor(model => model.ImmunizationID)
+            @Html.HiddenFor(model => model.MedicalHistoryID)
+            @Html.HiddenFor(model => model.CovidHistoryID)
+            @Html.HiddenFor(model => model.CurrentMedicalConditionID)
+            @Html.HiddenFor(model => model.PastMedicalHistoryID)
+            @Html.HiddenFor(model => model.FamilyMedicalHistoryID)*@
+
+
+            <hr />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" onclick="updatemark()" />
+
+            </div>
 
         </form>
         <div><a class="btn btn-primary" asp-route-id="@ViewBag.userid" asp-action="UserProfile"> Go Back</a></div>
@@ -425,6 +477,55 @@
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
+    </script>
+
+    <script>
+        function updatemark(arg,argone) {
+            var abc = ""
+            //Iterating the collection of checkboxes which checked marked
+            $('input[type=checkbox, name=ImmunizationID]').each(function () {
+                if (this.checked) {
+                    abc = abc + $(this).val() + ","
+                    //assign set value to hidden field
+                    $('#ImmunizationID').val(abc);
+                }
+            });
+            var bcd = ""
+            $('input[type=checkbox, name=CurrentMedicalConditionID]').each(function () {
+                if (this.checked) {
+                    bcd = bcd + $(this).val() + ","
+                    //assign set value to hidden field
+                    $('#CurrentMedicalConditionID').val(bcd);
+                }
+            });
+
+            var cde = ""
+            $('input[type=checkbox, name=PastMedicalHistoryID]').each(function () {
+                if (this.checked) {
+                    cde = cde + $(this).val() + ","
+                    //assign set value to hidden field
+                    $('#PastMedicalHistoryID').val(cde);
+                }
+            });
+
+            var def = ""
+            $('input[type=checkbox, name=FamilyMedicalHistoryID]').each(function () {
+                if (this.checked) {
+                    def = def + $(this).val() + ","
+                    //assign set value to hidden field
+                    $('#FamilyMedicalHistoryID').val(def);
+                }
+            });
+
+            var efg = ""
+            $('input[type=checkbox, name=CovidHistoryID]').each(function () {
+                if (this.checked) {
+                    efg = efg + $(this).val() + ","
+                    //assign set value to hidden field
+                    $('#CovidHistoryID').val(efg);
+                }
+            });
+        }
     </script>
 }
 

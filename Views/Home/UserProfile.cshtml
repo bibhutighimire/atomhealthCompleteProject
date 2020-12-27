@@ -11,7 +11,7 @@
 <div class="panelbio">
 
     <div class="bio-graph-heading">
-     Profile
+        Profile
     </div>
     <div class="panelbio-body bio-graph-info">
 
@@ -46,7 +46,6 @@
             <div class="bio-row">
                 <p><span>Date of Birth</span>@Html.DisplayFor(model => model.DOB)</p>
             </div>
-
 
             <div class="bio-row">
                 <p><span>Country</span>@Html.DisplayFor(model => model.Country)</p>
@@ -96,25 +95,77 @@
                 <p><span>Family Doctor Name</span>@Html.DisplayFor(model => model.FamilyDoctorName)</p>
             </div>
 
-            @*<div class="bio-row">
-            <p><span>Health Care Plan</span>@Html.DisplayFor(model => model.HealthCarePlan)</p>
-        </div>
+            <div class="bio-row">
+                <p>
+                    <span>Medical Coverage Details</span> 
+                    <table id="customers" style="border:1px solid black; padding:5px;">
+                        <tr>
+                            <th style="border:1px solid black; padding:5px;"> HealthCare Plan</th>
+                            <th style="border:1px solid black; padding:5px;"> Coverage</th>
+                            <th style="border:1px solid black; padding:5px;">HealthCare ID </th>
 
-        <div class="bio-row">
-            <p><span>Coverage</span>@Html.DisplayFor(model => model.Coverage)</p>
-        </div>
+                        </tr>
+                        @foreach (var item in ViewBag.listOfMedicalCoverage)
+                        {
+                            <tr style="border:1px solid black">
+                                <td style="border:1px solid black; padding:5px;">  @item.Coverage</td>
+                                <td style="border:1px solid black; padding:5px;">  @item.HealthCarePlan</td>
+                                <td style="border:1px solid black; padding:5px;">  @item.HealthID</td>
 
-        <div class="bio-row">
-            <p><span>HealthID</span>@Html.DisplayFor(model => model.HealthID)</p>
-        </div>*@
+
+                            </tr>
+
+                        }
+                    </table>
+                </p>
+            </div>
+           
+
+            <div class="bio-row">
+                <p>
+                    <span>Current Medical Condition </span><table id="customers" style="border:1px solid black; padding:5px;">
+                        <tr>
+                            <th style="border:1px solid black; padding:5px;">List of Current Medical Condition </th>
+                        </tr>
+                        @foreach (var item in ViewBag.ListOfCurrentMedicalConditionRec)
+                        {
+                            <tr>
+                                <td style="border:1px solid black; padding:5px;">  @item.CurrentMedicalConditionID</td>
+
+                            </tr>
+
+                        }
+                    </table>
+                </p>
+            </div>
+
+            <div class="bio-row">
+                <p>
+                    <span>Past Medical History </span><table id="customers" style="border:1px solid black; padding:5px;">
+                        <tr>
+                            <th style="border:1px solid black; padding:5px;">List of Past Medical History </th>
+                        </tr>
+                        @foreach (var item in ViewBag.ListOfPastMedicalHistoryRec)
+                        {
+                            <tr>
+                                <td style="border:1px solid black; padding:5px;">  @item.PastMedicalHistoryID</td>
+
+                            </tr>
+
+                        }
+                    </table>
+                </p>
+            </div>
+            <div class="bio-row">
+                <p><span>Past Medical History (if any)</span>@Html.DisplayFor(model => model.PastMedicalHistoryDetails)</p>
+            </div>
+
 
             <div class="bio-row">
                 <p><span>Medical Conditions (if any)</span>@Html.DisplayFor(model => model.MedicalConditions)</p>
             </div>
 
-            <div class="bio-row">
-                <p><span>Past Medical History (if any)</span>@Html.DisplayFor(model => model.PastMedicalHistory)</p>
-            </div>
+
 
 
             <div class="bio-row">
@@ -139,6 +190,24 @@
 
             <div class="bio-row">
                 <p><span>Allergies (if any)</span>@Html.DisplayFor(model => model.Allergies)</p>
+            </div>
+
+            <div class="bio-row">
+                <p>
+                    <span>Family Medical History </span><table id="customers" style="border:1px solid black; padding:5px;">
+                        <tr>
+                            <th style="border:1px solid black; padding:5px;">List of Family Medical History </th>
+                        </tr>
+                        @foreach (var item in ViewBag.ListOfFamilyMedicalHistoryRec)
+                        {
+                            <tr>
+                                <td style="border:1px solid black; padding:5px;">  @item.FamilyMedicalHistoryID</td>
+
+                            </tr>
+
+                        }
+                    </table>
+                </p>
             </div>
 
             <div class="bio-row">
@@ -178,52 +247,50 @@
                 <p><span>Immunization Record</span>@Html.DisplayFor(model => model.ImmunizationRecord)</p>
             </div>
 
-            @*<div class="bio-row">
+            <div class="bio-row">
+                <p><span>Immunization Record</span>@Html.DisplayFor(model => model.ImmunizationRecord)</p>
+            </div>
+
+
+            <div class="bio-row">
                 <p>
-                    <span>Immunization Checkbox Value</span>
-                  
-                    @if (@Html.DisplayFor(model => model.ImmunizationRecordCbox1).Equals(false))
-                    {
-                    <p>""</p>
-                }
-                else
-                {
-                    @Html.DisplayFor(model => model.ImmunizationRecordCbox1)
-                }
+                    <span>Covid History </span><table id="customers" style="border:1px solid black">
+                        <tr>
+                            <th style="border:1px solid black; padding:5px;">List of Covid History </th>
+                        </tr>
+                        @foreach (var item in ViewBag.ListOfCovidHistoryRec)
+                        {
+                            <tr>
+                                <td style="border:1px solid black; padding:5px;">  @item.CovidHistoryID</td>
 
-                    @if (@Html.DisplayFor(model => model.ImmunizationRecordCbox2).Equals(false))
-                    {
-                        <p></p>
-                    }
-                    else
-                    {
-                        @Html.DisplayFor(model => model.ImmunizationRecordCbox2)
-                    }
+                            </tr>
 
-                    @if (@Html.DisplayFor(model => model.ImmunizationRecordCbox3).Equals(false))
-                    {
-                        <p></p>
-                    }
-                    else
-                    {
-                        @Html.DisplayFor(model => model.ImmunizationRecordCbox3)
-                    }
-
-                    @if (@Html.DisplayFor(model => model.ImmunizationRecordCbox4).Equals(false))
-                    {
-                        <p></p>
-                    }
-                    else
-                    {
-                        @Html.DisplayFor(model => model.ImmunizationRecordCbox4)
-
-                    }
+                        }
+                    </table>
+                </p>
+            </div>
 
 
-                    </p>
-                </div>*@
+            <div class="bio-row">
+                <p>
+                    <span>Immunization Record </span><table id="customers" style="border:1px solid black; padding:5px;">
+                        <tr>
+                            <th>List of Immunization Records</th>
+                        </tr>
+                        @foreach (var item in ViewBag.ListOfPatientImmunizationRecn)
+                        {
+                            <tr>
+                                <td style="border:1px solid black; padding:5px;">  @item.ImmunizationID</td>
+
+                            </tr>
+
+                        }
+                    </table>
+                </p>
+            </div>
+
         </div>
-   </div>
+    </div>
 
 </div>
 <div class="bio-desk">

@@ -2,7 +2,7 @@
 
 namespace AtomHealth.Migrations
 {
-    public partial class newfIjhsdsVzHEJ : Migration
+    public partial class ne : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
