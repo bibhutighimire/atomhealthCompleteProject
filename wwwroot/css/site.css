@@ -8,7 +8,12 @@ body {
     display: inline-block;
     border-bottom: 1px dotted black;
 }
-
+.checkboxfields {
+   
+    padding: 5px;
+    background-color: lightcyan;
+    margin-top: 5px;
+}
     .tooltip .tooltiptext {
         visibility: hidden;
         width: 120px;
@@ -429,10 +434,21 @@ html {
 
     .rowForProfileEdit form {
         display: grid;
-        grid-template-columns: 45% 45%;
+        grid-template-columns: 50% 45%;
         grid-gap: 30px;
     }
 
+    .checkboxarea {
+        grid-column: 1 / 3;
+    }
+    .checkboxfields {
+        display: grid;
+        grid-template-columns: 32% 38% 30%;
+        grid-gap: 2px;
+        padding:5px;
+        background-color:lightcyan;
+        margin-top:5px;
+    }
     .rowForProfile {
         display: grid;
         grid-template-columns: 45% 45%;
@@ -441,7 +457,7 @@ html {
 
     .editForm form {
         display: grid;
-        grid-template-columns: 50% 50%;
+        grid-template-columns: 45% 45%;
         grid-column-gap: 30px;
     }
 
