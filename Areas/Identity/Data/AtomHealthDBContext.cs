@@ -26,13 +26,17 @@ namespace AtomHealth.Data
         }
         public DbSet<MedicalCoverage> MedicalCoverage { get; set; }
         public DbSet<Immunization> Immunization { get; set; }
+
+        public DbSet<Country> Country { get; set; }
+        public DbSet<Province> Province { get; set; }
+        public DbSet<PatientCountryRecord> PatientCountryRecord { get; set; }
+
+        public DbSet<PatientProvinceRec> PatientProvinceRec { get; set; }
+
         public DbSet<PatientImmunizationRec> PatientImmunizationRec { get; set; }
 
         public DbSet<PatientMedicalHistoryRec> PatientMedicalHistoryRec { get; set; }
         public DbSet<MedicalHistory> MedicalHistory { get; set; }
-
-
-
 
         public DbSet<CurrentMedicalCondition> CurrentMedicalCondition { get; set; }
         public DbSet<CurrentMedicalConditionRec> CurrentMedicalConditionRec { get; set; }
