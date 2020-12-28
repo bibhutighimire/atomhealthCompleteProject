@@ -97,7 +97,7 @@ namespace AtomHealth.Controllers
             _context.SaveChanges();
              return View();
         }
-       
+
         public async Task<IActionResult> UserProfile()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
