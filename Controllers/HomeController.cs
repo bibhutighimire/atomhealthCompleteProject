@@ -109,17 +109,17 @@ namespace AtomHealth.Controllers
 
             //ViewBag.ListOfPatientImmunizationRecn = _context.PatientImmunizationRec.Where(x => x.AtomHealthUserID == user.Id).Select(n => new {n.ImmunizationID}).ToList();
 
-            ViewBag.ListOfPatientImmunizationRecn = _context.PatientImmunizationRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
+            ViewBag.ListOfPatientImmunizationRecn = _context.PatientImmunizationRec.Where(x => x.AtomHealthUserID == user.Id).Select(p => p.ImmunizationID).Distinct().ToList();
 
-            ViewBag.listOfPatientMedicalHistory = _context.PatientMedicalHistoryRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
+            ViewBag.listOfPatientMedicalHistory = _context.PatientMedicalHistoryRec.Where(x => x.AtomHealthUserID == user.Id).Select(p => p.MedicalHistoryID).Distinct().ToList();
 
-            ViewBag.ListOfCovidHistoryRec = _context.CovidHistoryRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
+            ViewBag.ListOfCovidHistoryRec = _context.CovidHistoryRec.Where(x => x.AtomHealthUserID == user.Id).Select(p => p.CovidHistoryID).Distinct().ToList();
 
-            ViewBag.ListOfFamilyMedicalHistoryRec = _context.FamilyMedicalHistoryRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
+            ViewBag.ListOfFamilyMedicalHistoryRec = _context.FamilyMedicalHistoryRec.Where(x => x.AtomHealthUserID == user.Id).Select(p => p.FamilyMedicalHistoryID).Distinct().ToList();
 
-            ViewBag.ListOfCurrentMedicalConditionRec = _context.CurrentMedicalConditionRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
+            ViewBag.ListOfCurrentMedicalConditionRec = _context.CurrentMedicalConditionRec.Where(x => x.AtomHealthUserID == user.Id).Select(p => p.CurrentMedicalConditionID).Distinct().ToList();
 
-            ViewBag.ListOfPastMedicalHistoryRec = _context.PastMedicalHistoryRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
+            ViewBag.ListOfPastMedicalHistoryRec = _context.PastMedicalHistoryRec.Where(x => x.AtomHealthUserID == user.Id).Select(p => p.PastMedicalHistoryID).Distinct().ToList();
 
             return View(user);
         }
@@ -134,6 +134,27 @@ namespace AtomHealth.Controllers
                 ViewBag.ErrorMessage = $"User with id = {id} cannot be found.";
                 return View("Not Found");
             }
+
+            var immunizationDelete = _context.PatientImmunizationRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
+            _context.PatientImmunizationRec.RemoveRange(immunizationDelete);
+            _context.SaveChanges();
+
+            var CovidHistoryRecDelete = _context.CovidHistoryRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
+            _context.CovidHistoryRec.RemoveRange(CovidHistoryRecDelete);
+            _context.SaveChanges();
+
+            var FamilyMedicalHistoryRecDelete = _context.FamilyMedicalHistoryRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
+            _context.FamilyMedicalHistoryRec.RemoveRange(FamilyMedicalHistoryRecDelete);
+            _context.SaveChanges();
+
+            var PastMedicalHistoryRecDelete = _context.PastMedicalHistoryRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
+            _context.PastMedicalHistoryRec.RemoveRange(PastMedicalHistoryRecDelete);
+            _context.SaveChanges();
+
+            var CurrentMedicalConditionRecDelete = _context.CurrentMedicalConditionRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
+            _context.CurrentMedicalConditionRec.RemoveRange(CurrentMedicalConditionRecDelete);
+            _context.SaveChanges();
+
             ViewBag.immunization = _context.Immunization.ToList();
             ViewBag.medicalhistory = _context.MedicalHistory.ToList();
             ViewBag.currentmedicalconditions = _context.CurrentMedicalCondition.ToList();
@@ -250,11 +271,12 @@ namespace AtomHealth.Controllers
                 edituser.EmergencyContactName = model.EmergencyContactName;
                 edituser.EmergencyContactPhone = model.EmergencyContactPhone;
                 edituser.RelationshipToEmergencyContact = model.RelationshipToEmergencyContact;
-               
-                //edituser.HealthCarePlan = model.HealthCarePlan;
-                //edituser.Coverage = model.Coverage;
-                //edituser.HealthID = model.HealthID;
-                edituser.MedicalConditions = model.MedicalConditions;               
+            edituser.FamilyDoctorName = model.FamilyDoctorName;
+
+            //edituser.HealthCarePlan = model.HealthCarePlan;
+            //edituser.Coverage = model.Coverage;
+            //edituser.HealthID = model.HealthID;
+            edituser.MedicalConditions = model.MedicalConditions;               
                 edituser.PastMedicalHistoryDetails = model.PastMedicalHistoryDetails;
                 edituser.IsInMedicaion = model.IsInMedicaion;
                 edituser.Medications = model.Medications;

@@ -17,7 +17,7 @@
         <form method="post" action="EditUserProfile">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @*<input type="hidden" asp-for="ImmunizationID" />
-            <input type="hidden" asp-for="MedicalHistoryID" />*@
+        <input type="hidden" asp-for="MedicalHistoryID" />*@
             <input type="hidden" asp-for="Id" />
 
             <input type="hidden" asp-for="UserName" />
@@ -120,14 +120,7 @@
 
             <div class="form-group">
                 Province / State
-                @Html.DropDownList("Province/State", new List<SelectListItem>
-{new SelectListItem { Text = "Select", Value = "None", Selected=true},
-    new SelectListItem { Text = "Virginia", Value = "Virginia"},
-    new SelectListItem { Text = "Maryland", Value = "Maryland"}
-
-
-
-})
+                <input asp-for="Province" class="form-control" />
                 <span asp-validation-for="Province" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -161,7 +154,7 @@
                 <span asp-validation-for="MobilePhone" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EmergencyContactName" class="control-label"></label>
+                Emergency Contact Name
                 <input asp-for="EmergencyContactName" class="form-control" />
                 <span asp-validation-for="EmergencyContactName" class="text-danger"></span>
             </div>
@@ -172,45 +165,49 @@
                 <input asp-for="EmergencyContactPhone" class="form-control" placeholder="(123) 456-7890" type="text" onkeydown="javascript:backspacerDOWN(this,event);" onkeyup="javascript:backspacerUP(this,event);" />
                 <span asp-validation-for="EmergencyContactPhone" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-            Relationship to emergency contact
-            <input asp-for="RelationshipToEmergencyContact" class="form-control" />
-            <span asp-validation-for="RelationshipToEmergencyContact" class="text-danger"></span>
-        </div>*@
+
+
             <div class="form-group">
                 Family Doctor's Name
                 <input asp-for="FamilyDoctorName" class="form-control" />
                 <span asp-validation-for="FamilyDoctorName" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <p>Check ALL the current medical conditions that you are up to date with</p>
-                
-                @foreach (var item in ViewBag.currentmedicalconditions)
-                {
-            <p>
-                <input id="@item.CurrentMedicalConditionID" type="checkbox" name="CurrentMedicalConditionID" value="@item.CurrentMedicalConditionName" />
-                <label for="@item.CurrentMedicalConditionID">
-                    @item.CurrentMedicalConditionName
-                </label>
-            </p>
-                   
-                }
+
+            <div class="checkboxarea " style="grid-column: 1 / 3">
+                <div class="form-group">
+                    <p>Check ALL the current medical conditions that you are up to date with</p>
+                    <div class="checkboxfields">
+                        @foreach (var item in ViewBag.currentmedicalconditions)
+                        {
+                            <div>
+                                <input id="@item.CurrentMedicalConditionID" type="checkbox" name="CurrentMedicalConditionID" value="@item.CurrentMedicalConditionName" />
+                                <label for="@item.CurrentMedicalConditionID">
+                                    @item.CurrentMedicalConditionName
+                                </label>
+                            </div>
+                        }
+                    </div>
+                </div>
             </div>
 
-            <div class="form-group">
+            <div class="checkboxarea " style="grid-column: 1 / 3">
+                <div class="form-group">
 
-                Check ALL the past medical conditions that you are up to date with
-                @foreach (var item in ViewBag.pastmedicalhistory)
-                {
+                    <p>Check ALL the past medical conditions that you are up to date with</p> 
+                    <div class="checkboxfields">
+                        @foreach (var item in ViewBag.pastmedicalhistory)
+                        {
+                            <div>
+                                <input id="@item.PastMedicalHistoryID" type="checkbox" name="PastMedicalHistoryID" value="@item.PastMedicalHistoryName" />
+                                <label for="@item.PastMedicalHistoryID">
+                                    @item.PastMedicalHistoryName
+                                </label>
+                            </div>
 
-                    <input id="@item.PastMedicalHistoryID" type="checkbox" name="PastMedicalHistoryID" value="@item.PastMedicalHistoryName" />
-                    <label for="@item.PastMedicalHistoryID">
-                        @item.PastMedicalHistoryName
-                    </label>
-
-                }
+                        }
+                    </div>
+                </div>
             </div>
-
             <div class="form-group">
                 Medical Conditions (if any)
                 @Html.TextArea("MedicalConditions", new { rows = 5, columns = 40 })
@@ -276,19 +273,26 @@
                 <span asp-validation-for="Allergies" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
 
-                Check ALL the vaccines that you are up to date with
-                @foreach (var item in ViewBag.familyMedicalHistory)
-                {
+            <div class="checkboxarea " style="grid-column: 1 / 3">
+                <div class="form-group">
+                    <p>Check ALL the Family Medical History that you are up to date with</p>
+                    
+                    <div class="checkboxfields">
+                        @foreach (var item in ViewBag.familyMedicalHistory)
+                        {
+                            <div>
+                                <input id="@item.FamilyMedicalHistoryID" type="checkbox" name="FamilyMedicalHistoryID" value="@item.FamilyMedicalHistoryName" />
+                                <label for="@item.FamilyMedicalHistoryID">
+                                    @item.FamilyMedicalHistoryName
+                                </label>
+                            </div>
 
-                    <input id="@item.FamilyMedicalHistoryID" type="checkbox" name="FamilyMedicalHistoryID" value="@item.FamilyMedicalHistoryName" />
-                    <label for="@item.FamilyMedicalHistoryID">
-                        @item.FamilyMedicalHistoryName
-                    </label>
-
-                }
+                        }
+                    </div>
+                </div>
             </div>
+
 
             <div class="form-group">
                 Family medical history (if any)
@@ -404,42 +408,53 @@
                 <span asp-validation-for="ImmunizationRecord" class="text-danger"></span>
             </div>
 
-            <div class="form-group">
 
-                Have you been diagnosed with COVID in the past?
-                @foreach (var item in ViewBag.CovidHistory)
-                {
+            <div class="checkboxarea " style="grid-column: 1 / 3">
+                <div class="form-group">
+                    <p> Have you been diagnosed with COVID in the past?</p>
+                   
+                    <div class="checkboxfields">
+                        @foreach (var item in ViewBag.CovidHistory)
+                        {
+                            <div>
+                                <input id="@item.CovidHistoryID" type="checkbox" name="CovidHistoryID" value="@item.CovidHistoryName" />
+                                <label for="@item.CovidHistoryID">
+                                    @item.CovidHistoryName
+                                </label>
+                            </div>
 
-                    <input id="@item.CovidHistoryID" type="checkbox" name="CovidHistoryID" value="@item.CovidHistoryName" />
-                    <label for="@item.CovidHistoryID">
-                        @item.CovidHistoryName
-                    </label>
-
-                }
+                        }
+                    </div>
+                </div>
             </div>
 
-            <div class="form-group">
 
-                Check ALL the vaccines that you are up to date with
-                @foreach (var item in ViewBag.immunization)
-                {
+            <div class="checkboxarea " style="grid-column: 1 / 3">
+                <div class="form-group">
+                    <p>Check ALL the vaccines that you are up to date with</p>
+                    
+                    <div class="checkboxfields">
+                        @foreach (var item in ViewBag.immunization)
+                        {
+                        <div>
+                            <input id="@item.ImmunizationID" type="checkbox" name="ImmunizationID" value="@item.ImmunizationName" />
+                            <label for="@item.ImmunizationID">
+                                @item.ImmunizationName
+                            </label>
+                        </div>
 
-                    <input id="@item.ImmunizationID" type="checkbox" name="ImmunizationID" value="@item.ImmunizationName" />
-                    <label for="@item.ImmunizationID">
-                        @item.ImmunizationName
-                    </label>
-
-                }
+                        }
+                    </div>
+                </div>
             </div>
-
 
 
             @*@Html.HiddenFor(model => model.ImmunizationID)
-            @Html.HiddenFor(model => model.MedicalHistoryID)
-            @Html.HiddenFor(model => model.CovidHistoryID)
-            @Html.HiddenFor(model => model.CurrentMedicalConditionID)
-            @Html.HiddenFor(model => model.PastMedicalHistoryID)
-            @Html.HiddenFor(model => model.FamilyMedicalHistoryID)*@
+        @Html.HiddenFor(model => model.MedicalHistoryID)
+        @Html.HiddenFor(model => model.CovidHistoryID)
+        @Html.HiddenFor(model => model.CurrentMedicalConditionID)
+        @Html.HiddenFor(model => model.PastMedicalHistoryID)
+        @Html.HiddenFor(model => model.FamilyMedicalHistoryID)*@
 
 
             <hr />
