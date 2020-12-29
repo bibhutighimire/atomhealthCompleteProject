@@ -1,0 +1,14 @@
+﻿@model AtomHealth.Models.PatientProvinceRec
+
+<div class="form-group">
+    City / Province
+    <select id="Province" name="Province">
+        @foreach (var province in ViewBag.selectList)
+        {
+            <option value="@province.ProvinceID">
+                @province.ProvinceID
+            </option>
+        }
+    </select>
+    <span asp-validation-for="Province" class="text-danger"></span>
+</div>

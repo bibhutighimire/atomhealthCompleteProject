@@ -17,7 +17,7 @@
         <form method="post" action="EditUserProfile">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @*<input type="hidden" asp-for="ImmunizationID" />
-        <input type="hidden" asp-for="MedicalHistoryID" />*@
+                <input type="hidden" asp-for="MedicalHistoryID" />*@
             <input type="hidden" asp-for="Id" />
 
             <input type="hidden" asp-for="UserName" />
@@ -68,7 +68,7 @@
 
 
 })
-                <span asp-validation-for="Country" class="text-danger"></span>
+                <span asp-validation-for="MaritalStatus" class="text-danger"></span>
             </div>
             <div class="form-group">
                 Height (in cm)
@@ -107,22 +107,31 @@
             </div>
             <div class="form-group">
                 Country
-                @Html.DropDownList("Country", new List<SelectListItem>
-{new SelectListItem { Text = "Select", Value = "None", Selected=true},
-    new SelectListItem { Text = "Canada", Value = "CA"},
-    new SelectListItem { Text = "USA", Value = "USA"}
 
+                <select id="Country" name="Country">
+                    @foreach (Country country in ViewBag.listOfCountry)
+                    {
+                        <option value="@country.CountryName">
+                            @country.CountryName
+                        </option>
+                    }
+                </select>
 
-
-})
-                <span asp-validation-for="Country" class="text-danger"></span>
+                @*@Html.DropDownListFor(m=>m.Country, ViewBag.listOfCountry,"Select Country", new { @class="form-control"})
+                    <span asp-validation-for="Country" class="text-danger"></span>*@
             </div>
-
             <div class="form-group">
-                Province / State
-                <input asp-for="Province" class="form-control" />
-                <span asp-validation-for="Province" class="text-danger"></span>
-            </div>
+                    City / Province
+                    <select id="Province" name="Province">
+                        @foreach (Province province in ViewBag.listOfProvince)
+                        {
+                            <option value="@province.ProvinceName">
+                                @province.ProvinceName
+                            </option>
+                        }
+                    </select>
+                    <span asp-validation-for="Province" class="text-danger"></span>
+                </div>
             <div class="form-group">
                 City
                 <input asp-for="City" class="form-control" />
@@ -193,7 +202,7 @@
             <div class="checkboxarea " style="grid-column: 1 / 3">
                 <div class="form-group">
 
-                    <p>Check ALL the past medical conditions that you are up to date with</p> 
+                    <p>Check ALL the past medical conditions that you are up to date with</p>
                     <div class="checkboxfields">
                         @foreach (var item in ViewBag.pastmedicalhistory)
                         {
@@ -277,7 +286,7 @@
             <div class="checkboxarea " style="grid-column: 1 / 3">
                 <div class="form-group">
                     <p>Check ALL the Family Medical History that you are up to date with</p>
-                    
+
                     <div class="checkboxfields">
                         @foreach (var item in ViewBag.familyMedicalHistory)
                         {
@@ -412,7 +421,7 @@
             <div class="checkboxarea " style="grid-column: 1 / 3">
                 <div class="form-group">
                     <p> Have you been diagnosed with COVID in the past?</p>
-                   
+
                     <div class="checkboxfields">
                         @foreach (var item in ViewBag.CovidHistory)
                         {
@@ -432,16 +441,16 @@
             <div class="checkboxarea " style="grid-column: 1 / 3">
                 <div class="form-group">
                     <p>Check ALL the vaccines that you are up to date with</p>
-                    
+
                     <div class="checkboxfields">
                         @foreach (var item in ViewBag.immunization)
                         {
-                        <div>
-                            <input id="@item.ImmunizationID" type="checkbox" name="ImmunizationID" value="@item.ImmunizationName" />
-                            <label for="@item.ImmunizationID">
-                                @item.ImmunizationName
-                            </label>
-                        </div>
+                            <div>
+                                <input id="@item.ImmunizationID" type="checkbox" name="ImmunizationID" value="@item.ImmunizationName" />
+                                <label for="@item.ImmunizationID">
+                                    @item.ImmunizationName
+                                </label>
+                            </div>
 
                         }
                     </div>
@@ -450,11 +459,11 @@
 
 
             @*@Html.HiddenFor(model => model.ImmunizationID)
-        @Html.HiddenFor(model => model.MedicalHistoryID)
-        @Html.HiddenFor(model => model.CovidHistoryID)
-        @Html.HiddenFor(model => model.CurrentMedicalConditionID)
-        @Html.HiddenFor(model => model.PastMedicalHistoryID)
-        @Html.HiddenFor(model => model.FamilyMedicalHistoryID)*@
+                @Html.HiddenFor(model => model.MedicalHistoryID)
+                @Html.HiddenFor(model => model.CovidHistoryID)
+                @Html.HiddenFor(model => model.CurrentMedicalConditionID)
+                @Html.HiddenFor(model => model.PastMedicalHistoryID)
+                @Html.HiddenFor(model => model.FamilyMedicalHistoryID)*@
 
 
             <hr />
@@ -477,13 +486,38 @@
 
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $("#Country").change(function () {
+                var CountryID = $(this).val();
+                var nl = new Object();
+                nl.CountryID = $("#Country").val();
+                debugger
+                $.ajax({
+                    type: "POST",
+                    url: "https://localhost:44384/Home/GetStateList",
+                    data: JSON.stringify(nl),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        debugger
+                        //$("#Province").empty();
+                        //$("#Province").append(response);
+                    }
+                })
+            });
+        });
+    </script>
     <script>
         $(function () {
             $("#datepicker").datepicker({
                 changeMonth: true,
                 changeYear: true,
                 maxDate: "today",
-                yearRange: "1940:+nn"
+                yearRange: "1900:+nn"
 
             });
         });
@@ -495,7 +529,7 @@
     </script>
 
     <script>
-        function updatemark(arg,argone) {
+        function updatemark(arg, argone) {
             var abc = ""
             //Iterating the collection of checkboxes which checked marked
             $('input[type=checkbox, name=ImmunizationID]').each(function () {

@@ -47,5 +47,6 @@ namespace AtomHealth.Data
         public DbSet<FamilyMedicalHistoryRec> FamilyMedicalHistoryRec { get; set; }
         public DbSet<CovidHistory> CovidHistory { get; set; }
         public DbSet<CovidHistoryRec> CovidHistoryRec { get; set; }
+        public DbSet<Subscribe> Subscribe { get; set; }
     }
 }

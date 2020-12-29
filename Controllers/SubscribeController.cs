@@ -15,11 +15,18 @@ namespace AtomHealth.Controllers
 {
     public class SubscribeController : Controller
     {
-        private readonly ConnectionDB _context;
+        private readonly UserManager<AtomHealthUser> _userManager;
+     
+        private readonly AtomHealthDBContext _context;
+      
+        private readonly ILogger<SubscribeController> _logger;
 
-        public SubscribeController(ConnectionDB context)
+        public SubscribeController(ILogger<SubscribeController> logger, UserManager<AtomHealthUser> userManager, AtomHealthDBContext context)
         {
+            _logger = logger;
+            _userManager = userManager;
             _context = context;
+         
         }
 
         public IActionResult Index()
@@ -29,7 +36,7 @@ namespace AtomHealth.Controllers
             {
                 ViewBag.firstname = HttpContext.Session.GetString("firstname");
 
-                return View(_context.tblSubscribe.ToList());
+                return View(_context.Subscribe.ToList());
             }
             return RedirectToAction("Signin", "SignUpAtom");
 
@@ -41,7 +48,7 @@ namespace AtomHealth.Controllers
             if (ModelState.IsValid)
             {
                 Subscribe tblS = new Subscribe();
-                var target = _context.tblSubscribe.Where(x => x.email == s.email).FirstOrDefault();
+                var target = _context.Subscribe.Where(x => x.email == s.email).FirstOrDefault();
                 if (target != null)
                 {
                     ViewBag.alreadysub = "We already have your email address on our subscription list. Thanks!";
@@ -50,7 +57,7 @@ namespace AtomHealth.Controllers
                 else
                 {
                     tblS.email = s.email;
-                    _context.tblSubscribe.Add(tblS);
+                    _context.Subscribe.Add(tblS);
                     _context.SaveChanges();
                     ViewBag.msg = " You are now Subscribed. Thanks!";
                     return View();

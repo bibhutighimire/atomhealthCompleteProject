@@ -1,0 +1,48 @@
+﻿@model AtomHealth.Models.PatientProvinceRec
+
+<h4>PatientProvinceRec</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddCountryAndState">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                Country
+
+                <select id="CountryID" name="CountryID">
+                    @foreach (Country country in ViewBag.listOfCountry)
+                    {
+                        <option value="@country.CountryName">
+                            @country.CountryName
+                        </option>
+                    }
+                </select>
+                <span asp-validation-for="CountryID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                City / Province
+                <select id="ProvinceID" name="ProvinceID">
+                    @foreach (Province province in ViewBag.listOfProvince)
+                    {
+                        <option value="@province.ProvinceName">
+                            @province.ProvinceName
+                        </option>
+                    }
+                </select>
+                <span asp-validation-for="ProvinceID" class="text-danger"></span>
+            </div>
+          
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
