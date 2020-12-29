@@ -17,6 +17,7 @@ using Microsoft.AspNet.Identity.Owin;
 using System.Security.Claims;
 using AtomHealth.Data;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AtomHealth.Controllers
 {
@@ -155,6 +156,9 @@ namespace AtomHealth.Controllers
             _context.CurrentMedicalConditionRec.RemoveRange(CurrentMedicalConditionRecDelete);
             _context.SaveChanges();
 
+            ViewBag.listOfCountry = _context.Country.ToList();
+            ViewBag.listOfProvince = _context.Province.ToList();
+
             ViewBag.immunization = _context.Immunization.ToList();
             ViewBag.medicalhistory = _context.MedicalHistory.ToList();
             ViewBag.currentmedicalconditions = _context.CurrentMedicalCondition.ToList();
@@ -164,7 +168,11 @@ namespace AtomHealth.Controllers
             return View(user);
            
         }
-
+        public List<Country> GetCountryList()
+        {
+            List<Country> countries = _context.Country.ToList();
+            return countries;
+        }
 
         [HttpPost]
         public async Task<IActionResult> EditUserProfile(AtomHealthUser model,IFormCollection formval, string key, string fallback)
@@ -319,7 +327,12 @@ namespace AtomHealth.Controllers
                 return View(model);
             
         }
-
+        public IActionResult GetStateList(string countryName)
+        {
+            ViewBag.listOfProvince = _context.PatientProvinceRec.Where(x => x.CountryID == countryName).ToList();
+            //ViewBag.ProvinceList = new SelectList(listOfProvince, "ProvinceID", "ProvinceName");
+            return PartialView("DisplayProvinces");
+        }
         public IActionResult OurSolution()
         {
             return View();

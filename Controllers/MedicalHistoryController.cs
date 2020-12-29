@@ -96,5 +96,48 @@ namespace AtomHealth.Controllers
             _context.SaveChanges();
             return RedirectToAction("FamilyMedicalHistory");
         }
+
+        [HttpGet]
+        public IActionResult AddCountry()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddCountry(Country country)
+        {
+            _context.Country.Add(country);
+            _context.SaveChanges();
+            return RedirectToAction("AddCountry");
+        }
+
+        [HttpGet]
+        public IActionResult AddProvince()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddProvince(Province province)
+        {
+            _context.Province.Add(province);
+            _context.SaveChanges();
+            return RedirectToAction("AddProvince");
+        }
+
+        [HttpGet]
+        public IActionResult AddCountryAndState()
+        {
+            ViewBag.listOfCountry = _context.Country.ToList();
+            ViewBag.listOfProvince = _context.Province.ToList();
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddCountryAndState(PatientProvinceRec patientProvinceRec)
+        {
+            _context.PatientProvinceRec.Add(patientProvinceRec);
+            _context.SaveChanges();
+            return RedirectToAction("AddCountryAndState");
+        }
+
+
     }
 }
