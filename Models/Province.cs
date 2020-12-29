@@ -7,7 +7,7 @@ namespace AtomHealth.Models
 {
     public class Province
     {
-        public Guid CountryID { get; set; }
-        public string CountryName { get; set; }
+        public Guid ProvinceID { get; set; }
+        public string ProvinceName { get; set; }
     }
 }

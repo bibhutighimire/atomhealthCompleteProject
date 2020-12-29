@@ -8,11 +8,10 @@ namespace AtomHealth.Models
 {
     public class PatientProvinceRec
     {
-
         public Guid PatientProvinceRecID { get; set; }
 
         public string ProvinceID { get; set; }
-        public Country Province { get; set; }
+        public Province Province { get; set; }
 
         public string CountryID { get; set; }
         public Country Country { get; set; }
