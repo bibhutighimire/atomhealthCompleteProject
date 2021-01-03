@@ -17,7 +17,7 @@
         <form method="post" action="EditUserProfile">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @*<input type="hidden" asp-for="ImmunizationID" />
-        <input type="hidden" asp-for="MedicalHistoryID" />*@
+                <input type="hidden" asp-for="MedicalHistoryID" />*@
             <input type="hidden" asp-for="Id" />
 
             <input type="hidden" asp-for="UserName" />
@@ -118,21 +118,20 @@
                 </select>
 
                 @*@Html.DropDownListFor(m=>m.Country, ViewBag.listOfCountry,"Select Country", new { @class="form-control"})
-            <span asp-validation-for="Country" class="text-danger"></span>*@
+                    <span asp-validation-for="Country" class="text-danger"></span>*@
             </div>
             <div class="form-group">
-                City / Province
-                <select asp-for="Province">
-                    @foreach (Province province in ViewBag.listOfProvince)
-                    {
-                        <option value="@province.ProvinceName">
-                            @province.ProvinceName
-                        </option>
-                    }
-                </select>
-
-                <span asp-validation-for="Province" class="text-danger"></span>
-            </div>
+                    City / Province
+                    <select asp-for="Province">
+                        @foreach (Province province in ViewBag.listOfProvince)
+                        {
+                            <option value="@province.ProvinceName">
+                                @province.ProvinceName
+                            </option>
+                        }
+                    </select>
+                    <span asp-validation-for="Province" class="text-danger"></span>
+                </div>
             <div class="form-group">
                 City
                 <input asp-for="City" class="form-control" />
@@ -187,32 +186,18 @@
                 <div class="form-group">
                     <p>Check ALL the current medical conditions that you are up to date with</p>
                     <div class="checkboxfields">
-                        <select asp-for="CurrentMedicalConditionID">
-                            @foreach (var item in ViewBag.currentmedicalconditions)
-                            {
-                                <div>
-                                    <input id="@item.CurrentMedicalConditionID" type="checkbox" name="CurrentMedicalConditionID" value="@item.CurrentMedicalConditionName" />
-                                    <label for="@item.CurrentMedicalConditionID">
-                                        @item.CurrentMedicalConditionName
-                                    </label>
-                                </div>
-                            }
-                        </select>
+                        @foreach (var item in ViewBag.currentmedicalconditions)
+                        {
+                            <div>
+                                <input id="@item.CurrentMedicalConditionID" type="checkbox" name="CurrentMedicalConditionID" value="@item.CurrentMedicalConditionName" />
+                                <label for="@item.CurrentMedicalConditionID">
+                                    @item.CurrentMedicalConditionName
+                                </label>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
-
-
-
-            @*<select asp-for="Country">
-                @foreach (Country country in ViewBag.listOfCountry)
-                {
-                    <option value="@country.CountryName">
-                        @country.CountryName
-                    </option>
-                }
-            </select>*@
-
 
             <div class="checkboxarea " style="grid-column: 1 / 3">
                 <div class="form-group">
@@ -267,7 +252,7 @@
                 <br />
                 @Html.RadioButtonFor(m => m.HasPastSurgery, "Yes", Model.HasPastSurgery == "Yes" ? "checked" : string.Empty)
                 <span>Yes</span>
-                @Html.RadioButtonFor(m => m.HasPastSurgery, "No", Model.HasPastSurgery == "No" ? "checked" : string.Empty)
+                @Html.RadioButtonFor(m => m.IsInMedicaion, "No", Model.HasPastSurgery == "No" ? "checked" : string.Empty)
                 <span>No</span>
 
                 <span asp-validation-for="HasPastSurgery" class="text-danger"></span>
@@ -421,6 +406,18 @@
                 <span asp-validation-for="Exercise" class="text-danger"></span>
             </div>
 
+            <div class="form-group">
+                Covid Test Details
+                <input asp-for="CovidDetails" class="form-control" />
+                <span asp-validation-for="CovidDetails" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                Check ALL the vaccines that you are up to date with.
+                <input asp-for="ImmunizationRecord" class="form-control" />
+                <span asp-validation-for="ImmunizationRecord" class="text-danger"></span>
+            </div>
+
+
             <div class="checkboxarea " style="grid-column: 1 / 3">
                 <div class="form-group">
                     <p> Have you been diagnosed with COVID in the past?</p>
@@ -462,11 +459,11 @@
 
 
             @*@Html.HiddenFor(model => model.ImmunizationID)
-        @Html.HiddenFor(model => model.MedicalHistoryID)
-        @Html.HiddenFor(model => model.CovidHistoryID)
-        @Html.HiddenFor(model => model.CurrentMedicalConditionID)
-        @Html.HiddenFor(model => model.PastMedicalHistoryID)
-        @Html.HiddenFor(model => model.FamilyMedicalHistoryID)*@
+                @Html.HiddenFor(model => model.MedicalHistoryID)
+                @Html.HiddenFor(model => model.CovidHistoryID)
+                @Html.HiddenFor(model => model.CurrentMedicalConditionID)
+                @Html.HiddenFor(model => model.PastMedicalHistoryID)
+                @Html.HiddenFor(model => model.FamilyMedicalHistoryID)*@
 
 
             <hr />
@@ -489,7 +486,31 @@
 
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $("#Country").change(function () {
+                var CountryID = $(this).val();
+                var nl = new Object();
+                nl.CountryID = $("#Country").val();
+                debugger
+                $.ajax({
+                    type: "POST",
+                    url: "https://localhost:44384/Home/GetStateList",
+                    data: JSON.stringify(nl),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        debugger
+                        //$("#Province").empty();
+                        //$("#Province").append(response);
+                    }
+                })
+            });
+        });
+    </script>
     <script>
         $(function () {
             $("#datepicker").datepicker({
