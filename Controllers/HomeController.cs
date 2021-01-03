@@ -108,7 +108,6 @@ namespace AtomHealth.Controllers
             
             List<Immunization> ListOfImmunization = _context.Immunization.ToList();
 
-            //ViewBag.ListOfPatientImmunizationRecn = _context.PatientImmunizationRec.Where(x => x.AtomHealthUserID == user.Id).Select(n => new {n.ImmunizationID}).ToList();
 
             ViewBag.ListOfPatientImmunizationRecn = _context.PatientImmunizationRec.Where(x => x.AtomHealthUserID == user.Id).Select(p => p.ImmunizationID).Distinct().ToList();
 
@@ -136,25 +135,25 @@ namespace AtomHealth.Controllers
                 return View("Not Found");
             }
 
-            var immunizationDelete = _context.PatientImmunizationRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
-            _context.PatientImmunizationRec.RemoveRange(immunizationDelete);
-            _context.SaveChanges();
+            //var immunizationDelete = _context.PatientImmunizationRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
+            //_context.PatientImmunizationRec.RemoveRange(immunizationDelete);
+            //_context.SaveChanges();
 
-            var CovidHistoryRecDelete = _context.CovidHistoryRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
-            _context.CovidHistoryRec.RemoveRange(CovidHistoryRecDelete);
-            _context.SaveChanges();
+            //var CovidHistoryRecDelete = _context.CovidHistoryRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
+            //_context.CovidHistoryRec.RemoveRange(CovidHistoryRecDelete);
+            //_context.SaveChanges();
 
-            var FamilyMedicalHistoryRecDelete = _context.FamilyMedicalHistoryRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
-            _context.FamilyMedicalHistoryRec.RemoveRange(FamilyMedicalHistoryRecDelete);
-            _context.SaveChanges();
+            //var FamilyMedicalHistoryRecDelete = _context.FamilyMedicalHistoryRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
+            //_context.FamilyMedicalHistoryRec.RemoveRange(FamilyMedicalHistoryRecDelete);
+            //_context.SaveChanges();
 
-            var PastMedicalHistoryRecDelete = _context.PastMedicalHistoryRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
-            _context.PastMedicalHistoryRec.RemoveRange(PastMedicalHistoryRecDelete);
-            _context.SaveChanges();
+            //var PastMedicalHistoryRecDelete = _context.PastMedicalHistoryRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
+            //_context.PastMedicalHistoryRec.RemoveRange(PastMedicalHistoryRecDelete);
+            //_context.SaveChanges();
 
-            var CurrentMedicalConditionRecDelete = _context.CurrentMedicalConditionRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
-            _context.CurrentMedicalConditionRec.RemoveRange(CurrentMedicalConditionRecDelete);
-            _context.SaveChanges();
+            //var CurrentMedicalConditionRecDelete = _context.CurrentMedicalConditionRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
+            //_context.CurrentMedicalConditionRec.RemoveRange(CurrentMedicalConditionRecDelete);
+            //_context.SaveChanges();
 
             ViewBag.listOfCountry = _context.Country.ToList();
             ViewBag.listOfProvince = _context.Province.ToList();

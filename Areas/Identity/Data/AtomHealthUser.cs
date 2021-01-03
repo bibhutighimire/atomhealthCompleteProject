@@ -58,6 +58,8 @@ namespace AtomHealth.Areas.Identity.Data
         [Column(TypeName = "varchar(100)")]
         public string Province { get; set; }
 
+        public PatientProvinceRec PatientProvinceRec { get; set; }
+
         [PersonalData]
         [Column(TypeName = "varchar(100)")]
         public string City { get; set; }
