@@ -50,33 +50,9 @@ namespace AtomHealth.Areas.Identity.Data
         [DataType(DataType.Date, ErrorMessage = "Invalid Date")]
         public DateTime? DOB { get; set; }
 
-        [PersonalData]
-        [Column(TypeName = "varchar(100)")]
-        public string Country { get; set; }
+        public Address Address { get; set; }
 
-        [PersonalData]
-        [Column(TypeName = "varchar(100)")]
-        public string Province { get; set; }
-
-        public PatientProvinceRec PatientProvinceRec { get; set; }
-
-        [PersonalData]
-        [Column(TypeName = "varchar(100)")]
-        public string City { get; set; }
-
-        [PersonalData]
-        [Column(TypeName = "nvarchar(200)")]
-        public string AddressLineOne { get; set; }
-
-        [PersonalData]
-        [Column(TypeName = "nvarchar(200)")]
-        public string AddressLineTwo { get; set; }
-
-        [PersonalData]
-        [Column(TypeName = "nvarchar(200)")]
-        public string PostalCode { get; set; }
-
-
+      
 
         [PersonalData]
         [Column(TypeName = "nvarchar(100)")]
@@ -181,6 +157,7 @@ namespace AtomHealth.Areas.Identity.Data
         public int[] MedicalHistoryID { get; set; }
         [NotMapped]
         public int[] CurrentMedicalConditionID { get; set; }
+
         [NotMapped]
         public int[] PastMedicalHistoryID { get; set; }
 

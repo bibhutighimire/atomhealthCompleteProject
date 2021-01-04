@@ -18,6 +18,7 @@ using System.Security.Claims;
 using AtomHealth.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace AtomHealth.Controllers
 {
@@ -103,6 +104,17 @@ namespace AtomHealth.Controllers
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
             ViewBag.id = user.Id;
+
+            var checkAddressValue = _context.Address.Where(x => x.AtomHealthUserID == user.Id).FirstOrDefault();
+            if(checkAddressValue==null)
+            {
+                Address addr = new Address();
+                addr.AtomHealthUserID = user.Id;
+                _context.Address.Add(addr);
+                _context.SaveChanges();
+            }
+            
+
             ViewBag.listOfMedicalCoverage = _context.MedicalCoverage.Where(x => x.AtomHealthUserID == user.Id).ToList();
 
             
@@ -134,7 +146,9 @@ namespace AtomHealth.Controllers
                 ViewBag.ErrorMessage = $"User with id = {id} cannot be found.";
                 return View("Not Found");
             }
-
+            var AddressTarget = _userManager.Users.Include(u => u.Address).ToList();
+            var JoinedTarget = AddressTarget.Where(x => x.Id == user.Id).FirstOrDefault();
+           
             //var immunizationDelete = _context.PatientImmunizationRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
             //_context.PatientImmunizationRec.RemoveRange(immunizationDelete);
             //_context.SaveChanges();
@@ -157,22 +171,16 @@ namespace AtomHealth.Controllers
 
             ViewBag.listOfCountry = _context.Country.ToList();
             ViewBag.listOfProvince = _context.Province.ToList();
-
             ViewBag.immunization = _context.Immunization.ToList();
             ViewBag.medicalhistory = _context.MedicalHistory.ToList();
             ViewBag.currentmedicalconditions = _context.CurrentMedicalCondition.ToList();
             ViewBag.pastmedicalhistory = _context.PastMedicalHistory.ToList();
             ViewBag.familyMedicalHistory = _context.FamilyMedicalHistory.ToList();
             ViewBag.CovidHistory = _context.CovidHistory.ToList();
-            return View(user);
+            return View(JoinedTarget);
            
         }
-        public List<Country> GetCountryList()
-        {
-            List<Country> countries = _context.Country.ToList();
-            return countries;
-        }
-
+        
         [HttpPost]
         public async Task<IActionResult> EditUserProfile(AtomHealthUser model,IFormCollection formval, string key, string fallback)
         {
@@ -257,8 +265,26 @@ namespace AtomHealth.Controllers
                 }
             }
 
+            var addressTarget = _context.Address.Where(x => x.AtomHealthUserID == edituser.Id).FirstOrDefault();
+            string Country = formval["Address.Country"];
+            string Province = formval["Address.Province"];
+            string City = formval["Address.City"];
+            string AddressLineOne = formval["Address.AddressLineOne"];
+            string AddressLineTwo = formval["Address.AddressLineTwo"];
+            string PostalCode = formval["Address.PostalCode"];
 
-            edituser.FirstName = model.FirstName;
+
+            addressTarget.Country = Country;
+            addressTarget.Province = Province;
+            addressTarget.City = City;
+            addressTarget.AddressLineOne = AddressLineOne;
+            addressTarget.AddressLineTwo = AddressLineTwo;
+            addressTarget.PostalCode = PostalCode;
+                _context.Update(addressTarget);
+                _context.SaveChanges();
+                
+            
+                edituser.FirstName = model.FirstName;
                 edituser.MiddleName = model.MiddleName;
                 edituser.LastName = model.LastName;
                 edituser.Gender = model.Gender;
@@ -267,12 +293,12 @@ namespace AtomHealth.Controllers
                 edituser.Weight = model.Weight;
                 edituser.BloodType = model.BloodType;
                 edituser.DOB = model.DOB;
-                edituser.Country = model.Country;
-                edituser.Province = model.Province;
-                edituser.City = model.City;
-                edituser.AddressLineOne = model.AddressLineOne;
-                edituser.AddressLineTwo = model.AddressLineTwo;
-                edituser.PostalCode = model.PostalCode; 
+                //edituser.Country = model.Country;
+                //edituser.Province = model.Province;
+                //edituser.City = model.City;
+                //edituser.AddressLineOne = model.AddressLineOne;
+                //edituser.AddressLineTwo = model.AddressLineTwo;
+                //edituser.PostalCode = model.PostalCode; 
                 edituser.HomePhone = model.HomePhone;
                 edituser.MobilePhone = model.MobilePhone;
                 edituser.EmergencyContactName = model.EmergencyContactName;

@@ -108,7 +108,7 @@
             <div class="form-group">
                 Country
 
-                <select asp-for="Country">
+                <select asp-for="Address.Country">
                     @foreach (Country country in ViewBag.listOfCountry)
                     {
                         <option value="@country.CountryName">
@@ -117,12 +117,11 @@
                     }
                 </select>
 
-                @*@Html.DropDownListFor(m=>m.Country, ViewBag.listOfCountry,"Select Country", new { @class="form-control"})
-                    <span asp-validation-for="Country" class="text-danger"></span>*@
+
             </div>
             <div class="form-group">
                     City / Province
-                    <select asp-for="Province">
+                    <select asp-for="Address.Province">
                         @foreach (Province province in ViewBag.listOfProvince)
                         {
                             <option value="@province.ProvinceName">
@@ -130,27 +129,27 @@
                             </option>
                         }
                     </select>
-                    <span asp-validation-for="Province" class="text-danger"></span>
+                    <span asp-validation-for="Address.Province" class="text-danger"></span>
                 </div>
             <div class="form-group">
                 City
-                <input asp-for="City" class="form-control" />
-                <span asp-validation-for="City" class="text-danger"></span>
+                <input asp-for="Address.City" class="form-control" />
+                <span asp-validation-for="Address.City" class="text-danger"></span>
             </div>
             <div class="form-group">
                 Address Line 1
-                <input asp-for="AddressLineOne" class="form-control" />
-                <span asp-validation-for="AddressLineOne" class="text-danger"></span>
+                <input asp-for="Address.AddressLineOne" class="form-control" />
+                <span asp-validation-for="Address.AddressLineOne" class="text-danger"></span>
             </div>
             <div class="form-group">
                 Address Line 2
-                <input asp-for="AddressLineTwo" class="form-control" />
-                <span asp-validation-for="AddressLineTwo" class="text-danger"></span>
+                <input asp-for="Address.AddressLineTwo" class="form-control" />
+                <span asp-validation-for="Address.AddressLineTwo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 Postal Code
-                <input asp-for="PostalCode" class="form-control" />
-                <span asp-validation-for="PostalCode" class="text-danger"></span>
+                <input asp-for="Address.PostalCode" class="form-control" />
+                <span asp-validation-for="Address.PostalCode" class="text-danger"></span>
             </div>
             <div class="form-group">
                 Home Phone
@@ -252,7 +251,7 @@
                 <br />
                 @Html.RadioButtonFor(m => m.HasPastSurgery, "Yes", Model.HasPastSurgery == "Yes" ? "checked" : string.Empty)
                 <span>Yes</span>
-                @Html.RadioButtonFor(m => m.IsInMedicaion, "No", Model.HasPastSurgery == "No" ? "checked" : string.Empty)
+                @Html.RadioButtonFor(m => m.HasPastSurgery, "No", Model.HasPastSurgery == "No" ? "checked" : string.Empty)
                 <span>No</span>
 
                 <span asp-validation-for="HasPastSurgery" class="text-danger"></span>
@@ -486,31 +485,7 @@
 
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-
-    <script>
-
-        $(document).ready(function () {
-            $("#Country").change(function () {
-                var CountryID = $(this).val();
-                var nl = new Object();
-                nl.CountryID = $("#Country").val();
-                debugger
-                $.ajax({
-                    type: "POST",
-                    url: "https://localhost:44384/Home/GetStateList",
-                    data: JSON.stringify(nl),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (response) {
-                        debugger
-                        //$("#Province").empty();
-                        //$("#Province").append(response);
-                    }
-                })
-            });
-        });
-    </script>
+    
     <script>
         $(function () {
             $("#datepicker").datepicker({

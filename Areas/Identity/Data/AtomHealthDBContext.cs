@@ -26,7 +26,7 @@ namespace AtomHealth.Data
         }
         public DbSet<MedicalCoverage> MedicalCoverage { get; set; }
         public DbSet<Immunization> Immunization { get; set; }
-
+        public DbSet<Address> Address { get; set; }
         public DbSet<Country> Country { get; set; }
         public DbSet<Province> Province { get; set; }
         public DbSet<PatientCountryRecord> PatientCountryRecord { get; set; }
@@ -48,5 +48,7 @@ namespace AtomHealth.Data
         public DbSet<CovidHistory> CovidHistory { get; set; }
         public DbSet<CovidHistoryRec> CovidHistoryRec { get; set; }
         public DbSet<Subscribe> Subscribe { get; set; }
+        public object AtomHealthUser { get; internal set; }
+        public object Data { get; internal set; }
     }
 }
