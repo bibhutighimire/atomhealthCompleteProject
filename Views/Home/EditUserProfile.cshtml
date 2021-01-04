@@ -24,18 +24,18 @@
 
             <div class="form-group">
                 First Name
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
+                <input asp-for="ApplicationUser.FirstName" class="form-control" />
+                <span asp-validation-for="ApplicationUser.FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 Middle Name
-                <input asp-for="MiddleName" class="form-control" />
-                <span asp-validation-for="MiddleName" class="text-danger"></span>
+                <input asp-for="ApplicationUser.MiddleName" class="form-control" />
+                <span asp-validation-for="ApplicationUser.MiddleName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 Last Name
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
+                <input asp-for="ApplicationUser.LastName" class="form-control" />
+                <span asp-validation-for="ApplicationUser.LastName" class="text-danger"></span>
             </div>
 
             <div class="form-group">
@@ -44,19 +44,21 @@
                          sure every member feels safe, welcome and respected."></i>
 
                 <br />
-                @Html.RadioButtonFor(m => m.Gender, "Male", Model.Gender == "Male" ? "checked" : string.Empty)
+                
+                @Html.RadioButtonFor(m => m.ApplicationUser.Gender, "Male", Model.ApplicationUser.Gender == "Male" ? "checked" : string.Empty)
                 <span>Male</span>
-                @Html.RadioButtonFor(m => m.Gender, "Female", Model.Gender == "Female" ? "checked" : string.Empty)
+                @Html.RadioButtonFor(m => m.ApplicationUser.Gender, "Female", Model.ApplicationUser.Gender == "Female" ? "checked" : string.Empty)
                 <span>Female</span>
-                @Html.RadioButtonFor(m => m.Gender, "LGBTQ+", Model.Gender == "LGBTQ+" ? "checked" : string.Empty)
+                @Html.RadioButtonFor(m => m.ApplicationUser.Gender, "LGBTQ+", Model.ApplicationUser.Gender == "LGBTQ+" ? "checked" : string.Empty)
                 <span>LGBTQ+</span>
 
 
-                <span asp-validation-for="Gender" class="text-danger"></span>
+                <span asp-validation-for="ApplicationUser.Gender" class="text-danger"></span>
             </div>
             <div class="form-group">
                 Marital Status
-                @Html.DropDownList("MaritalStatus", new List<SelectListItem>
+                @Html.DropDownListFor(m=>m.ApplicationUser.MaritalStatus, new List<SelectListItem>
+
 {new SelectListItem { Text = "Select", Value = "None", Selected=true},
                     new SelectListItem { Text = "Select Country", Value = "Not Selected"},
     new SelectListItem { Text = "Married", Value = "Married"},
@@ -68,17 +70,17 @@
 
 
 })
-                <span asp-validation-for="MaritalStatus" class="text-danger"></span>
+                <span asp-validation-for="ApplicationUser.MaritalStatus" class="text-danger"></span>
             </div>
             <div class="form-group">
                 Height (in cm)
-                <input asp-for="Height" class="form-control" />
-                <span asp-validation-for="Height" class="text-danger"></span>
+                <input asp-for="ApplicationUser.Height" class="form-control" />
+                <span asp-validation-for="ApplicationUser.Height" class="text-danger"></span>
             </div>
             <div class="form-group">
                 Weight (in lbs)
-                <input asp-for="Weight" class="form-control" />
-                <span asp-validation-for="Weight" class="text-danger"></span>
+                <input asp-for="ApplicationUser.Weight" class="form-control" />
+                <span asp-validation-for="ApplicationUser.Weight" class="text-danger"></span>
             </div>
             <div class="form-group">
                 Blood Type
@@ -108,7 +110,7 @@
             <div class="form-group">
                 Country
 
-                <select asp-for="Country">
+                <select asp-for="Address.Country">
                     @foreach (Country country in ViewBag.listOfCountry)
                     {
                         <option value="@country.CountryName">
@@ -117,12 +119,11 @@
                     }
                 </select>
 
-                @*@Html.DropDownListFor(m=>m.Country, ViewBag.listOfCountry,"Select Country", new { @class="form-control"})
-                    <span asp-validation-for="Country" class="text-danger"></span>*@
+
             </div>
             <div class="form-group">
                     City / Province
-                    <select asp-for="Province">
+                    <select asp-for="Address.Province">
                         @foreach (Province province in ViewBag.listOfProvince)
                         {
                             <option value="@province.ProvinceName">
@@ -130,56 +131,56 @@
                             </option>
                         }
                     </select>
-                    <span asp-validation-for="Province" class="text-danger"></span>
+                    <span asp-validation-for="Address.Province" class="text-danger"></span>
                 </div>
             <div class="form-group">
                 City
-                <input asp-for="City" class="form-control" />
-                <span asp-validation-for="City" class="text-danger"></span>
+                <input asp-for="Address.City" class="form-control" />
+                <span asp-validation-for="Address.City" class="text-danger"></span>
             </div>
             <div class="form-group">
                 Address Line 1
-                <input asp-for="AddressLineOne" class="form-control" />
-                <span asp-validation-for="AddressLineOne" class="text-danger"></span>
+                <input asp-for="Address.AddressLineOne" class="form-control" />
+                <span asp-validation-for="Address.AddressLineOne" class="text-danger"></span>
             </div>
             <div class="form-group">
                 Address Line 2
-                <input asp-for="AddressLineTwo" class="form-control" />
-                <span asp-validation-for="AddressLineTwo" class="text-danger"></span>
+                <input asp-for="Address.AddressLineTwo" class="form-control" />
+                <span asp-validation-for="Address.AddressLineTwo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 Postal Code
-                <input asp-for="PostalCode" class="form-control" />
-                <span asp-validation-for="PostalCode" class="text-danger"></span>
+                <input asp-for="Address.PostalCode" class="form-control" />
+                <span asp-validation-for="Address.PostalCode" class="text-danger"></span>
             </div>
             <div class="form-group">
                 Home Phone
-                <input asp-for="HomePhone" class="form-control" placeholder="(123) 456-7890" type="text" onkeydown="javascript:backspacerDOWN(this,event);" onkeyup="javascript:backspacerUP(this,event);" />
-                <span asp-validation-for="HomePhone" class="text-danger"></span>
+                <input asp-for="Phonenumbers.HomePhone" class="form-control" placeholder="(123) 456-7890" type="text" onkeydown="javascript:backspacerDOWN(this,event);" onkeyup="javascript:backspacerUP(this,event);" />
+                <span asp-validation-for="Phonenumbers.HomePhone" class="text-danger"></span>
             </div>
             <div class="form-group">
                 Mobile Phone
-                <input asp-for="MobilePhone" class="form-control" placeholder="(123) 456-7890" type="text" onkeydown="javascript:backspacerDOWN(this,event);" onkeyup="javascript:backspacerUP(this,event);" />
-                <span asp-validation-for="MobilePhone" class="text-danger"></span>
+                <input asp-for="Phonenumbers.MobilePhone" class="form-control" placeholder="(123) 456-7890" type="text" onkeydown="javascript:backspacerDOWN(this,event);" onkeyup="javascript:backspacerUP(this,event);" />
+                <span asp-validation-for="Phonenumbers.MobilePhone" class="text-danger"></span>
             </div>
             <div class="form-group">
                 Emergency Contact Name
-                <input asp-for="EmergencyContactName" class="form-control" />
-                <span asp-validation-for="EmergencyContactName" class="text-danger"></span>
+                <input asp-for="Phonenumbers.EmergencyContactName" class="form-control" />
+                <span asp-validation-for="Phonenumbers.EmergencyContactName" class="text-danger"></span>
             </div>
 
 
             <div class="form-group">
                 Emergency Contact Phone
-                <input asp-for="EmergencyContactPhone" class="form-control" placeholder="(123) 456-7890" type="text" onkeydown="javascript:backspacerDOWN(this,event);" onkeyup="javascript:backspacerUP(this,event);" />
-                <span asp-validation-for="EmergencyContactPhone" class="text-danger"></span>
+                <input asp-for="Phonenumbers.EmergencyContactPhone" class="form-control" placeholder="(123) 456-7890" type="text" onkeydown="javascript:backspacerDOWN(this,event);" onkeyup="javascript:backspacerUP(this,event);" />
+                <span asp-validation-for="Phonenumbers.EmergencyContactPhone" class="text-danger"></span>
             </div>
 
 
             <div class="form-group">
                 Family Doctor's Name
-                <input asp-for="FamilyDoctorName" class="form-control" />
-                <span asp-validation-for="FamilyDoctorName" class="text-danger"></span>
+                <input asp-for="Phonenumbers.FamilyDoctorName" class="form-control" />
+                <span asp-validation-for="Phonenumbers.FamilyDoctorName" class="text-danger"></span>
             </div>
 
             <div class="checkboxarea " style="grid-column: 1 / 3">
@@ -252,7 +253,7 @@
                 <br />
                 @Html.RadioButtonFor(m => m.HasPastSurgery, "Yes", Model.HasPastSurgery == "Yes" ? "checked" : string.Empty)
                 <span>Yes</span>
-                @Html.RadioButtonFor(m => m.IsInMedicaion, "No", Model.HasPastSurgery == "No" ? "checked" : string.Empty)
+                @Html.RadioButtonFor(m => m.HasPastSurgery, "No", Model.HasPastSurgery == "No" ? "checked" : string.Empty)
                 <span>No</span>
 
                 <span asp-validation-for="HasPastSurgery" class="text-danger"></span>
@@ -330,43 +331,43 @@
 
                 Do you use or do you have history of smoking or using tobacco?
                 <br />
-                @Html.RadioButtonFor(m => m.doYouSmoke, "Yes", Model.doYouSmoke == "Yes" ? "checked" : string.Empty)
+                @Html.RadioButtonFor(m => m.Lifestyle.doYouSmoke, "Yes", Model.Lifestyle.doYouSmoke == "Yes" ? "checked" : string.Empty)
                 <span>Yes</span>
-                @Html.RadioButtonFor(m => m.doYouSmoke, "No", Model.doYouSmoke == "No" ? "checked" : string.Empty)
+                @Html.RadioButtonFor(m => m.Lifestyle.doYouSmoke, "No", Model.Lifestyle.doYouSmoke == "No" ? "checked" : string.Empty)
                 <span>No</span>
-                @Html.RadioButtonFor(m => m.doYouSmoke, "Sometimes", Model.doYouSmoke == "Sometimes" ? "checked" : string.Empty)
+                @Html.RadioButtonFor(m => m.Lifestyle.doYouSmoke, "Sometimes", Model.Lifestyle.doYouSmoke == "Sometimes" ? "checked" : string.Empty)
                 <span>Sometimes</span>
-                <span asp-validation-for="doYouSmoke" class="text-danger"></span>
+                <span asp-validation-for="Lifestyle.doYouSmoke" class="text-danger"></span>
             </div>
 
             <div class="form-group">
 
                 Do you use or do you have history of using illegal drugs?
                 <br />
-                @Html.RadioButtonFor(m => m.doYouIllegalDrugs, "Yes", Model.doYouIllegalDrugs == "Yes" ? "checked" : string.Empty)
+                @Html.RadioButtonFor(m => m.Lifestyle.doYouIllegalDrugs, "Yes", Model.Lifestyle.doYouIllegalDrugs == "Yes" ? "checked" : string.Empty)
                 <span>Yes</span>
-                @Html.RadioButtonFor(m => m.doYouIllegalDrugs, "No", Model.doYouIllegalDrugs == "No" ? "checked" : string.Empty)
+                @Html.RadioButtonFor(m => m.Lifestyle.doYouIllegalDrugs, "No", Model.Lifestyle.doYouIllegalDrugs == "No" ? "checked" : string.Empty)
                 <span>No</span>
-                @Html.RadioButtonFor(m => m.doYouIllegalDrugs, "Sometimes", Model.doYouIllegalDrugs == "Sometimes" ? "checked" : string.Empty)
+                @Html.RadioButtonFor(m => m.Lifestyle.doYouIllegalDrugs, "Sometimes", Model.Lifestyle.doYouIllegalDrugs == "Sometimes" ? "checked" : string.Empty)
                 <span>Sometimes</span>
-                <span asp-validation-for="doYouIllegalDrugs" class="text-danger"></span>
+                <span asp-validation-for="Lifestyle.doYouIllegalDrugs" class="text-danger"></span>
             </div>
 
             <div class="form-group">
 
                 Do you use or do you have history of consuming alcohol?
                 <br />
-                @Html.RadioButtonFor(m => m.doYouConsumeAlcohol, "Yes", Model.doYouConsumeAlcohol == "Yes" ? "checked" : string.Empty)
+                @Html.RadioButtonFor(m => m.Lifestyle.doYouConsumeAlcohol, "Yes", Model.Lifestyle.doYouConsumeAlcohol == "Yes" ? "checked" : string.Empty)
                 <span>Yes</span>
-                @Html.RadioButtonFor(m => m.doYouConsumeAlcohol, "No", Model.doYouConsumeAlcohol == "No" ? "checked" : string.Empty)
+                @Html.RadioButtonFor(m => m.Lifestyle.doYouConsumeAlcohol, "No", Model.Lifestyle.doYouConsumeAlcohol == "No" ? "checked" : string.Empty)
                 <span>No</span>
-                @Html.RadioButtonFor(m => m.doYouConsumeAlcohol, "Sometimes", Model.doYouConsumeAlcohol == "Sometimes" ? "checked" : string.Empty)
+                @Html.RadioButtonFor(m => m.Lifestyle.doYouConsumeAlcohol, "Sometimes", Model.Lifestyle.doYouConsumeAlcohol == "Sometimes" ? "checked" : string.Empty)
                 <span>Sometimes</span>
-                <span asp-validation-for="doYouConsumeAlcohol" class="text-danger"></span>
+                <span asp-validation-for="Lifestyle.doYouConsumeAlcohol" class="text-danger"></span>
             </div>
             <div class="form-group">
                 Do you follow any specific diet?
-                @Html.DropDownListFor(m => m.Diet, new List<SelectListItem>
+                @Html.DropDownListFor(m => m.Lifestyle.Diet, new List<SelectListItem>
 {   new SelectListItem { Text = "Select Diet Plan", Value = "NotSelected"},
     new SelectListItem { Text = "The Paleo Diet", Value = "The Paleo Diet"},
     new SelectListItem { Text = "The Blood Type Diet", Value = "The Blood Type Diet"},
@@ -389,11 +390,11 @@
 
 
 })
-                <span asp-validation-for="Diet" class="text-danger"></span>
+                <span asp-validation-for="Lifestyle.Diet" class="text-danger"></span>
             </div>
             <div class="form-group">
                 How often do you exercise?
-                @Html.DropDownListFor(m => m.Exercise, new List<SelectListItem>
+                @Html.DropDownListFor(m => m.Lifestyle.Exercise, new List<SelectListItem>
 {new SelectListItem { Text = "Select Exercise Level", Value = "NotSelected"},
     new SelectListItem { Text = "Sedentary: little or no exercise", Value = "Sedentary: little or no exercise"},
     new SelectListItem { Text = "Light: exercise 1-3 times/week", Value = "Light: exercise 1-3 times/week"},
@@ -403,7 +404,7 @@
     new SelectListItem { Text = "Extra Active: very intense exercise daily, or physical job", Value = "Extra Active: very intense exercise daily, or physical job"}
 
 })
-                <span asp-validation-for="Exercise" class="text-danger"></span>
+                <span asp-validation-for="Lifestyle.Exercise" class="text-danger"></span>
             </div>
 
             <div class="form-group">
@@ -486,31 +487,7 @@
 
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-
-    <script>
-
-        $(document).ready(function () {
-            $("#Country").change(function () {
-                var CountryID = $(this).val();
-                var nl = new Object();
-                nl.CountryID = $("#Country").val();
-                debugger
-                $.ajax({
-                    type: "POST",
-                    url: "https://localhost:44384/Home/GetStateList",
-                    data: JSON.stringify(nl),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (response) {
-                        debugger
-                        //$("#Province").empty();
-                        //$("#Province").append(response);
-                    }
-                })
-            });
-        });
-    </script>
+    
     <script>
         $(function () {
             $("#datepicker").datepicker({

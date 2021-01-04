@@ -50,15 +50,15 @@ namespace AtomHealth.Areas.Identity.Pages.Account.Manage
         private async Task LoadAsync(AtomHealthUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
-            var firstName = user.FirstName;
-            var middleName = user.MiddleName;
-            var lastName = user.LastName;
+            //var firstName = user.ApplicationUser.FirstName;
+            //var middleName = user.ApplicationUser.MiddleName;
+            //var lastName = user.ApplicationUser.LastName;
             
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
-            Firstname = firstName;
-            Middlename = middleName;
-            Lastname = lastName;
+            //Firstname = firstName;
+            //Middlename = middleName;
+            //Lastname = lastName;
 
             Username = userName;
 

@@ -39,28 +39,28 @@
 
                 <div class="rowForProfile">
                     <div class="bio-row">
-                        <p><span>First Name</span>@Html.DisplayFor(model => model.FirstName)</p>
+                        <p><span>First Name</span>@Html.DisplayFor(model => model.ApplicationUser.FirstName)</p>
                     </div>
                     <div class="bio-row">
-                        <p><span>Middle Name</span>@Html.DisplayFor(model => model.MiddleName)</p>
+                        <p><span>Middle Name</span>@Html.DisplayFor(model => model.ApplicationUser.MiddleName)</p>
                     </div>
                     <div class="bio-row">
-                        <p><span>Last Name</span>@Html.DisplayFor(model => model.LastName)</p>
+                        <p><span>Last Name</span>@Html.DisplayFor(model => model.ApplicationUser.LastName)</p>
                     </div>
                     <div class="bio-row">
-                        <p><span>Gender</span>@Html.DisplayFor(model => model.Gender)</p>
-                    </div>
-
-                    <div class="bio-row">
-                        <p><span>Marital Status</span>@Html.DisplayFor(model => model.MaritalStatus)</p>
+                        <p><span>Gender</span>@Html.DisplayFor(model => model.ApplicationUser.Gender)</p>
                     </div>
 
+                    <div class="bio-row">
+                        <p><span>Marital Status</span>@Html.DisplayFor(model => model.ApplicationUser.MaritalStatus)</p>
+                    </div>
+
 
                     <div class="bio-row">
-                        <p><span>Height (in cm)</span>@Html.DisplayFor(model => model.Height)</p>
+                        <p><span>Height (in cm)</span>@Html.DisplayFor(model => model.ApplicationUser.Height)</p>
                     </div>
                     <div class="bio-row">
-                        <p><span>Weight (in lbs)</span>@Html.DisplayFor(model => model.Weight)</p>
+                        <p><span>Weight (in lbs)</span>@Html.DisplayFor(model => model.ApplicationUser.Weight)</p>
                     </div>
                     <div class="bio-row">
                         <p><span>Blood Type</span>@Html.DisplayFor(model => model.BloodType)</p>
@@ -75,27 +75,27 @@
                 </div>
                 <div class="rowForProfile">
                     <div class="bio-row">
-                        <p><span>Country</span>@Html.DisplayFor(model => model.Country)</p>
+                        <p><span>Country</span>@Html.DisplayFor(model => model.Address.Country)</p>
                     </div>
 
                     <div class="bio-row">
-                        <p><span>Province</span>@Html.DisplayFor(model => model.Province)</p>
+                        <p><span>Province</span>@Html.DisplayFor(model => model.Address.Province)</p>
                     </div>
 
                     <div class="bio-row">
-                        <p><span>City</span>@Html.DisplayFor(model => model.City)</p>
+                        <p><span>City</span>@Html.DisplayFor(model => model.Address.City)</p>
                     </div>
 
                     <div class="bio-row">
-                        <p><span>Address Line 1</span>@Html.DisplayFor(model => model.AddressLineOne)</p>
+                        <p><span>Address Line 1</span>@Html.DisplayFor(model => model.Address.AddressLineOne)</p>
                     </div>
 
                     <div class="bio-row">
-                        <p><span>Address Line 2</span>@Html.DisplayFor(model => model.AddressLineTwo)</p>
+                        <p><span>Address Line 2</span>@Html.DisplayFor(model => model.Address.AddressLineTwo)</p>
                     </div>
 
                     <div class="bio-row">
-                        <p><span>Postal Code</span>@Html.DisplayFor(model => model.PostalCode)</p>
+                        <p><span>Postal Code</span>@Html.DisplayFor(model => model.Address.PostalCode)</p>
                     </div>
                 </div>
             </div>
@@ -108,24 +108,24 @@
                 </div>
                 <div class="rowForProfile">
                     <div class="bio-row">
-                        <p><span>Home Phone</span>@Html.DisplayFor(model => model.HomePhone)</p>
+                        <p><span>Home Phone</span>@Html.DisplayFor(model => model.Phonenumbers.HomePhone)</p>
                     </div>
 
                     <div class="bio-row">
-                        <p><span>Mobile Phone</span>@Html.DisplayFor(model => model.MobilePhone)</p>
+                        <p><span>Mobile Phone</span>@Html.DisplayFor(model => model.Phonenumbers.MobilePhone)</p>
                     </div>
 
                     <div class="bio-row">
-                        <p><span>Emergency Contact Person Name</span>@Html.DisplayFor(model => model.EmergencyContactName)</p>
+                        <p><span>Emergency Contact Person Name</span>@Html.DisplayFor(model => model.Phonenumbers.EmergencyContactName)</p>
                     </div>
 
                     <div class="bio-row">
-                        <p><span>Emergency Contact Number</span>@Html.DisplayFor(model => model.EmergencyContactPhone)</p>
+                        <p><span>Emergency Contact Number</span>@Html.DisplayFor(model => model.Phonenumbers.EmergencyContactPhone)</p>
                     </div>
 
 
                     <div class="bio-row">
-                        <p><span>Family Doctor Name</span>@Html.DisplayFor(model => model.FamilyDoctorName)</p>
+                        <p><span>Family Doctor Name</span>@Html.DisplayFor(model => model.Phonenumbers.FamilyDoctorName)</p>
                     </div>
                 </div>
 
@@ -264,21 +264,21 @@
                 </div>
                 <div class="rowForProfile">
                     <div class="bio-row">
-                        <p><span>Do you smoke?</span>@Html.DisplayFor(model => model.doYouSmoke)</p>
+                        <p><span>Do you smoke?</span>@Html.DisplayFor(model => model.Lifestyle.doYouSmoke)</p>
                     </div>
 
                     <div class="bio-row">
-                        <p><span>Have you done illegal drugs?</span>@Html.DisplayFor(model => model.doYouIllegalDrugs)</p>
+                        <p><span>Have you done illegal drugs?</span>@Html.DisplayFor(model => model.Lifestyle.doYouIllegalDrugs)</p>
                     </div>
 
                     <div class="bio-row">
-                        <p><span>Do you consume alcohol?</span>@Html.DisplayFor(model => model.doYouConsumeAlcohol)</p>
+                        <p><span>Do you consume alcohol?</span>@Html.DisplayFor(model => model.Lifestyle.doYouConsumeAlcohol)</p>
                     </div>
                     <div class="bio-row">
-                        <p><span>Do you follow any specific diet?</span>@Html.DisplayFor(model => model.Diet)</p>
+                        <p><span>Do you follow any specific diet?</span>@Html.DisplayFor(model => model.Lifestyle.Diet)</p>
                     </div>
                     <div class="bio-row">
-                        <p><span>How often do you exercise?</span>@Html.DisplayFor(model => model.Exercise)</p>
+                        <p><span>How often do you exercise?</span>@Html.DisplayFor(model => model.Lifestyle.Exercise)</p>
                     </div>
 
                 </div>
@@ -328,28 +328,28 @@
 
                 <div class="rowForProfile">
                     <div class="bio-row">
-                        <p><span>First Name</span>@Html.DisplayFor(model => model.FirstName)</p>
+                        <p><span>First Name</span>@Html.DisplayFor(model => model.ApplicationUser.FirstName)</p>
                     </div>
                     <div class="bio-row">
-                        <p><span>Middle Name</span>@Html.DisplayFor(model => model.MiddleName)</p>
+                        <p><span>Middle Name</span>@Html.DisplayFor(model => model.ApplicationUser.MiddleName)</p>
                     </div>
                     <div class="bio-row">
-                        <p><span>Last Name</span>@Html.DisplayFor(model => model.LastName)</p>
+                        <p><span>Last Name</span>@Html.DisplayFor(model => model.ApplicationUser.LastName)</p>
                     </div>
                     <div class="bio-row">
-                        <p><span>Gender</span>@Html.DisplayFor(model => model.Gender)</p>
-                    </div>
-
-                    <div class="bio-row">
-                        <p><span>Marital Status</span>@Html.DisplayFor(model => model.MaritalStatus)</p>
+                        <p><span>Gender</span>@Html.DisplayFor(model => model.ApplicationUser.Gender)</p>
                     </div>
 
+                    <div class="bio-row">
+                        <p><span>Marital Status</span>@Html.DisplayFor(model => model.ApplicationUser.MaritalStatus)</p>
+                    </div>
+
 
                     <div class="bio-row">
-                        <p><span>Height (in cm)</span>@Html.DisplayFor(model => model.Height)</p>
+                        <p><span>Height (in cm)</span>@Html.DisplayFor(model => model.ApplicationUser.Height)</p>
                     </div>
                     <div class="bio-row">
-                        <p><span>Weight (in lbs)</span>@Html.DisplayFor(model => model.Weight)</p>
+                        <p><span>Weight (in lbs)</span>@Html.DisplayFor(model => model.ApplicationUser.Weight)</p>
                     </div>
                     <div class="bio-row">
                         <p><span>Blood Type</span>@Html.DisplayFor(model => model.BloodType)</p>
@@ -364,27 +364,27 @@
                 </div>
                 <div class="rowForProfile">
                     <div class="bio-row">
-                        <p><span>Country</span>@Html.DisplayFor(model => model.Country)</p>
+                        <p><span>Country</span>@Html.DisplayFor(model => model.Address.Country)</p>
                     </div>
 
                     <div class="bio-row">
-                        <p><span>Province</span>@Html.DisplayFor(model => model.Province)</p>
+                        <p><span>Province</span>@Html.DisplayFor(model => model.Address.Province)</p>
                     </div>
 
                     <div class="bio-row">
-                        <p><span>City</span>@Html.DisplayFor(model => model.City)</p>
+                        <p><span>City</span>@Html.DisplayFor(model => model.Address.City)</p>
                     </div>
 
                     <div class="bio-row">
-                        <p><span>Address Line 1</span>@Html.DisplayFor(model => model.AddressLineOne)</p>
+                        <p><span>Address Line 1</span>@Html.DisplayFor(model => model.Address.AddressLineOne)</p>
                     </div>
 
                     <div class="bio-row">
-                        <p><span>Address Line 2</span>@Html.DisplayFor(model => model.AddressLineTwo)</p>
+                        <p><span>Address Line 2</span>@Html.DisplayFor(model => model.Address.AddressLineTwo)</p>
                     </div>
 
                     <div class="bio-row">
-                        <p><span>Postal Code</span>@Html.DisplayFor(model => model.PostalCode)</p>
+                        <p><span>Postal Code</span>@Html.DisplayFor(model => model.Address.PostalCode)</p>
                     </div>
                 </div>
 
@@ -393,24 +393,24 @@
                 </div>
                 <div class="rowForProfile">
                     <div class="bio-row">
-                        <p><span>Home Phone</span>@Html.DisplayFor(model => model.HomePhone)</p>
+                        <p><span>Home Phone</span>@Html.DisplayFor(model => model.Phonenumbers.HomePhone)</p>
                     </div>
 
                     <div class="bio-row">
-                        <p><span>Mobile Phone</span>@Html.DisplayFor(model => model.MobilePhone)</p>
+                        <p><span>Mobile Phone</span>@Html.DisplayFor(model => model.Phonenumbers.MobilePhone)</p>
                     </div>
 
                     <div class="bio-row">
-                        <p><span>Emergency Contact Person Name</span>@Html.DisplayFor(model => model.EmergencyContactName)</p>
+                        <p><span>Emergency Contact Person Name</span>@Html.DisplayFor(model => model.Phonenumbers.EmergencyContactName)</p>
                     </div>
 
                     <div class="bio-row">
-                        <p><span>Emergency Contact Number</span>@Html.DisplayFor(model => model.EmergencyContactPhone)</p>
+                        <p><span>Emergency Contact Number</span>@Html.DisplayFor(model => model.Phonenumbers.EmergencyContactPhone)</p>
                     </div>
 
 
                     <div class="bio-row">
-                        <p><span>Family Doctor Name</span>@Html.DisplayFor(model => model.FamilyDoctorName)</p>
+                        <p><span>Family Doctor Name</span>@Html.DisplayFor(model => model.Phonenumbers.FamilyDoctorName)</p>
                     </div>
                 </div>
                 <div class="bio-graph-heading-profile">
@@ -544,21 +544,21 @@
                 </div>
                 <div class="rowForProfile">
                     <div class="bio-row">
-                        <p><span>Do you smoke?</span>@Html.DisplayFor(model => model.doYouSmoke)</p>
+                        <p><span>Do you smoke?</span>@Html.DisplayFor(model => model.Lifestyle.doYouSmoke)</p>
                     </div>
 
                     <div class="bio-row">
-                        <p><span>Have you done illegal drugs?</span>@Html.DisplayFor(model => model.doYouIllegalDrugs)</p>
+                        <p><span>Have you done illegal drugs?</span>@Html.DisplayFor(model => model.Lifestyle.doYouIllegalDrugs)</p>
                     </div>
 
                     <div class="bio-row">
-                        <p><span>Do you consume alcohol?</span>@Html.DisplayFor(model => model.doYouConsumeAlcohol)</p>
+                        <p><span>Do you consume alcohol?</span>@Html.DisplayFor(model => model.Lifestyle.doYouConsumeAlcohol)</p>
                     </div>
                     <div class="bio-row">
-                        <p><span>Do you follow any specific diet?</span>@Html.DisplayFor(model => model.Diet)</p>
+                        <p><span>Do you follow any specific diet?</span>@Html.DisplayFor(model => model.Lifestyle.Diet)</p>
                     </div>
                     <div class="bio-row">
-                        <p><span>How often do you exercise?</span>@Html.DisplayFor(model => model.Exercise)</p>
+                        <p><span>How often do you exercise?</span>@Html.DisplayFor(model => model.Lifestyle.Exercise)</p>
                     </div>
 
                 </div>

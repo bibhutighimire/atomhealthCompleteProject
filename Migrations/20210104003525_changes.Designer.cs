@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AtomHealth.Migrations
 {
     [DbContext(typeof(AtomHealthDBContext))]
-    [Migration("20201227032711_cone")]
-    partial class cone
+    [Migration("20210104003525_changes")]
+    partial class changes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -144,7 +144,7 @@ namespace AtomHealth.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PastMedicalHistory")
+                    b.Property<string>("PastMedicalHistoryDetails")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PastSurgeries")
@@ -201,6 +201,184 @@ namespace AtomHealth.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("AtomHealth.Models.Address", b =>
+                {
+                    b.Property<Guid>("AddressID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AddressLineOne")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("AddressLineTwo")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("AtomHealthUserID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<Guid?>("PatientProvinceRecID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("PostalCode")
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Province")
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("AddressID");
+
+                    b.HasIndex("AtomHealthUserID")
+                        .IsUnique()
+                        .HasFilter("[AtomHealthUserID] IS NOT NULL");
+
+                    b.HasIndex("PatientProvinceRecID");
+
+                    b.ToTable("Address");
+                });
+
+            modelBuilder.Entity("AtomHealth.Models.Country", b =>
+                {
+                    b.Property<Guid>("CountryID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CountryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CountryID");
+
+                    b.ToTable("Country");
+                });
+
+            modelBuilder.Entity("AtomHealth.Models.CovidHistory", b =>
+                {
+                    b.Property<Guid>("CovidHistoryID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CovidHistoryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isChecked")
+                        .HasColumnType("bit");
+
+                    b.HasKey("CovidHistoryID");
+
+                    b.ToTable("CovidHistory");
+                });
+
+            modelBuilder.Entity("AtomHealth.Models.CovidHistoryRec", b =>
+                {
+                    b.Property<Guid>("CovidHistoryRecID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AtomHealthUserID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CovidHistoryID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("CovidHistoryID1")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("CovidHistoryRecID");
+
+                    b.HasIndex("AtomHealthUserID");
+
+                    b.HasIndex("CovidHistoryID1");
+
+                    b.ToTable("CovidHistoryRec");
+                });
+
+            modelBuilder.Entity("AtomHealth.Models.CurrentMedicalCondition", b =>
+                {
+                    b.Property<Guid>("CurrentMedicalConditionID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CurrentMedicalConditionName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isChecked")
+                        .HasColumnType("bit");
+
+                    b.HasKey("CurrentMedicalConditionID");
+
+                    b.ToTable("CurrentMedicalCondition");
+                });
+
+            modelBuilder.Entity("AtomHealth.Models.CurrentMedicalConditionRec", b =>
+                {
+                    b.Property<Guid>("CurrentMedicalConditionRecID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AtomHealthUserID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CurrentMedicalConditionID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("CurrentMedicalConditionID1")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("CurrentMedicalConditionRecID");
+
+                    b.HasIndex("AtomHealthUserID");
+
+                    b.HasIndex("CurrentMedicalConditionID1");
+
+                    b.ToTable("CurrentMedicalConditionRec");
+                });
+
+            modelBuilder.Entity("AtomHealth.Models.FamilyMedicalHistory", b =>
+                {
+                    b.Property<Guid>("FamilyMedicalHistoryID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FamilyMedicalHistoryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isChecked")
+                        .HasColumnType("bit");
+
+                    b.HasKey("FamilyMedicalHistoryID");
+
+                    b.ToTable("FamilyMedicalHistory");
+                });
+
+            modelBuilder.Entity("AtomHealth.Models.FamilyMedicalHistoryRec", b =>
+                {
+                    b.Property<Guid>("FamilyMedicalHistoryRecID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AtomHealthUserID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("FamilyMedicalHistoryID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("FamilyMedicalHistoryID1")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("FamilyMedicalHistoryRecID");
+
+                    b.HasIndex("AtomHealthUserID");
+
+                    b.HasIndex("FamilyMedicalHistoryID1");
+
+                    b.ToTable("FamilyMedicalHistoryRec");
                 });
 
             modelBuilder.Entity("AtomHealth.Models.Immunization", b =>
@@ -265,6 +443,79 @@ namespace AtomHealth.Migrations
                     b.ToTable("MedicalHistory");
                 });
 
+            modelBuilder.Entity("AtomHealth.Models.PastMedicalHistory", b =>
+                {
+                    b.Property<Guid>("PastMedicalHistoryID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("PastMedicalHistoryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isChecked")
+                        .HasColumnType("bit");
+
+                    b.HasKey("PastMedicalHistoryID");
+
+                    b.ToTable("PastMedicalHistory");
+                });
+
+            modelBuilder.Entity("AtomHealth.Models.PastMedicalHistoryRec", b =>
+                {
+                    b.Property<Guid>("PastMedicalHistoryRecID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AtomHealthUserID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("PastMedicalHistoryID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("PastMedicalHistoryID1")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("PastMedicalHistoryRecID");
+
+                    b.HasIndex("AtomHealthUserID");
+
+                    b.HasIndex("PastMedicalHistoryID1");
+
+                    b.ToTable("PastMedicalHistoryRec");
+                });
+
+            modelBuilder.Entity("AtomHealth.Models.PatientCountryRecord", b =>
+                {
+                    b.Property<Guid>("PatientCountryRecordID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AtomHealthUserID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CountryID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("CountryID1")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ProvinceID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ProvinceID1")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("PatientCountryRecordID");
+
+                    b.HasIndex("AtomHealthUserID");
+
+                    b.HasIndex("CountryID1");
+
+                    b.HasIndex("ProvinceID1");
+
+                    b.ToTable("PatientCountryRecord");
+                });
+
             modelBuilder.Entity("AtomHealth.Models.PatientImmunizationRec", b =>
                 {
                     b.Property<Guid>("PatientImmunizationRecID")
@@ -311,6 +562,67 @@ namespace AtomHealth.Migrations
                     b.HasIndex("MedicalHistoryID1");
 
                     b.ToTable("PatientMedicalHistoryRec");
+                });
+
+            modelBuilder.Entity("AtomHealth.Models.PatientProvinceRec", b =>
+                {
+                    b.Property<Guid>("PatientProvinceRecID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AtomHealthUserID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CountryID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("CountryID1")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ProvinceID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ProvinceID1")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("PatientProvinceRecID");
+
+                    b.HasIndex("AtomHealthUserID");
+
+                    b.HasIndex("CountryID1");
+
+                    b.HasIndex("ProvinceID1");
+
+                    b.ToTable("PatientProvinceRec");
+                });
+
+            modelBuilder.Entity("AtomHealth.Models.Province", b =>
+                {
+                    b.Property<Guid>("ProvinceID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ProvinceName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ProvinceID");
+
+                    b.ToTable("Province");
+                });
+
+            modelBuilder.Entity("AtomHealth.Models.Subscribe", b =>
+                {
+                    b.Property<Guid>("subscribeid")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("subscribeid");
+
+                    b.ToTable("Subscribe");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -444,6 +756,66 @@ namespace AtomHealth.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("AtomHealth.Models.Address", b =>
+                {
+                    b.HasOne("AtomHealth.Areas.Identity.Data.AtomHealthUser", "AtomHealthUser")
+                        .WithOne("Address")
+                        .HasForeignKey("AtomHealth.Models.Address", "AtomHealthUserID");
+
+                    b.HasOne("AtomHealth.Models.PatientProvinceRec", "PatientProvinceRec")
+                        .WithMany()
+                        .HasForeignKey("PatientProvinceRecID");
+
+                    b.Navigation("AtomHealthUser");
+
+                    b.Navigation("PatientProvinceRec");
+                });
+
+            modelBuilder.Entity("AtomHealth.Models.CovidHistoryRec", b =>
+                {
+                    b.HasOne("AtomHealth.Areas.Identity.Data.AtomHealthUser", "AtomHealthUser")
+                        .WithMany()
+                        .HasForeignKey("AtomHealthUserID");
+
+                    b.HasOne("AtomHealth.Models.CovidHistory", "CovidHistory")
+                        .WithMany()
+                        .HasForeignKey("CovidHistoryID1");
+
+                    b.Navigation("AtomHealthUser");
+
+                    b.Navigation("CovidHistory");
+                });
+
+            modelBuilder.Entity("AtomHealth.Models.CurrentMedicalConditionRec", b =>
+                {
+                    b.HasOne("AtomHealth.Areas.Identity.Data.AtomHealthUser", "AtomHealthUser")
+                        .WithMany()
+                        .HasForeignKey("AtomHealthUserID");
+
+                    b.HasOne("AtomHealth.Models.CurrentMedicalCondition", "CurrentMedicalCondition")
+                        .WithMany()
+                        .HasForeignKey("CurrentMedicalConditionID1");
+
+                    b.Navigation("AtomHealthUser");
+
+                    b.Navigation("CurrentMedicalCondition");
+                });
+
+            modelBuilder.Entity("AtomHealth.Models.FamilyMedicalHistoryRec", b =>
+                {
+                    b.HasOne("AtomHealth.Areas.Identity.Data.AtomHealthUser", "AtomHealthUser")
+                        .WithMany()
+                        .HasForeignKey("AtomHealthUserID");
+
+                    b.HasOne("AtomHealth.Models.FamilyMedicalHistory", "FamilyMedicalHistory")
+                        .WithMany()
+                        .HasForeignKey("FamilyMedicalHistoryID1");
+
+                    b.Navigation("AtomHealthUser");
+
+                    b.Navigation("FamilyMedicalHistory");
+                });
+
             modelBuilder.Entity("AtomHealth.Models.MedicalCoverage", b =>
                 {
                     b.HasOne("AtomHealth.Areas.Identity.Data.AtomHealthUser", "AtomHealthUser")
@@ -451,6 +823,42 @@ namespace AtomHealth.Migrations
                         .HasForeignKey("AtomHealthUserID");
 
                     b.Navigation("AtomHealthUser");
+                });
+
+            modelBuilder.Entity("AtomHealth.Models.PastMedicalHistoryRec", b =>
+                {
+                    b.HasOne("AtomHealth.Areas.Identity.Data.AtomHealthUser", "AtomHealthUser")
+                        .WithMany()
+                        .HasForeignKey("AtomHealthUserID");
+
+                    b.HasOne("AtomHealth.Models.PastMedicalHistory", "PastMedicalHistory")
+                        .WithMany()
+                        .HasForeignKey("PastMedicalHistoryID1");
+
+                    b.Navigation("AtomHealthUser");
+
+                    b.Navigation("PastMedicalHistory");
+                });
+
+            modelBuilder.Entity("AtomHealth.Models.PatientCountryRecord", b =>
+                {
+                    b.HasOne("AtomHealth.Areas.Identity.Data.AtomHealthUser", "AtomHealthUser")
+                        .WithMany()
+                        .HasForeignKey("AtomHealthUserID");
+
+                    b.HasOne("AtomHealth.Models.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryID1");
+
+                    b.HasOne("AtomHealth.Models.Province", "Province")
+                        .WithMany()
+                        .HasForeignKey("ProvinceID1");
+
+                    b.Navigation("AtomHealthUser");
+
+                    b.Navigation("Country");
+
+                    b.Navigation("Province");
                 });
 
             modelBuilder.Entity("AtomHealth.Models.PatientImmunizationRec", b =>
@@ -481,6 +889,27 @@ namespace AtomHealth.Migrations
                     b.Navigation("AtomHealthUser");
 
                     b.Navigation("MedicalHistory");
+                });
+
+            modelBuilder.Entity("AtomHealth.Models.PatientProvinceRec", b =>
+                {
+                    b.HasOne("AtomHealth.Areas.Identity.Data.AtomHealthUser", "AtomHealthUser")
+                        .WithMany()
+                        .HasForeignKey("AtomHealthUserID");
+
+                    b.HasOne("AtomHealth.Models.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryID1");
+
+                    b.HasOne("AtomHealth.Models.Province", "Province")
+                        .WithMany()
+                        .HasForeignKey("ProvinceID1");
+
+                    b.Navigation("AtomHealthUser");
+
+                    b.Navigation("Country");
+
+                    b.Navigation("Province");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -532,6 +961,11 @@ namespace AtomHealth.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("AtomHealth.Areas.Identity.Data.AtomHealthUser", b =>
+                {
+                    b.Navigation("Address");
                 });
 #pragma warning restore 612, 618
         }
