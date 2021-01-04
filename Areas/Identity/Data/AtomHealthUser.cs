@@ -52,36 +52,9 @@ namespace AtomHealth.Areas.Identity.Data
 
         public Address Address { get; set; }
 
-      
-
-        [PersonalData]
-        [Column(TypeName = "nvarchar(100)")]
-        [DataType(DataType.PhoneNumber, ErrorMessage = "Phone number is not valid")]
-        public string HomePhone { get; set; }
-
-        [PersonalData]
-        [Column(TypeName = "nvarchar(100)")]
-        [DataType(DataType.PhoneNumber, ErrorMessage = "Phone number is not valid")]
-        public string MobilePhone { get; set; }
+        public Phonenumbers Phonenumbers { get; set; }
 
 
-
-        [PersonalData]
-        [Column(TypeName = "varchar(200)")]
-        public string EmergencyContactName { get; set; }
-
-        [PersonalData]
-        [Column(TypeName = "nvarchar(100)")]
-        [DataType(DataType.PhoneNumber, ErrorMessage = "Phone number is not valid")]
-        public string EmergencyContactPhone { get; set; }
-
-        [PersonalData]
-        [Column(TypeName = "nvarchar(100)")]
-        public string RelationshipToEmergencyContact { get; set; }
-
-        [PersonalData]
-        [Column(TypeName = "varchar(200)")]
-        public string FamilyDoctorName { get; set; }
 
         [PersonalData]
         [Column(TypeName = "nvarchar(max)")]

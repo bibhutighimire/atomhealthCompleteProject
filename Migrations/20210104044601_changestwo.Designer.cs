@@ -4,14 +4,16 @@ using AtomHealth.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AtomHealth.Migrations
 {
     [DbContext(typeof(AtomHealthDBContext))]
-    partial class AtomHealthDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210104044601_changestwo")]
+    partial class changestwo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -558,9 +560,9 @@ namespace AtomHealth.Migrations
                     b.ToTable("PatientProvinceRec");
                 });
 
-            modelBuilder.Entity("AtomHealth.Models.Phonenumbers", b =>
+            modelBuilder.Entity("AtomHealth.Models.Phonenumber", b =>
                 {
-                    b.Property<Guid>("PhonenumbersID")
+                    b.Property<Guid>("PhonenumberID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -585,13 +587,13 @@ namespace AtomHealth.Migrations
                     b.Property<string>("RelationshipToEmergencyContact")
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("PhonenumbersID");
+                    b.HasKey("PhonenumberID");
 
                     b.HasIndex("AtomHealthUserID")
                         .IsUnique()
                         .HasFilter("[AtomHealthUserID] IS NOT NULL");
 
-                    b.ToTable("Phonenumbers");
+                    b.ToTable("Phonenumber");
                 });
 
             modelBuilder.Entity("AtomHealth.Models.Province", b =>
@@ -910,11 +912,11 @@ namespace AtomHealth.Migrations
                     b.Navigation("Province");
                 });
 
-            modelBuilder.Entity("AtomHealth.Models.Phonenumbers", b =>
+            modelBuilder.Entity("AtomHealth.Models.Phonenumber", b =>
                 {
                     b.HasOne("AtomHealth.Areas.Identity.Data.AtomHealthUser", "AtomHealthUser")
-                        .WithOne("Phonenumbers")
-                        .HasForeignKey("AtomHealth.Models.Phonenumbers", "AtomHealthUserID");
+                        .WithOne("Phonenumber")
+                        .HasForeignKey("AtomHealth.Models.Phonenumber", "AtomHealthUserID");
 
                     b.Navigation("AtomHealthUser");
                 });
@@ -974,7 +976,7 @@ namespace AtomHealth.Migrations
                 {
                     b.Navigation("Address");
 
-                    b.Navigation("Phonenumbers");
+                    b.Navigation("Phonenumber");
                 });
 #pragma warning restore 612, 618
         }
