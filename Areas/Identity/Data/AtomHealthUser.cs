@@ -15,36 +15,6 @@ namespace AtomHealth.Areas.Identity.Data
     {
         [PersonalData]
         [Column(TypeName = "varchar(100)")]
-        [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
-        public string FirstName { get; set; }
-
-        [PersonalData]
-        [Column(TypeName = "varchar(100)")]
-        [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
-        public string MiddleName { get; set; }
-
-        [PersonalData]
-        [Column(TypeName = "varchar(100)")]
-        [RegularExpression(@"^[A-Z]+[a-zA-Z]*$")]
-        public string LastName { get; set; }
-
-        [PersonalData]
-        [Column(TypeName = "varchar(50)")]
-        public string Gender { get; set; }
-
-        [PersonalData]
-        [Column(TypeName = "varchar(100)")]
-        public string MaritalStatus { get; set; }
-
-        [PersonalData]
-        [Column(TypeName = "int")]
-        public int? Height { get; set; }
-
-        [PersonalData]
-        [Column(TypeName = "int")]
-        public int? Weight { get; set; }
-        [PersonalData]
-        [Column(TypeName = "varchar(100)")]
         public string BloodType { get; set; }
         [PersonalData]
         [DataType(DataType.Date, ErrorMessage = "Invalid Date")]
@@ -54,6 +24,8 @@ namespace AtomHealth.Areas.Identity.Data
 
         public Phonenumbers Phonenumbers { get; set; }
 
+        public ApplicationUser ApplicationUser { get; set; }
+        public Lifestyle Lifestyle { get; set; }
 
 
         [PersonalData]
@@ -99,24 +71,7 @@ namespace AtomHealth.Areas.Identity.Data
         [PersonalData]
         [Column(TypeName = "nvarchar(max)")]
         public string GeneticTest { get; set; }
-        [PersonalData]
-        [Column(TypeName = "varchar(20)")]
-        public string doYouSmoke { get; set; }
-        [PersonalData]
-        [Column(TypeName = "varchar(20)")]
-        public string doYouIllegalDrugs { get; set; }
-        [PersonalData]
-        [Column(TypeName = "varchar(20)")]
-        public string doYouConsumeAlcohol { get; set; }
-
-        [PersonalData]
-        [Column(TypeName = "varchar(200)")]
-        public string Diet { get; set; }
-
-        [PersonalData]
-        [Column(TypeName = "varchar(200)")]
-        public string Exercise { get; set; }
-
+       
         [PersonalData]
         [Column(TypeName = "nvarchar(500)")]
         public string CovidDetails { get; set; }

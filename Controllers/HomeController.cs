@@ -122,6 +122,26 @@ namespace AtomHealth.Controllers
                 _context.Phonenumbers.Add(phn);
                 _context.SaveChanges();
             }
+            //initializing applicationuser table
+            var checkApplicationUserValue = _context.ApplicationUser.Where(x => x.AtomHealthUserID == user.Id).FirstOrDefault();
+            if (checkApplicationUserValue == null)
+            {
+                ApplicationUser auser = new ApplicationUser();
+                auser.AtomHealthUserID = user.Id;
+                _context.ApplicationUser.Add(auser);
+                _context.SaveChanges();
+            }
+
+            //initializing lifestyle table
+            var checkLifeStyleValue = _context.Lifestyle.Where(x => x.AtomHealthUserID == user.Id).FirstOrDefault();
+            if (checkLifeStyleValue == null)
+            {
+                Lifestyle life = new Lifestyle();
+                life.AtomHealthUserID = user.Id;
+                _context.Lifestyle.Add(life);
+                _context.SaveChanges();
+            }
+
 
 
             ViewBag.listOfMedicalCoverage = _context.MedicalCoverage.Where(x => x.AtomHealthUserID == user.Id).ToList();
@@ -155,7 +175,7 @@ namespace AtomHealth.Controllers
                 ViewBag.ErrorMessage = $"User with id = {id} cannot be found.";
                 return View("Not Found");
             }
-            var AddressTarget = _userManager.Users.Include(u => u.Phonenumbers).Include(V=>V.Address).ToList();
+            var AddressTarget = _userManager.Users.Include(u => u.Phonenumbers).Include(V=>V.Address).Include(w => w.Lifestyle).Include(x => x.ApplicationUser).ToList();
             var JoinedTarget = AddressTarget.Where(x => x.Id == user.Id).FirstOrDefault();
            
             //var immunizationDelete = _context.PatientImmunizationRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
@@ -312,16 +332,47 @@ namespace AtomHealth.Controllers
             PhoneTarget.FamilyDoctorName = FamilyDoctorName;
             _context.Update(PhoneTarget);
             _context.SaveChanges();
+
+            //updating applicationuser table
+            var ApplicationUserTarget = _context.ApplicationUser.Where(x => x.AtomHealthUserID == edituser.Id).FirstOrDefault();
+            string FirstName = formval["ApplicationUser.FirstName"];
+            string MiddleName = formval["ApplicationUser.MiddleName"];
+            string LastName = formval["ApplicationUser.LastName"];
+            string Gender = formval["ApplicationUser.Gender"];
+            string MaritalStatus = formval["ApplicationUser.MaritalStatus"];
+            string Height = formval["ApplicationUser.Height"];
+            string Weight = formval["ApplicationUser.Weight"];
+
+            ApplicationUserTarget.FirstName = FirstName;
+            ApplicationUserTarget.MiddleName = MiddleName;
+            ApplicationUserTarget.LastName = LastName;
+            ApplicationUserTarget.Gender = Gender;
+            ApplicationUserTarget.MaritalStatus = MaritalStatus;
+            ApplicationUserTarget.Weight =Convert.ToInt32(Weight);
+            ApplicationUserTarget.Height = Convert.ToInt32(Height);
+            _context.Update(PhoneTarget);
+            _context.SaveChanges();
+
+            //updating lifestyle table
            
-            
-            edituser.FirstName = model.FirstName;
-                edituser.MiddleName = model.MiddleName;
-                edituser.LastName = model.LastName;
-                edituser.Gender = model.Gender;
-                edituser.MaritalStatus = model.MaritalStatus;
-                edituser.Height = model.Height;
-                edituser.Weight = model.Weight;
-                edituser.BloodType = model.BloodType;
+            var LifestyleTarget = _context.Lifestyle.Where(x => x.AtomHealthUserID == edituser.Id).FirstOrDefault();
+            string doYouSmoke = formval["Lifestyle.doYouSmoke"];
+            string doYouIllegalDrugs = formval["Lifestyle.doYouIllegalDrugs"];
+            string doYouConsumeAlcohol = formval["Lifestyle.doYouConsumeAlcohol"];
+            string Diet = formval["Lifestyle.Diet"];
+            string Exercise = formval["Lifestyle.Exercise"];
+          
+
+            LifestyleTarget.doYouSmoke = doYouSmoke;
+            LifestyleTarget.doYouIllegalDrugs = doYouIllegalDrugs;
+            LifestyleTarget.doYouConsumeAlcohol = doYouConsumeAlcohol;
+            LifestyleTarget.Diet = Diet;
+            LifestyleTarget.Exercise = Exercise;
+           _context.Update(PhoneTarget);
+            _context.SaveChanges();
+
+            //updating atomhealthuser  table
+            edituser.BloodType = model.BloodType;
                 edituser.DOB = model.DOB;
                 
                 edituser.MedicalConditions = model.MedicalConditions;               
@@ -335,11 +386,7 @@ namespace AtomHealth.Controllers
                 edituser.FamilyHistory = model.FamilyHistory;
                 edituser.hasGeneticTest = model.hasGeneticTest;
                 edituser.GeneticTest = model.GeneticTest;
-                edituser.doYouSmoke = model.doYouSmoke;
-                edituser.doYouIllegalDrugs = model.doYouIllegalDrugs;
-                edituser.doYouConsumeAlcohol = model.doYouConsumeAlcohol;
-                edituser.Diet = model.Diet;
-                edituser.Exercise = model.Exercise;
+               
                 edituser.CovidDetails = model.CovidDetails;
                 edituser.ImmunizationRecord = model.ImmunizationRecord;
                 edituser.ImmunizationID = model.ImmunizationID;
