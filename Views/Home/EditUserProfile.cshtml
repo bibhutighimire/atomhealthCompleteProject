@@ -200,7 +200,7 @@
         </div>
 
         <div class="bio-graph-heading-profile">
-            Medical Details
+            Current Medical Details
         </div>
         <div class="rowForProfileEdit">
             <div class="checkboxarea " style="grid-column: 1 / 3">
@@ -219,7 +219,17 @@
                     </div>
                 </div>
             </div>
+            <div class="form-group">
+                Medical Conditions (if any)
+                @Html.TextArea("MedicalConditions", new { rows = 5, columns = 40 })
+                <span asp-validation-for="MedicalConditions" class="text-danger"></span>
+            </div>
+        </div>
 
+        <div class="bio-graph-heading-profile">
+            Past Medical Details
+        </div>
+        <div class="rowForProfileEdit">
             <div class="checkboxarea " style="grid-column: 1 / 3">
                 <div class="form-group">
 
@@ -238,18 +248,18 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">
-                Medical Conditions (if any)
-                @Html.TextArea("MedicalConditions", new { rows = 5, columns = 40 })
-                <span asp-validation-for="MedicalConditions" class="text-danger"></span>
-            </div>
+
 
             <div class="form-group">
                 Past Medical History (if any)
                 @Html.TextArea("PastMedicalHistoryDetails", new { rows = 5, columns = 40 })
                 <span asp-validation-for="PastMedicalHistoryDetails" class="text-danger"></span>
             </div>
-
+        </div>
+        <div class="bio-graph-heading-profile">
+            Medication Details
+        </div>
+        <div class="rowForProfileEdit">
             <div class="form-group">
 
                 Are you in medicaion now?
@@ -266,7 +276,12 @@
                 @Html.TextArea("Medications", new { rows = 5, columns = 40 })
                 <span asp-validation-for="Medications" class="text-danger"></span>
             </div>
+        </div>
 
+        <div class="bio-graph-heading-profile">
+            Surgery
+        </div>
+        <div class="rowForProfileEdit">
             <div class="form-group">
 
                 Have you had surgery in the past?
@@ -283,7 +298,11 @@
                 @Html.TextArea("PastSurgeries", new { rows = 5, columns = 40 })
                 <span asp-validation-for="PastSurgeries" class="text-danger"></span>
             </div>
-
+        </div>
+        <div class="bio-graph-heading-profile">
+            Allergy
+        </div>
+        <div class="rowForProfileEdit">
             <div class="form-group">
 
                 Do you have any Allergy?
@@ -302,7 +321,11 @@
                 @Html.TextArea("Allergies", new { rows = 5, columns = 40 })
                 <span asp-validation-for="Allergies" class="text-danger"></span>
             </div>
-
+        </div>
+        <div class="bio-graph-heading-profile">
+            Family Medical History
+        </div>
+        <div class="rowForProfileEdit">
 
             <div class="checkboxarea " style="grid-column: 1 / 3">
                 <div class="form-group">
@@ -325,11 +348,15 @@
 
 
             <div class="form-group">
-                Family medical history (if any)
+                Family medical history (if other from above)
                 @Html.TextArea("FamilyHistory", new { rows = 5, columns = 40 })
                 <span asp-validation-for="FamilyHistory" class="text-danger"></span>
             </div>
-
+        </div>
+        <div class="bio-graph-heading-profile">
+            Genetic Test
+        </div>
+        <div class="rowForProfileEdit">
             <div class="form-group">
 
                 Have you done any genetics test?
@@ -392,7 +419,9 @@
                 <span asp-validation-for="Lifestyle.doYouConsumeAlcohol" class="text-danger"></span>
             </div>
             <div class="form-group">
-                Do you follow any specific diet?
+
+                Do you use Diet Plan?
+
                 @Html.DropDownListFor(m => m.Lifestyle.Diet, new List<SelectListItem>
 {   new SelectListItem { Text = "Select Diet Plan", Value = "NotSelected"},
     new SelectListItem { Text = "The Paleo Diet", Value = "The Paleo Diet"},
@@ -434,19 +463,10 @@
             </div>
         </div>
         <div class="bio-graph-heading-profile">
-            COVID and Immunization
+            COVID Test
         </div>
         <div class="rowForProfileEdit">
-            <div class="form-group">
-                Covid Test Details
-                <input asp-for="CovidDetails" class="form-control" />
-                <span asp-validation-for="CovidDetails" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                Check ALL the vaccines that you are up to date with.
-                <input asp-for="ImmunizationRecord" class="form-control" />
-                <span asp-validation-for="ImmunizationRecord" class="text-danger"></span>
-            </div>
+
 
 
             <div class="checkboxarea " style="grid-column: 1 / 3">
@@ -467,8 +487,16 @@
                     </div>
                 </div>
             </div>
-
-
+            <div class="form-group">
+                Covid Test Details (other not mentioned above)
+                <input asp-for="CovidDetails" class="form-control" />
+                <span asp-validation-for="CovidDetails" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="bio-graph-heading-profile">
+            Immunization Details
+        </div>
+        <div class="rowForProfileEdit">
             <div class="checkboxarea " style="grid-column: 1 / 3">
                 <div class="form-group">
                     <p>Check ALL the vaccines that you are up to date with</p>
@@ -487,21 +515,26 @@
                     </div>
                 </div>
             </div>
-
-            </div>
-            @*@Html.HiddenFor(model => model.ImmunizationID)
-            @Html.HiddenFor(model => model.MedicalHistoryID)
-            @Html.HiddenFor(model => model.CovidHistoryID)
-            @Html.HiddenFor(model => model.CurrentMedicalConditionID)
-            @Html.HiddenFor(model => model.PastMedicalHistoryID)
-            @Html.HiddenFor(model => model.FamilyMedicalHistoryID)*@
-
-
-            <hr />
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" onclick="updatemark()" />
-
+                Immunization (other not mentioned above)
+                <input asp-for="ImmunizationRecord" class="form-control" />
+                <span asp-validation-for="ImmunizationRecord" class="text-danger"></span>
             </div>
+
+        </div>
+        @*@Html.HiddenFor(model => model.ImmunizationID)
+        @Html.HiddenFor(model => model.MedicalHistoryID)
+        @Html.HiddenFor(model => model.CovidHistoryID)
+        @Html.HiddenFor(model => model.CurrentMedicalConditionID)
+        @Html.HiddenFor(model => model.PastMedicalHistoryID)
+        @Html.HiddenFor(model => model.FamilyMedicalHistoryID)*@
+
+
+        <hr />
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" onclick="updatemark()" />
+
+        </div>
 
     </form>
         <div><a class="btn btn-primary" asp-route-id="@ViewBag.userid" asp-action="UserProfile"> Go Back</a></div>
