@@ -54,5 +54,6 @@ namespace AtomHealth.Data
 
         public object AtomHealthUser { get; internal set; }
         public object Data { get; internal set; }
+        public DbSet<AtomHealth.Models.Atom> Atom { get; set; }
     }
 }
