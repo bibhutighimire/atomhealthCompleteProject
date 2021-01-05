@@ -51,6 +51,9 @@ namespace AtomHealth.Data
         public DbSet<Subscribe> Subscribe { get; set; }
         public DbSet<Lifestyle> Lifestyle { get; set; }
         public DbSet<QRCode> QRCode { get; set; }
+        public DbSet<Dateofbirth> Dateofbirth { get; set; }
+        public DbSet<MedicalRecord> MedicalRecord { get; set; }
+
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
 
         public object AtomHealthUser { get; internal set; }

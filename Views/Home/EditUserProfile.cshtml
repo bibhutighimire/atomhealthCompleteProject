@@ -102,13 +102,13 @@
 
 
 })
-                <span asp-validation-for="BloodType" class="text-danger"></span>
+                <span asp-validation-for="MedicalRecord.BloodType" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 Date of Birth
-                <input asp-for="DOB" class="form-control" type="text" id="datepicker" />
-                <span asp-validation-for="DOB" class="text-danger"></span>
+                <input asp-for="Dateofbirth.DOB" class="form-control" type="text" id="datepicker" />
+                <span asp-validation-for="Dateofbirth.DOB" class="text-danger"></span>
             </div>
         </div>
 
@@ -221,8 +221,8 @@
             </div>
             <div class="form-group">
                 Medical Conditions (if any)
-                @Html.TextArea("MedicalConditions", new { rows = 5, columns = 40 })
-                <span asp-validation-for="MedicalConditions" class="text-danger"></span>
+                @Html.TextArea("MedicalRecord.MedicalConditions", new { rows = 5, columns = 40 })
+                <span asp-validation-for="MedicalRecord.MedicalConditions" class="text-danger"></span>
             </div>
         </div>
 
@@ -253,7 +253,7 @@
             <div class="form-group">
                 Past Medical History (if any)
                 @Html.TextArea("PastMedicalHistoryDetails", new { rows = 5, columns = 40 })
-                <span asp-validation-for="PastMedicalHistoryDetails" class="text-danger"></span>
+                <span asp-validation-for="MedicalRecord.PastMedicalHistoryDetails" class="text-danger"></span>
             </div>
         </div>
         <div class="bio-graph-heading-profile">
@@ -264,17 +264,17 @@
 
                 Are you in medicaion now?
                 <br />
-                @Html.RadioButtonFor(m => m.IsInMedicaion, "Yes", Model.IsInMedicaion == "Yes" ? "checked" : string.Empty)
+                @Html.RadioButtonFor(m => m.MedicalRecord.IsInMedicaion, "Yes", Model.MedicalRecord.IsInMedicaion == "Yes" ? "checked" : string.Empty)
                 <span>Yes</span>
-                @Html.RadioButtonFor(m => m.IsInMedicaion, "No", Model.IsInMedicaion == "No" ? "checked" : string.Empty)
+                @Html.RadioButtonFor(m => m.MedicalRecord.IsInMedicaion, "No", Model.MedicalRecord.IsInMedicaion == "No" ? "checked" : string.Empty)
                 <span>No</span>
 
-                <span asp-validation-for="IsInMedicaion" class="text-danger"></span>
+                <span asp-validation-for="MedicalRecord.IsInMedicaion" class="text-danger"></span>
             </div>
             <div class="form-group">
                 Medications
                 @Html.TextArea("Medications", new { rows = 5, columns = 40 })
-                <span asp-validation-for="Medications" class="text-danger"></span>
+                <span asp-validation-for="MedicalRecord.Medications" class="text-danger"></span>
             </div>
         </div>
 
@@ -286,17 +286,17 @@
 
                 Have you had surgery in the past?
                 <br />
-                @Html.RadioButtonFor(m => m.HasPastSurgery, "Yes", Model.HasPastSurgery == "Yes" ? "checked" : string.Empty)
+                @Html.RadioButtonFor(m => m.MedicalRecord.HasPastSurgery, "Yes", Model.MedicalRecord.HasPastSurgery == "Yes" ? "checked" : string.Empty)
                 <span>Yes</span>
-                @Html.RadioButtonFor(m => m.HasPastSurgery, "No", Model.HasPastSurgery == "No" ? "checked" : string.Empty)
+                @Html.RadioButtonFor(m => m.MedicalRecord.HasPastSurgery, "No", Model.MedicalRecord.HasPastSurgery == "No" ? "checked" : string.Empty)
                 <span>No</span>
 
-                <span asp-validation-for="HasPastSurgery" class="text-danger"></span>
+                <span asp-validation-for="MedicalRecord.HasPastSurgery" class="text-danger"></span>
             </div>
             <div class="form-group">
                 Past Surgeries (if any)
                 @Html.TextArea("PastSurgeries", new { rows = 5, columns = 40 })
-                <span asp-validation-for="PastSurgeries" class="text-danger"></span>
+                <span asp-validation-for="MedicalRecord.PastSurgeries" class="text-danger"></span>
             </div>
         </div>
         <div class="bio-graph-heading-profile">
@@ -307,19 +307,19 @@
 
                 Do you have any Allergy?
                 <br />
-                @Html.RadioButtonFor(m => m.HasAllergy, "Yes", Model.HasAllergy == "Yes" ? "checked" : string.Empty)
+                @Html.RadioButtonFor(m => m.MedicalRecord.HasAllergy, "Yes", Model.MedicalRecord.HasAllergy == "Yes" ? "checked" : string.Empty)
                 <span>Yes</span>
-                @Html.RadioButtonFor(m => m.HasAllergy, "No", Model.HasAllergy == "No" ? "checked" : string.Empty)
+                @Html.RadioButtonFor(m => m.MedicalRecord.HasAllergy, "No", Model.MedicalRecord.HasAllergy == "No" ? "checked" : string.Empty)
                 <span>No</span>
-                @Html.RadioButtonFor(m => m.HasAllergy, "NotSure", Model.HasAllergy == "NotSure" ? "checked" : string.Empty)
+                @Html.RadioButtonFor(m => m.MedicalRecord.HasAllergy, "NotSure", Model.MedicalRecord.HasAllergy == "NotSure" ? "checked" : string.Empty)
                 <span>Not Sure</span>
 
-                <span asp-validation-for="HasAllergy" class="text-danger"></span>
+                <span asp-validation-for="MedicalRecord.HasAllergy" class="text-danger"></span>
             </div>
             <div class="form-group">
                 Allergies (if any)
                 @Html.TextArea("Allergies", new { rows = 5, columns = 40 })
-                <span asp-validation-for="Allergies" class="text-danger"></span>
+                <span asp-validation-for="MedicalRecord.Allergies" class="text-danger"></span>
             </div>
         </div>
         <div class="bio-graph-heading-profile">
@@ -350,7 +350,7 @@
             <div class="form-group">
                 Family medical history (if other from above)
                 @Html.TextArea("FamilyHistory", new { rows = 5, columns = 40 })
-                <span asp-validation-for="FamilyHistory" class="text-danger"></span>
+                <span asp-validation-for="MedicalRecord.FamilyHistory" class="text-danger"></span>
             </div>
         </div>
         <div class="bio-graph-heading-profile">
@@ -361,16 +361,16 @@
 
                 Have you done any genetics test?
                 <br />
-                @Html.RadioButtonFor(m => m.hasGeneticTest, "Yes", Model.hasGeneticTest == "Yes" ? "checked" : string.Empty)
+                @Html.RadioButtonFor(m => m.MedicalRecord.hasGeneticTest, "Yes", Model.MedicalRecord.hasGeneticTest == "Yes" ? "checked" : string.Empty)
                 <span>Yes</span>
-                @Html.RadioButtonFor(m => m.hasGeneticTest, "No", Model.hasGeneticTest == "No" ? "checked" : string.Empty)
+                @Html.RadioButtonFor(m => m.MedicalRecord.hasGeneticTest, "No", Model.MedicalRecord.hasGeneticTest == "No" ? "checked" : string.Empty)
                 <span>No</span>
-                <span asp-validation-for="hasGeneticTest" class="text-danger"></span>
+                <span asp-validation-for="MedicalRecord.hasGeneticTest" class="text-danger"></span>
             </div>
             <div class="form-group">
                 If yes, please provide details on the test outcomes or any highlighted risks.
                 @Html.TextArea("GeneticTest", new { rows = 5, columns = 40 })
-                <span asp-validation-for="GeneticTest" class="text-danger"></span>
+                <span asp-validation-for="MedicalRecord.GeneticTest" class="text-danger"></span>
             </div>
         </div>
 
@@ -488,8 +488,8 @@
             </div>
             <div class="form-group">
                 Covid Test Details (other not mentioned above)
-                <input asp-for="CovidDetails" class="form-control" />
-                <span asp-validation-for="CovidDetails" class="text-danger"></span>
+                <input asp-for="MedicalRecord.CovidDetails" class="form-control" />
+                <span asp-validation-for="MedicalRecord.CovidDetails" class="text-danger"></span>
             </div>
         </div>
         <div class="bio-graph-heading-profile">
@@ -516,8 +516,8 @@
             </div>
             <div class="form-group">
                 Immunization (other not mentioned above)
-                <input asp-for="ImmunizationRecord" class="form-control" />
-                <span asp-validation-for="ImmunizationRecord" class="text-danger"></span>
+                <input asp-for="MedicalRecord.ImmunizationRecord" class="form-control" />
+                <span asp-validation-for="MedicalRecord.ImmunizationRecord" class="text-danger"></span>
             </div>
 
         </div>
