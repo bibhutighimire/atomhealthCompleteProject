@@ -50,10 +50,11 @@ namespace AtomHealth.Data
         public DbSet<CovidHistoryRec> CovidHistoryRec { get; set; }
         public DbSet<Subscribe> Subscribe { get; set; }
         public DbSet<Lifestyle> Lifestyle { get; set; }
+        public DbSet<QRCode> QRCode { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
 
         public object AtomHealthUser { get; internal set; }
         public object Data { get; internal set; }
-        public DbSet<AtomHealth.Models.Atom> Atom { get; set; }
+     
     }
 }

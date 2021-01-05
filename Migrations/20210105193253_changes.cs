@@ -26,27 +26,8 @@ namespace AtomHealth.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    FirstName = table.Column<string>(type: "varchar(100)", nullable: true),
-                    MiddleName = table.Column<string>(type: "varchar(100)", nullable: true),
-                    LastName = table.Column<string>(type: "varchar(100)", nullable: true),
-                    Gender = table.Column<string>(type: "varchar(50)", nullable: true),
-                    MaritalStatus = table.Column<string>(type: "varchar(100)", nullable: true),
-                    Height = table.Column<int>(type: "int", nullable: true),
-                    Weight = table.Column<int>(type: "int", nullable: true),
                     BloodType = table.Column<string>(type: "varchar(100)", nullable: true),
                     DOB = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Country = table.Column<string>(type: "varchar(100)", nullable: true),
-                    Province = table.Column<string>(type: "varchar(100)", nullable: true),
-                    City = table.Column<string>(type: "varchar(100)", nullable: true),
-                    AddressLineOne = table.Column<string>(type: "nvarchar(200)", nullable: true),
-                    AddressLineTwo = table.Column<string>(type: "nvarchar(200)", nullable: true),
-                    PostalCode = table.Column<string>(type: "nvarchar(200)", nullable: true),
-                    HomePhone = table.Column<string>(type: "nvarchar(100)", nullable: true),
-                    MobilePhone = table.Column<string>(type: "nvarchar(100)", nullable: true),
-                    EmergencyContactName = table.Column<string>(type: "varchar(200)", nullable: true),
-                    EmergencyContactPhone = table.Column<string>(type: "nvarchar(100)", nullable: true),
-                    RelationshipToEmergencyContact = table.Column<string>(type: "nvarchar(100)", nullable: true),
-                    FamilyDoctorName = table.Column<string>(type: "varchar(200)", nullable: true),
                     MedicalConditions = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PastMedicalHistoryDetails = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsInMedicaion = table.Column<string>(type: "varchar(20)", nullable: true),
@@ -58,11 +39,6 @@ namespace AtomHealth.Migrations
                     FamilyHistory = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     hasGeneticTest = table.Column<string>(type: "varchar(20)", nullable: true),
                     GeneticTest = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    doYouSmoke = table.Column<string>(type: "varchar(20)", nullable: true),
-                    doYouIllegalDrugs = table.Column<string>(type: "varchar(20)", nullable: true),
-                    doYouConsumeAlcohol = table.Column<string>(type: "varchar(20)", nullable: true),
-                    Diet = table.Column<string>(type: "varchar(200)", nullable: true),
-                    Exercise = table.Column<string>(type: "varchar(200)", nullable: true),
                     CovidDetails = table.Column<string>(type: "nvarchar(500)", nullable: true),
                     ImmunizationRecord = table.Column<string>(type: "nvarchar(1000)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -221,6 +197,31 @@ namespace AtomHealth.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ApplicationUser",
+                columns: table => new
+                {
+                    ApplicationUserID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FirstName = table.Column<string>(type: "varchar(100)", nullable: true),
+                    MiddleName = table.Column<string>(type: "varchar(100)", nullable: true),
+                    LastName = table.Column<string>(type: "varchar(100)", nullable: true),
+                    Gender = table.Column<string>(type: "varchar(50)", nullable: true),
+                    MaritalStatus = table.Column<string>(type: "varchar(100)", nullable: true),
+                    Height = table.Column<int>(type: "int", nullable: true),
+                    Weight = table.Column<int>(type: "int", nullable: true),
+                    AtomHealthUserID = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ApplicationUser", x => x.ApplicationUserID);
+                    table.ForeignKey(
+                        name: "FK_ApplicationUser_AspNetUsers_AtomHealthUserID",
+                        column: x => x.AtomHealthUserID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetUserClaims",
                 columns: table => new
                 {
@@ -306,6 +307,29 @@ namespace AtomHealth.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Lifestyle",
+                columns: table => new
+                {
+                    LifestyleID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    doYouSmoke = table.Column<string>(type: "varchar(20)", nullable: true),
+                    doYouIllegalDrugs = table.Column<string>(type: "varchar(20)", nullable: true),
+                    doYouConsumeAlcohol = table.Column<string>(type: "varchar(20)", nullable: true),
+                    Diet = table.Column<string>(type: "varchar(200)", nullable: true),
+                    Exercise = table.Column<string>(type: "varchar(200)", nullable: true),
+                    AtomHealthUserID = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Lifestyle", x => x.LifestyleID);
+                    table.ForeignKey(
+                        name: "FK_Lifestyle_AspNetUsers_AtomHealthUserID",
+                        column: x => x.AtomHealthUserID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MedicalCoverage",
                 columns: table => new
                 {
@@ -321,6 +345,29 @@ namespace AtomHealth.Migrations
                     table.PrimaryKey("PK_MedicalCoverage", x => x.MedicalCoverageID);
                     table.ForeignKey(
                         name: "FK_MedicalCoverage_AspNetUsers_AtomHealthUserID",
+                        column: x => x.AtomHealthUserID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Phonenumbers",
+                columns: table => new
+                {
+                    PhonenumbersID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    HomePhone = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    MobilePhone = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    EmergencyContactName = table.Column<string>(type: "varchar(200)", nullable: true),
+                    EmergencyContactPhone = table.Column<string>(type: "nvarchar(100)", nullable: true),
+                    FamilyDoctorName = table.Column<string>(type: "varchar(200)", nullable: true),
+                    AtomHealthUserID = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Phonenumbers", x => x.PhonenumbersID);
+                    table.ForeignKey(
+                        name: "FK_Phonenumbers_AspNetUsers_AtomHealthUserID",
                         column: x => x.AtomHealthUserID,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -582,6 +629,53 @@ namespace AtomHealth.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "QRCode",
+                columns: table => new
+                {
+                    QRCodeID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    QRCodeFile = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AddressID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    PhonenumbersID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    ApplicationUserID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    LifestyleID = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    AtomHealthUserID = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QRCode", x => x.QRCodeID);
+                    table.ForeignKey(
+                        name: "FK_QRCode_Address_AddressID",
+                        column: x => x.AddressID,
+                        principalTable: "Address",
+                        principalColumn: "AddressID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_QRCode_ApplicationUser_ApplicationUserID",
+                        column: x => x.ApplicationUserID,
+                        principalTable: "ApplicationUser",
+                        principalColumn: "ApplicationUserID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_QRCode_AspNetUsers_AtomHealthUserID",
+                        column: x => x.AtomHealthUserID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_QRCode_Lifestyle_LifestyleID",
+                        column: x => x.LifestyleID,
+                        principalTable: "Lifestyle",
+                        principalColumn: "LifestyleID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_QRCode_Phonenumbers_PhonenumbersID",
+                        column: x => x.PhonenumbersID,
+                        principalTable: "Phonenumbers",
+                        principalColumn: "PhonenumbersID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Address_AtomHealthUserID",
                 table: "Address",
@@ -593,6 +687,13 @@ namespace AtomHealth.Migrations
                 name: "IX_Address_PatientProvinceRecID",
                 table: "Address",
                 column: "PatientProvinceRecID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ApplicationUser_AtomHealthUserID",
+                table: "ApplicationUser",
+                column: "AtomHealthUserID",
+                unique: true,
+                filter: "[AtomHealthUserID] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -664,6 +765,13 @@ namespace AtomHealth.Migrations
                 column: "FamilyMedicalHistoryID1");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Lifestyle_AtomHealthUserID",
+                table: "Lifestyle",
+                column: "AtomHealthUserID",
+                unique: true,
+                filter: "[AtomHealthUserID] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_MedicalCoverage_AtomHealthUserID",
                 table: "MedicalCoverage",
                 column: "AtomHealthUserID");
@@ -727,13 +835,42 @@ namespace AtomHealth.Migrations
                 name: "IX_PatientProvinceRec_ProvinceID1",
                 table: "PatientProvinceRec",
                 column: "ProvinceID1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Phonenumbers_AtomHealthUserID",
+                table: "Phonenumbers",
+                column: "AtomHealthUserID",
+                unique: true,
+                filter: "[AtomHealthUserID] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_QRCode_AddressID",
+                table: "QRCode",
+                column: "AddressID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_QRCode_ApplicationUserID",
+                table: "QRCode",
+                column: "ApplicationUserID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_QRCode_AtomHealthUserID",
+                table: "QRCode",
+                column: "AtomHealthUserID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_QRCode_LifestyleID",
+                table: "QRCode",
+                column: "LifestyleID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_QRCode_PhonenumbersID",
+                table: "QRCode",
+                column: "PhonenumbersID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Address");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -774,10 +911,10 @@ namespace AtomHealth.Migrations
                 name: "PatientMedicalHistoryRec");
 
             migrationBuilder.DropTable(
-                name: "Subscribe");
+                name: "QRCode");
 
             migrationBuilder.DropTable(
-                name: "PatientProvinceRec");
+                name: "Subscribe");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -799,6 +936,21 @@ namespace AtomHealth.Migrations
 
             migrationBuilder.DropTable(
                 name: "MedicalHistory");
+
+            migrationBuilder.DropTable(
+                name: "Address");
+
+            migrationBuilder.DropTable(
+                name: "ApplicationUser");
+
+            migrationBuilder.DropTable(
+                name: "Lifestyle");
+
+            migrationBuilder.DropTable(
+                name: "Phonenumbers");
+
+            migrationBuilder.DropTable(
+                name: "PatientProvinceRec");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

@@ -49,37 +49,36 @@ namespace AtomHealth.Controllers
         }
 
 
-        public async Task<IActionResult> AddQRCode()
-        {
+        //public async Task<IActionResult> AddQRCode()
+        //{
 
-            var user = await _userManager.GetUserAsync(HttpContext.User);
-            var targetuser = _context.ApplicationUser.Where(x => x.AtomHealthUserID == user.Id).FirstOrDefault();
-            ViewBag.id = user.Id;
+        //    var user = await _userManager.GetUserAsync(HttpContext.User);
+        //    var targetuser = _context.ApplicationUser.Where(x => x.AtomHealthUserID == user.Id).FirstOrDefault();
+        //    ViewBag.id = user.Id;
 
-            return View(targetuser);
-        }
+        //    return View(targetuser);
+        //}
+
+        //[HttpPost]
+        //public IActionResult AddQRCode(string qrcode)
+        //{
+        //    using (MemoryStream ms = new MemoryStream())
+        //    {
+        //        QRCodeGenerator qrGenerator = new QRCodeGenerator();
+        //        QRCodeData qrCodedata = qrGenerator.CreateQrCode(qrcode, QRCodeGenerator.ECCLevel.Q);
+
+        //        QRCode oQRCode = new QRCode(qrCodedata);
 
 
-        [HttpPost]
-        public IActionResult AddQRCode(string qrcode)
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                QRCodeGenerator qrGenerator = new QRCodeGenerator();
-                QRCodeData qrCodedata = qrGenerator.CreateQrCode(qrcode, QRCodeGenerator.ECCLevel.Q);
+        //        using (Bitmap bitMap = oQRCode.GetGraphic(20))
+        //        {
+        //            bitMap.Save(ms, ImageFormat.Png);
+        //            ViewBag.QRCode = "data:image/png;base64," + Convert.ToBase64String(ms.ToArray());
+        //        }
+        //    }
 
-                QRCode oQRCode = new QRCode(qrCodedata);
-
-
-                using (Bitmap bitMap = oQRCode.GetGraphic(20))
-                {
-                    bitMap.Save(ms, ImageFormat.Png);
-                    ViewBag.QRCode = "data:image/png;base64," + Convert.ToBase64String(ms.ToArray());
-                }
-            }
-
-            return View();
-        }
+        //    return View();
+        //}
         public IActionResult DeleteCoverage(Guid id)
         {
             var user =  _context.MedicalCoverage.Where(x => x.MedicalCoverageID == id).FirstOrDefault();
