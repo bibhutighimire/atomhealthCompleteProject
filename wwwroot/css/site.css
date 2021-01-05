@@ -126,17 +126,13 @@ body {
     margin-bottom: 60px;*/
 }
 
-.footer {
-    position: absolute;
+footer {
+    background-color: #42a5ff;
     bottom: 0;
     width: 100%;
+    margin: 10px auto 0 auto;
     white-space: nowrap;
     line-height: 60px; /* Vertically center the text there */
-}
-#footer1 {
-    padding: 30px;
-    border-top: 2px solid black;
-    background-color: #42a5ff;
 }
 #menurow {
     font-weight: bold;
@@ -444,18 +440,13 @@ html {
         grid-template-columns: 50% 45%;
         grid-gap: 30px;
     }
-    .footer {
-        position: absolute;
+    footer {
         bottom: 0;
         width: 100%;
         margin: 10px auto 0 auto;
         white-space: nowrap;
         line-height: 60px; /* Vertically center the text there */
     }
-
-
-
-
     .checkboxarea {
         grid-column: 1 / 3;
     }
@@ -546,14 +537,20 @@ html {
         .blockBox p {
             font-size: 18px;
         }
+    footer {
+        bottom: 0;
+        width: 100%;
+        margin: 10px auto 0 auto;
+        white-space: nowrap;
+        line-height: 60px; /* Vertically center the text there */
+    }
 }
 
 @media (min-width: 990px) {
     .container {
         max-width: 90%;
     }
-    .footer {
-        position: absolute;
+    footer {
         bottom: 0;
         width: 100%;
         margin: 10px auto 0 auto;
@@ -658,7 +655,7 @@ html {
 
         .container a img {
             height: 100px;
-            width: 180px;
+            width: 350px;
         }
 
     .text-center {
@@ -782,22 +779,12 @@ html {
         top: 280px;
         height: 280px;
     }
-    .footer {
-        position: absolute;
+    footer {
         bottom: 0;
         width: 100%;
         margin: 10px auto 0 auto;
         white-space: nowrap;
         line-height: 60px; /* Vertically center the text there */
-    }
-    #footer1 {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        padding: 30px;
-        border-top: 1px solid black;
-        background-color: #42a5ff;
-        margin-top: 15px;
     }
     #menurow {
         font-weight: bold;
@@ -837,11 +824,12 @@ html {
         margin: 0 auto;
         width: 80%;
     }
-    #footer1 {
-        padding: 30px;
-        border-top: 1px solid black;
-        background-color: #42a5ff;
-        margin-top: 15px;
+    footer {
+        bottom: 0;
+        width: 100%;
+        margin: 10px auto 0 auto;
+        white-space: nowrap;
+        line-height: 60px; /* Vertically center the text there */
     }
 
     #menurow {
@@ -893,8 +881,8 @@ body {
     /*margin-bottom: 60px;*/
 }
 
-.footer {
-    position: absolute;
+footer {
+    
     bottom: 0;
     width: 100%;
     margin: 10px auto 0 auto;

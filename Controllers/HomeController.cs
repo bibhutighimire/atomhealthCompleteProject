@@ -140,15 +140,8 @@ namespace AtomHealth.Controllers
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
             ViewBag.id = user.Id;
-            //initializing address table
-            var checkAddressValue = _context.Address.Where(x => x.AtomHealthUserID == user.Id).FirstOrDefault();
-            if(checkAddressValue==null)
-            {
-                Address addr = new Address();
-                addr.AtomHealthUserID = user.Id;
-                _context.Address.Add(addr);
-                _context.SaveChanges();
-            }
+            
+
             //initializing phonenumber table
             var checkPhoneValue = _context.Phonenumbers.Where(x => x.AtomHealthUserID == user.Id).FirstOrDefault();
             if (checkPhoneValue == null)
