@@ -641,6 +641,45 @@ namespace AtomHealth.Migrations
                     b.ToTable("Province");
                 });
 
+            modelBuilder.Entity("AtomHealth.Models.QRCode", b =>
+                {
+                    b.Property<Guid>("QRCodeID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("AddressID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ApplicationUserID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AtomHealthUserID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<Guid?>("LifestyleID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("PhonenumbersID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("QRCodeFile")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("QRCodeID");
+
+                    b.HasIndex("AddressID");
+
+                    b.HasIndex("ApplicationUserID");
+
+                    b.HasIndex("AtomHealthUserID");
+
+                    b.HasIndex("LifestyleID");
+
+                    b.HasIndex("PhonenumbersID");
+
+                    b.ToTable("QRCode");
+                });
+
             modelBuilder.Entity("AtomHealth.Models.Subscribe", b =>
                 {
                     b.Property<Guid>("subscribeid")
@@ -968,6 +1007,39 @@ namespace AtomHealth.Migrations
                         .HasForeignKey("AtomHealth.Models.Phonenumbers", "AtomHealthUserID");
 
                     b.Navigation("AtomHealthUser");
+                });
+
+            modelBuilder.Entity("AtomHealth.Models.QRCode", b =>
+                {
+                    b.HasOne("AtomHealth.Models.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressID");
+
+                    b.HasOne("AtomHealth.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserID");
+
+                    b.HasOne("AtomHealth.Areas.Identity.Data.AtomHealthUser", "AtomHealthUser")
+                        .WithMany()
+                        .HasForeignKey("AtomHealthUserID");
+
+                    b.HasOne("AtomHealth.Models.Lifestyle", "Lifestyle")
+                        .WithMany()
+                        .HasForeignKey("LifestyleID");
+
+                    b.HasOne("AtomHealth.Models.Phonenumbers", "Phonenumbers")
+                        .WithMany()
+                        .HasForeignKey("PhonenumbersID");
+
+                    b.Navigation("Address");
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("AtomHealthUser");
+
+                    b.Navigation("Lifestyle");
+
+                    b.Navigation("Phonenumbers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
