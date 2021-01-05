@@ -160,6 +160,16 @@ namespace AtomHealth.Controllers
                 _context.SaveChanges();
             }
 
+            //initializing address table
+            var checkAddressValue = _context.Address.Where(x => x.AtomHealthUserID == user.Id).FirstOrDefault();
+            if (checkAddressValue == null)
+            {
+                Address addr = new Address();
+                addr.AtomHealthUserID = user.Id;
+                _context.Address.Add(addr);
+                _context.SaveChanges();
+            }
+
             //initializing lifestyle table
             var checkLifeStyleValue = _context.Lifestyle.Where(x => x.AtomHealthUserID == user.Id).FirstOrDefault();
             if (checkLifeStyleValue == null)
@@ -170,7 +180,25 @@ namespace AtomHealth.Controllers
                 _context.SaveChanges();
             }
 
+            //initializing dateofbirth table
+            var checkDateOfBirthValue = _context.Dateofbirth.Where(x => x.AtomHealthUserID == user.Id).FirstOrDefault();
+            if (checkDateOfBirthValue == null)
+            {
+                Dateofbirth dob = new Dateofbirth();
+                dob.AtomHealthUserID = user.Id;
+                _context.Dateofbirth.Add(dob);
+                _context.SaveChanges();
+            }
 
+            //initializing medicalrecord table
+            var checkMedicalRecordValue = _context.MedicalRecord.Where(x => x.AtomHealthUserID == user.Id).FirstOrDefault();
+            if (checkMedicalRecordValue == null)
+            {
+                MedicalRecord mr = new MedicalRecord();
+                mr.AtomHealthUserID = user.Id;
+                _context.MedicalRecord.Add(mr);
+                _context.SaveChanges();
+            }
 
             ViewBag.listOfMedicalCoverage = _context.MedicalCoverage.Where(x => x.AtomHealthUserID == user.Id).ToList();
 
@@ -203,7 +231,7 @@ namespace AtomHealth.Controllers
                 ViewBag.ErrorMessage = $"User with id = {id} cannot be found.";
                 return View("Not Found");
             }
-            var AddressTarget = _userManager.Users.Include(u => u.Phonenumbers).Include(V=>V.Address).Include(w => w.Lifestyle).Include(x => x.ApplicationUser).ToList();
+            var AddressTarget = _userManager.Users.Include(u => u.Phonenumbers).Include(V=>V.Address).Include(w => w.Lifestyle).Include(x => x.ApplicationUser).Include(x => x.Dateofbirth).Include(x => x.MedicalRecord).Include(x => x.QRCode).ToList();
             var JoinedTarget = AddressTarget.Where(x => x.Id == user.Id).FirstOrDefault();
            
             //var immunizationDelete = _context.PatientImmunizationRec.Where(x => x.AtomHealthUserID == user.Id).ToList();
@@ -376,9 +404,9 @@ namespace AtomHealth.Controllers
             ApplicationUserTarget.LastName = LastName;
             ApplicationUserTarget.Gender = Gender;
             ApplicationUserTarget.MaritalStatus = MaritalStatus;
-            ApplicationUserTarget.Weight =Convert.ToInt32(Weight);
-            ApplicationUserTarget.Height = Convert.ToInt32(Height);
-            _context.Update(PhoneTarget);
+            ApplicationUserTarget.Weight =Weight;
+            ApplicationUserTarget.Height = Height;
+            _context.Update(ApplicationUserTarget);
             _context.SaveChanges();
 
             //updating lifestyle table
@@ -396,30 +424,57 @@ namespace AtomHealth.Controllers
             LifestyleTarget.doYouConsumeAlcohol = doYouConsumeAlcohol;
             LifestyleTarget.Diet = Diet;
             LifestyleTarget.Exercise = Exercise;
-           _context.Update(PhoneTarget);
+           _context.Update(LifestyleTarget);
             _context.SaveChanges();
 
-            //updating atomhealthuser  table
-            edituser.BloodType = model.BloodType;
-                edituser.DOB = model.DOB;
-                
-                edituser.MedicalConditions = model.MedicalConditions;               
-                edituser.PastMedicalHistoryDetails = model.PastMedicalHistoryDetails;
-                edituser.IsInMedicaion = model.IsInMedicaion;
-                edituser.Medications = model.Medications;
-                edituser.HasPastSurgery = model.HasPastSurgery;
-                edituser.PastSurgeries = model.PastSurgeries;
-                edituser.HasAllergy = model.HasAllergy;
-                edituser.Allergies = model.Allergies;
-                edituser.FamilyHistory = model.FamilyHistory;
-                edituser.hasGeneticTest = model.hasGeneticTest;
-                edituser.GeneticTest = model.GeneticTest;
-               
-                edituser.CovidDetails = model.CovidDetails;
-                edituser.ImmunizationRecord = model.ImmunizationRecord;
-                edituser.ImmunizationID = model.ImmunizationID;
+            //updating medicalrecord table
 
-                var result = await _userManager.UpdateAsync(edituser);
+            var MedicalRecordTarget = _context.MedicalRecord.Where(x => x.AtomHealthUserID == edituser.Id).FirstOrDefault();
+            string BloodType = formval["MedicalRecord.BloodType"];
+            string MedicalConditions = formval["MedicalRecord.MedicalConditions"];
+            string PastMedicalHistoryDetails = formval["MedicalRecord.PastMedicalHistoryDetails"];
+            string IsInMedicaion = formval["MedicalRecord.IsInMedicaion"];
+            string Medications = formval["MedicalRecord.Medications"];
+            string HasPastSurgery = formval["MedicalRecord.HasPastSurgery"];
+            string PastSurgeries = formval["MedicalRecord.PastSurgeries"];
+            string HasAllergy = formval["MedicalRecord.HasAllergy"];
+            string Allergies = formval["MedicalRecord.Allergies"];
+            string FamilyHistory = formval["MedicalRecord.FamilyHistory"];
+            string hasGeneticTest = formval["MedicalRecord.hasGeneticTest"];
+            string GeneticTest = formval["MedicalRecord.GeneticTest"];
+            string CovidDetails = formval["MedicalRecord.CovidDetails"];
+            string ImmunizationRecord = formval["MedicalRecord.ImmunizationRecord"];
+
+
+            MedicalRecordTarget.BloodType = BloodType;
+            MedicalRecordTarget.MedicalConditions = MedicalConditions;
+            MedicalRecordTarget.PastMedicalHistoryDetails = PastMedicalHistoryDetails;
+            MedicalRecordTarget.IsInMedicaion = IsInMedicaion;
+            MedicalRecordTarget.Medications = Medications;
+            MedicalRecordTarget.HasPastSurgery = HasPastSurgery;
+            MedicalRecordTarget.PastSurgeries = PastSurgeries;
+            MedicalRecordTarget.HasAllergy = HasAllergy;
+            MedicalRecordTarget.Allergies = Allergies;
+            MedicalRecordTarget.FamilyHistory = FamilyHistory;
+            MedicalRecordTarget.hasGeneticTest = hasGeneticTest;
+            MedicalRecordTarget.GeneticTest = GeneticTest;
+            MedicalRecordTarget.CovidDetails = CovidDetails;
+            MedicalRecordTarget.ImmunizationRecord = ImmunizationRecord;
+
+            _context.Update(MedicalRecordTarget);
+            _context.SaveChanges();
+
+            //updating dateofbirth  table
+            var DateOfBirthTarget = _context.Dateofbirth.Where(x => x.AtomHealthUserID == edituser.Id).FirstOrDefault();
+            string DOB = formval["MedicalRecord.DOB"];
+            DateOfBirthTarget.DOB =DOB;
+
+            _context.Update(DateOfBirthTarget);
+            _context.SaveChanges();
+
+
+
+            var result = await _userManager.UpdateAsync(edituser);
                 
                 _context.SaveChanges();
 

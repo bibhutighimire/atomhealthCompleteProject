@@ -37,12 +37,12 @@ namespace AtomHealth.Models
         public string MaritalStatus { get; set; }
 
         [PersonalData]
-        [Column(TypeName = "int")]
-        public int? Height { get; set; }
+        [Column(TypeName = "varchar(10)")]
+        public string Height { get; set; }
 
         [PersonalData]
-        [Column(TypeName = "int")]
-        public int? Weight { get; set; }
+        [Column(TypeName = "varchar(10)")]
+        public string Weight { get; set; }
         public string AtomHealthUserID { get; set; }
         public AtomHealthUser AtomHealthUser { get; set; }
 
