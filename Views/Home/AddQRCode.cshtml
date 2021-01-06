@@ -116,21 +116,15 @@
               </div>
           </div>*@
 
-@using (Html.BeginForm("AddQRCode", "Home", FormMethod.Post))
-{
-    <input type="hidden" asp-for="ApplicationUserID" />
-  
-    <input asp-for="FirstName" type="text" name="qrcode" />
-    <input asp-for="MiddleName" type="text" name="qrcode" />
-    <input asp-for="LastName" type="text" name="qrcode" />
+<form method="post" class="form-inline">
 
-    <input type="submit" value="Generate" />
-}
-
-@if (ViewBag.QRCode != null)
-{
-    <img src="@ViewBag.QRCode" alt="" style="height:150px;width:150px" />
-}
+    <input asp-for="FirstName" type="text" name="txtQRCode" />
+    <input asp-for="MiddleName" type="text" name="txtQRCode" />
+    <input asp-for="LastName" type="text" name="txtQRCode" />
+    <button class="btn btn-primary">GENERATE</button>
+</form>
+<br />
+<img src="@ViewBag.QRCodeImage" />
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

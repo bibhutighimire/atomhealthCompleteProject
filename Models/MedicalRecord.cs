@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,9 +12,9 @@ namespace AtomHealth.Models
     public class MedicalRecord
     {
         public Guid MedicalRecordID { get; set; }
+
         [PersonalData]
         [Column(TypeName = "nvarchar(max)")]
-
         public string MedicalConditions { get; set; }
 
         [PersonalData]
@@ -47,6 +48,7 @@ namespace AtomHealth.Models
         [PersonalData]
         [Column(TypeName = "nvarchar(max)")]
         public string FamilyHistory { get; set; }
+
         [PersonalData]
         [Column(TypeName = "varchar(20)")]
         public string hasGeneticTest { get; set; }
@@ -58,9 +60,13 @@ namespace AtomHealth.Models
         [PersonalData]
         [Column(TypeName = "nvarchar(500)")]
         public string CovidDetails { get; set; }
+
         [PersonalData]
-        [Column(TypeName = "varchar(100)")]
+       
+        [Column(TypeName = "varchar(100)")]      
         public string BloodType { get; set; }
+
+       
         [PersonalData]
         [Column(TypeName = "nvarchar(1000)")]
         public string ImmunizationRecord { get; set; }
