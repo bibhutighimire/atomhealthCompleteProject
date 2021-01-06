@@ -55,12 +55,11 @@
                         <p><span>Marital Status</span>@Html.DisplayFor(model => model.ApplicationUser.MaritalStatus)</p>
                     </div>
 
-
                     <div class="bio-row">
-                        <p><span>Height (in cm)</span>@Html.DisplayFor(model => model.ApplicationUser.Height)</p>
+                        <p><span>Height (in cm)</span>@Html.DisplayFor(model => model.ApplicationUser.Height) @Html.DisplayFor(model => model.ApplicationUser.HeightMeasure)</p>
                     </div>
                     <div class="bio-row">
-                        <p><span>Weight (in lbs)</span>@Html.DisplayFor(model => model.ApplicationUser.Weight)</p>
+                        <p><span>Weight (in lbs)</span>@Html.DisplayFor(model => model.ApplicationUser.Weight) @Html.DisplayFor(model => model.ApplicationUser.WeightMeasure)</p>
                     </div>
                     <div class="bio-row">
                         <p><span>Blood Type</span>@Html.DisplayFor(model => model.MedicalRecord.BloodType)</p>
@@ -79,7 +78,7 @@
                     </div>
 
                     <div class="bio-row">
-                        <p><span>Province</span>@Html.DisplayFor(model => model.Address.Province)</p>
+                        <p><span> Province / State</span>@Html.DisplayFor(model => model.Address.Province)</p>
                     </div>
 
                     <div class="bio-row">
@@ -149,10 +148,7 @@
                             {
 
                                 <li style="list-style: circle;list-style-position: inside;padding: 8px;background-color: lightcyan;list-style-position:inside;">@item</li>
-
-
-
-                            }
+}
                         </ul>
                     </div>
 

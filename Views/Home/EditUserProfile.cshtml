@@ -12,12 +12,12 @@
 <hr />
 
 <div class="formWrap">
-   
+
 
     <form method="post" action="EditUserProfile">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         @*<input type="hidden" asp-for="ImmunizationID" />
-        <input type="hidden" asp-for="MedicalHistoryID" />*@
+            <input type="hidden" asp-for="MedicalHistoryID" />*@
         <input type="hidden" asp-for="Id" />
 
         <input type="hidden" asp-for="UserName" />
@@ -63,7 +63,7 @@
                 @Html.DropDownListFor(m => m.ApplicationUser.MaritalStatus, new List<SelectListItem>
 
 {new SelectListItem { Text = "Select Marital Status", Value = "None", Selected=true},
-                   
+
     new SelectListItem { Text = "Married", Value = "Married"},
     new SelectListItem { Text = "Living with partner", Value = "Living with partner"},
     new SelectListItem { Text = "Single or never married", Value = "Single"},
@@ -75,25 +75,55 @@
 })
                 <span asp-validation-for="ApplicationUser.MaritalStatus" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                Height (in cm)<span style="color:red">*</span>
-                <input asp-for="ApplicationUser.Height" class="form-control" />
-                <span asp-validation-for="ApplicationUser.Height" class="text-danger"></span>
+            <div class="dropDownTwo">
+                <div class="form-group">
+                    Height <span style="color:red">*</span>
+                    <input asp-for="ApplicationUser.Height" class="form-control" />
+                    <span asp-validation-for="ApplicationUser.Height" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    Select
+                    @Html.DropDownList("ApplicationUser.HeightMeasure", new List<SelectListItem>
+
+                    {
+                                   new SelectListItem { Text = "Select ", Value = "None", Selected=true},
+
+                        new SelectListItem { Text = "CM", Value = "CM"},
+                        new SelectListItem { Text = "INCH", Value = "INCH"}
+                    })
+                    <span asp-validation-for="ApplicationUser.HeightMeasure" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                Weight (in lbs)<span style="color:red">*</span>
-                <input asp-for="ApplicationUser.Weight" class="form-control" />
-                <span asp-validation-for="ApplicationUser.Weight" class="text-danger"></span>
+            <div class="dropDownTwo">
+                <div class="form-group">
+                    Weight<span style="color:red">*</span>
+                    <input asp-for="ApplicationUser.Weight" class="form-control" />
+                    <span asp-validation-for="ApplicationUser.Weight" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    Select
+
+                    @Html.DropDownList("ApplicationUser.WeightMeasure", new List<SelectListItem>
+
+                               {
+                                              new SelectListItem { Text = "Select ", Value = "None", Selected=true},
+
+                                   new SelectListItem { Text = "KG", Value = "KG"},
+                                   new SelectListItem { Text = "LBS", Value = "LBS"}
+                               })
+                    <span asp-validation-for="ApplicationUser.HeightMeasure" class="text-danger"></span>
+
+                </div>
             </div>
+
             <div class="form-group">
 
                 Blood Type<span style="color:red">*</span>
-                @Html.DropDownList("BloodType", new List<SelectListItem>
+                @Html.DropDownList("MedicalRecord.BloodType", new List<SelectListItem>
 
 {
-               new SelectListItem { Text = "Select", Value = "None", Selected=true},
-              
-    new SelectListItem { Text = "A RhD positive (A+)", Value = "A RhD positive (A+)"},
+               new SelectListItem { Text = "Select Blood Type", Value = "None", Selected=true},
+new SelectListItem { Text = "A RhD positive (A+)", Value = "A RhD positive (A+)"},
     new SelectListItem { Text = " A RhD negative (A-)", Value = " A RhD negative (A-)"},
     new SelectListItem { Text = "B RhD positive (B+)", Value = "B RhD positive (B+)"},
     new SelectListItem { Text = "B RhD negative (B-)", Value = "B RhD negative (B-)"},
@@ -101,8 +131,6 @@
     new SelectListItem { Text = "O RhD negative (O-)", Value = "O RhD negative (O-)"},
     new SelectListItem { Text = "AB RhD positive (AB+)", Value = "AB RhD positive (AB+)"},
     new SelectListItem { Text = "AB RhD negative (AB-)", Value = "AB RhD negative (AB-)"}
-
-
 })
                 <span asp-validation-for="MedicalRecord.BloodType" class="text-danger"></span>
             </div>
@@ -120,8 +148,7 @@
         <div class="rowForProfileEdit">
             <div class="form-group">
                 Country<span style="color:red">*</span>
-
-                <select asp-for="Address.Country">
+                <select asp-for="Address.Country" >
                     @foreach (Country country in ViewBag.listOfCountry)
                     {
                         <option value="@country.CountryName">
@@ -129,11 +156,9 @@
                         </option>
                     }
                 </select>
-
-
             </div>
             <div class="form-group">
-                State / Province<span style="color:red">*</span>
+                Province / State<span style="color:red">*</span>
                 <select asp-for="Address.Province">
                     @foreach (Province province in ViewBag.listOfProvince)
                     {
@@ -255,7 +280,7 @@
             <div class="form-group">
 
                 Other Past Medical History (if other, please specify)
-                @Html.TextArea("PastMedicalHistoryDetails", new { rows = 5, columns = 40 })
+                @Html.TextArea("MedicalRecord.PastMedicalHistoryDetails", new { rows = 5, columns = 40 })
 
                 <span asp-validation-for="MedicalRecord.PastMedicalHistoryDetails" class="text-danger"></span>
             </div>
@@ -266,7 +291,7 @@
         <div class="rowForProfileEdit">
             <div class="form-group">
 
-                Are you currently on any medication?(Include any Chemotherapy and Radiotherapy.)
+                Are you currently on any medication? <p style="color:red;">Include any Chemotherapy and Radiotherapy.)</p>
                 <br />
                 @Html.RadioButtonFor(m => m.MedicalRecord.IsInMedicaion, "Yes", Model.MedicalRecord.IsInMedicaion == "Yes" ? "checked" : string.Empty)
                 <span>Yes</span>
@@ -278,7 +303,7 @@
             <div class="form-group">
 
                 If yes, please provide a list of medications.
-                @Html.TextArea("Medications", new { rows = 5, columns = 40 })
+                @Html.TextArea("MedicalRecord.Medications", new { rows = 5, columns = 40 })
 
                 <span asp-validation-for="MedicalRecord.Medications" class="text-danger"></span>
             </div>
@@ -302,7 +327,7 @@
             <div class="form-group">
 
                 If yes, what are the past surgeries that you had?
-                @Html.TextArea("PastSurgeries", new { rows = 5, columns = 40 })
+                @Html.TextArea("MedicalRecord.PastSurgeries", new { rows = 5, columns = 40 })
 
                 <span asp-validation-for="MedicalRecord.PastSurgeries" class="text-danger"></span>
             </div>
@@ -313,7 +338,7 @@
         <div class="rowForProfileEdit">
             <div class="form-group">
 
-                Do you have any allergies?(Include any medication allergies as well.)
+                Do you have any allergies? <p style="color:red;">Include any medication allergies as well.</p>
                 <br />
                 @Html.RadioButtonFor(m => m.MedicalRecord.HasAllergy, "Yes", Model.MedicalRecord.HasAllergy == "Yes" ? "checked" : string.Empty)
                 <span>Yes</span>
@@ -327,7 +352,7 @@
             <div class="form-group">
 
                 If yes, please list all the allergies you have.
-                @Html.TextArea("Allergies", new { rows = 5, columns = 40 })
+                @Html.TextArea("MedicalRecord.Allergies", new { rows = 5, columns = 40 })
 
                 <span asp-validation-for="MedicalRecord.Allergies" class="text-danger"></span>
             </div>
@@ -360,7 +385,7 @@
             <div class="form-group">
 
                 Other Family medical history (if other, please specify)
-                @Html.TextArea("FamilyHistory", new { rows = 5, columns = 40 })
+                @Html.TextArea("MedicalRecord.FamilyHistory", new { rows = 5, columns = 40 })
 
 
                 <span asp-validation-for="MedicalRecord.FamilyHistory" class="text-danger"></span>
@@ -499,12 +524,8 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">
-                @*Covid Test Details (other not mentioned above)
-        <input asp-for="MedicalRecord.CovidDetails" class="form-control" />
-        <span asp-validation-for="MedicalRecord.CovidDetails" class="text-danger"></span>*@
-            </div>
-            </div>
+            
+        </div>
         <div class="bio-graph-heading-profile">
             Immunization Record
         </div>
@@ -535,11 +556,11 @@
 
         </div>
         @*@Html.HiddenFor(model => model.ImmunizationID)
-        @Html.HiddenFor(model => model.MedicalHistoryID)
-        @Html.HiddenFor(model => model.CovidHistoryID)
-        @Html.HiddenFor(model => model.CurrentMedicalConditionID)
-        @Html.HiddenFor(model => model.PastMedicalHistoryID)
-        @Html.HiddenFor(model => model.FamilyMedicalHistoryID)*@
+            @Html.HiddenFor(model => model.MedicalHistoryID)
+            @Html.HiddenFor(model => model.CovidHistoryID)
+            @Html.HiddenFor(model => model.CurrentMedicalConditionID)
+            @Html.HiddenFor(model => model.PastMedicalHistoryID)
+            @Html.HiddenFor(model => model.FamilyMedicalHistoryID)*@
 
 
         <hr />
@@ -549,8 +570,8 @@
         </div>
 
     </form>
-        <div><a class="btn btn-primary" asp-route-id="@ViewBag.userid" asp-action="UserProfile"> Go Back</a></div>
-    </div>
+    <div><a class="btn btn-primary" asp-route-id="@ViewBag.userid" asp-action="UserProfile"> Go Back</a></div>
+</div>
 </div>
 
 @section Scripts {
@@ -562,7 +583,7 @@
 
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    
+
     <script>
         $(function () {
             $("#datepicker").datepicker({

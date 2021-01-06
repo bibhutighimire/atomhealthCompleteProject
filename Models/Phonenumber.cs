@@ -19,7 +19,6 @@ namespace AtomHealth.Models
         public string HomePhone { get; set; }
 
         [PersonalData]
-        [Required]
         [Column(TypeName = "nvarchar(100)")]
         [DataType(DataType.PhoneNumber, ErrorMessage = "Phone number is not valid")]
         public string MobilePhone { get; set; }

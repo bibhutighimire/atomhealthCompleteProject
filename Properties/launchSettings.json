@@ -14,8 +14,8 @@
 
       //"environmentVariables": {
       //  "ASPNETCORE_ENVIRONMENT": "Production"
-      }
-    },
+      
+  },
     "AtomHealth": {
       "commandName": "Project",
       "launchBrowser": true,

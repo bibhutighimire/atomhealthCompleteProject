@@ -12,8 +12,8 @@ namespace AtomHealth.Models
     {
         public Guid DateofbirthID { get; set; }
         [PersonalData]
-      
-        [DataType(DataType.Date, ErrorMessage = "Invalid Date")]
+
+        [DataType(DataType.Date)]
         public string DOB { get; set; }
         public string AtomHealthUserID { get; set; }
         public AtomHealthUser AtomHealthUser { get; set; }
