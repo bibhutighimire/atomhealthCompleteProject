@@ -87,7 +87,7 @@
             </div>
             <div class="form-group">
                 Blood Type
-                @Html.DropDownList("BloodType", new List<SelectListItem>
+                @Html.DropDownList("MedicalRecord.BloodType", new List<SelectListItem>
 {
                new SelectListItem { Text = "Select", Value = "None", Selected=true},
                new SelectListItem { Text = "Select Blood Type", Value = "NotSelected"},
@@ -252,7 +252,7 @@
 
             <div class="form-group">
                 Past Medical History (if any)
-                @Html.TextArea("PastMedicalHistoryDetails", new { rows = 5, columns = 40 })
+                @Html.TextArea("MedicalRecord.PastMedicalHistoryDetails", new { rows = 5, columns = 40 })
                 <span asp-validation-for="MedicalRecord.PastMedicalHistoryDetails" class="text-danger"></span>
             </div>
         </div>
@@ -273,7 +273,7 @@
             </div>
             <div class="form-group">
                 Medications
-                @Html.TextArea("Medications", new { rows = 5, columns = 40 })
+                @Html.TextArea("MedicalRecord.Medications", new { rows = 5, columns = 40 })
                 <span asp-validation-for="MedicalRecord.Medications" class="text-danger"></span>
             </div>
         </div>
@@ -295,7 +295,7 @@
             </div>
             <div class="form-group">
                 Past Surgeries (if any)
-                @Html.TextArea("PastSurgeries", new { rows = 5, columns = 40 })
+                @Html.TextArea("MedicalRecord.PastSurgeries", new { rows = 5, columns = 40 })
                 <span asp-validation-for="MedicalRecord.PastSurgeries" class="text-danger"></span>
             </div>
         </div>
@@ -318,7 +318,7 @@
             </div>
             <div class="form-group">
                 Allergies (if any)
-                @Html.TextArea("Allergies", new { rows = 5, columns = 40 })
+                @Html.TextArea("MedicalRecord.Allergies", new { rows = 5, columns = 40 })
                 <span asp-validation-for="MedicalRecord.Allergies" class="text-danger"></span>
             </div>
         </div>
@@ -349,7 +349,7 @@
 
             <div class="form-group">
                 Family medical history (if other from above)
-                @Html.TextArea("FamilyHistory", new { rows = 5, columns = 40 })
+                @Html.TextArea("MedicalRecord.FamilyHistory", new { rows = 5, columns = 40 })
                 <span asp-validation-for="MedicalRecord.FamilyHistory" class="text-danger"></span>
             </div>
         </div>
@@ -369,7 +369,7 @@
             </div>
             <div class="form-group">
                 If yes, please provide details on the test outcomes or any highlighted risks.
-                @Html.TextArea("GeneticTest", new { rows = 5, columns = 40 })
+                @Html.TextArea("MedicalRecord.GeneticTest", new { rows = 5, columns = 40 })
                 <span asp-validation-for="MedicalRecord.GeneticTest" class="text-danger"></span>
             </div>
         </div>
