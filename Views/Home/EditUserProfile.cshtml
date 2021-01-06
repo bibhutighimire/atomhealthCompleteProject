@@ -291,7 +291,7 @@ new SelectListItem { Text = "A RhD positive (A+)", Value = "A RhD positive (A+)"
         <div class="rowForProfileEdit">
             <div class="form-group">
 
-                Are you currently on any medication? <p style="color:red;">Include any Chemotherapy and Radiotherapy.)</p>
+                <p style="font-weight:bold">Are you currently on any medication?</p> <p style="color:red;">Include any Chemotherapy and Radiotherapy.</p>
                 <br />
                 @Html.RadioButtonFor(m => m.MedicalRecord.IsInMedicaion, "Yes", Model.MedicalRecord.IsInMedicaion == "Yes" ? "checked" : string.Empty)
                 <span>Yes</span>
@@ -315,15 +315,15 @@ new SelectListItem { Text = "A RhD positive (A+)", Value = "A RhD positive (A+)"
         <div class="rowForProfileEdit">
             <div class="form-group">
 
-                Did you undergo Surgeries in the past?
-                <br />
-                @Html.RadioButtonFor(m => m.MedicalRecord.HasPastSurgery, "Yes", Model.MedicalRecord.HasPastSurgery == "Yes" ? "checked" : string.Empty)
-                <span>Yes</span>
-                @Html.RadioButtonFor(m => m.MedicalRecord.HasPastSurgery, "No", Model.MedicalRecord.HasPastSurgery == "No" ? "checked" : string.Empty)
-                <span>No</span>
+                <p style="font-weight:bold">Did you undergo Surgeries in the past?</p>
+                    <br />
+                    @Html.RadioButtonFor(m => m.MedicalRecord.HasPastSurgery, "Yes", Model.MedicalRecord.HasPastSurgery == "Yes" ? "checked" : string.Empty)
+                    <span>Yes</span>
+                    @Html.RadioButtonFor(m => m.MedicalRecord.HasPastSurgery, "No", Model.MedicalRecord.HasPastSurgery == "No" ? "checked" : string.Empty)
+                    <span>No</span>
 
-                <span asp-validation-for="MedicalRecord.HasPastSurgery" class="text-danger"></span>
-            </div>
+                    <span asp-validation-for="MedicalRecord.HasPastSurgery" class="text-danger"></span>
+</div>
             <div class="form-group">
 
                 If yes, what are the past surgeries that you had?
@@ -338,7 +338,7 @@ new SelectListItem { Text = "A RhD positive (A+)", Value = "A RhD positive (A+)"
         <div class="rowForProfileEdit">
             <div class="form-group">
 
-                Do you have any allergies? <p style="color:red;">Include any medication allergies as well.</p>
+                <p style="font-weight:bold">Do you have any allergies?</p> <p style="color:red;">Include any medication allergies as well.</p>
                 <br />
                 @Html.RadioButtonFor(m => m.MedicalRecord.HasAllergy, "Yes", Model.MedicalRecord.HasAllergy == "Yes" ? "checked" : string.Empty)
                 <span>Yes</span>
@@ -397,14 +397,14 @@ new SelectListItem { Text = "A RhD positive (A+)", Value = "A RhD positive (A+)"
         <div class="rowForProfileEdit">
             <div class="form-group">
 
-                Have you done any genetics test?
-                <br />
-                @Html.RadioButtonFor(m => m.MedicalRecord.hasGeneticTest, "Yes", Model.MedicalRecord.hasGeneticTest == "Yes" ? "checked" : string.Empty)
-                <span>Yes</span>
-                @Html.RadioButtonFor(m => m.MedicalRecord.hasGeneticTest, "No", Model.MedicalRecord.hasGeneticTest == "No" ? "checked" : string.Empty)
-                <span>No</span>
-                <span asp-validation-for="MedicalRecord.hasGeneticTest" class="text-danger"></span>
-            </div>
+                <p style="font-weight:bold">Have you done any genetics test?</p>
+                    <br />
+                    @Html.RadioButtonFor(m => m.MedicalRecord.hasGeneticTest, "Yes", Model.MedicalRecord.hasGeneticTest == "Yes" ? "checked" : string.Empty)
+                    <span>Yes</span>
+                    @Html.RadioButtonFor(m => m.MedicalRecord.hasGeneticTest, "No", Model.MedicalRecord.hasGeneticTest == "No" ? "checked" : string.Empty)
+                    <span>No</span>
+                    <span asp-validation-for="MedicalRecord.hasGeneticTest" class="text-danger"></span>
+</div>
             <div class="form-group">
                 If yes, please provide details on the test outcomes or any highlighted risks.
                 @Html.TextArea("MedicalRecord.GeneticTest", new { rows = 5, columns = 40 })
@@ -419,7 +419,7 @@ new SelectListItem { Text = "A RhD positive (A+)", Value = "A RhD positive (A+)"
 
             <div class="form-group">
 
-                Do you use or do you have history of smoking or using tobacco?
+               <p style="font-weight:bold">Do you use or do you have history of smoking or using tobacco?</p>
                 <br />
                 @Html.RadioButtonFor(m => m.Lifestyle.doYouSmoke, "Yes", Model.Lifestyle.doYouSmoke == "Yes" ? "checked" : string.Empty)
                 <span>Yes</span>
@@ -432,7 +432,7 @@ new SelectListItem { Text = "A RhD positive (A+)", Value = "A RhD positive (A+)"
 
             <div class="form-group">
 
-                Do you use or do you have history of using illegal drugs?
+                <p style="font-weight:bold">Do you use or do you have history of using illegal drugs?</p>
                 <br />
                 @Html.RadioButtonFor(m => m.Lifestyle.doYouIllegalDrugs, "Yes", Model.Lifestyle.doYouIllegalDrugs == "Yes" ? "checked" : string.Empty)
                 <span>Yes</span>
@@ -445,59 +445,59 @@ new SelectListItem { Text = "A RhD positive (A+)", Value = "A RhD positive (A+)"
 
             <div class="form-group">
 
-                Do you use or do you have history of consuming alcohol?
-                <br />
-                @Html.RadioButtonFor(m => m.Lifestyle.doYouConsumeAlcohol, "Yes", Model.Lifestyle.doYouConsumeAlcohol == "Yes" ? "checked" : string.Empty)
-                <span>Yes</span>
-                @Html.RadioButtonFor(m => m.Lifestyle.doYouConsumeAlcohol, "No", Model.Lifestyle.doYouConsumeAlcohol == "No" ? "checked" : string.Empty)
-                <span>No</span>
-                @Html.RadioButtonFor(m => m.Lifestyle.doYouConsumeAlcohol, "Sometimes", Model.Lifestyle.doYouConsumeAlcohol == "Sometimes" ? "checked" : string.Empty)
-                <span>Sometimes</span>
-                <span asp-validation-for="Lifestyle.doYouConsumeAlcohol" class="text-danger"></span>
-            </div>
+                <p style="font-weight:bold">Do you use or do you have history of consuming alcohol?</p>
+                    <br />
+                    @Html.RadioButtonFor(m => m.Lifestyle.doYouConsumeAlcohol, "Yes", Model.Lifestyle.doYouConsumeAlcohol == "Yes" ? "checked" : string.Empty)
+                    <span>Yes</span>
+                    @Html.RadioButtonFor(m => m.Lifestyle.doYouConsumeAlcohol, "No", Model.Lifestyle.doYouConsumeAlcohol == "No" ? "checked" : string.Empty)
+                    <span>No</span>
+                    @Html.RadioButtonFor(m => m.Lifestyle.doYouConsumeAlcohol, "Sometimes", Model.Lifestyle.doYouConsumeAlcohol == "Sometimes" ? "checked" : string.Empty)
+                    <span>Sometimes</span>
+                    <span asp-validation-for="Lifestyle.doYouConsumeAlcohol" class="text-danger"></span>
+</div>
             <div class="form-group">
 
-                Do you follow any specific diet?
+                <p style="font-weight:bold">Do you follow any specific diet?</p>
 
-                @Html.DropDownListFor(m => m.Lifestyle.Diet, new List<SelectListItem>
-{   new SelectListItem { Text = "Select Diet Plan", Value = "NotSelected"},
-    new SelectListItem { Text = "The Paleo Diet", Value = "The Paleo Diet"},
-    new SelectListItem { Text = "The Blood Type Diet", Value = "The Blood Type Diet"},
-    new SelectListItem { Text = "The Vegan Diet", Value = "The Vegan Diet"},
-    new SelectListItem { Text = "The South Beach Diet", Value = "The South Beach Diet"},
-    new SelectListItem { Text = "The Mediterranean Diet", Value = "The Mediterranean Diet"},
-    new SelectListItem { Text = "Raw Food Diet", Value = "Raw Food Diet"},
-      new SelectListItem { Text = "The Zone Diet", Value = "The Zone Diet"},
-    new SelectListItem { Text = "The Keto Diet", Value = "The Keto Diet"},
-    new SelectListItem { Text = "Low-Carb Diets", Value = "Low-Carb Diets"},
-    new SelectListItem { Text = "The Ultra-Low-Fat Diet", Value = "The Ultra-Low-Fat Diet"},
-    new SelectListItem { Text = "The Dukan Diet", Value = "The Dukan Diet"},
-    new SelectListItem { Text = "The Atkins Diet", Value = "The Atkins Diet"},
-      new SelectListItem { Text = "The HCG Diet", Value = "The HCG Diet"},
-    new SelectListItem { Text = "Intermittent Fasting", Value = "Intermittent Fasting"},
-    new SelectListItem { Text = "Flexitarian or Semi-Vegetarian Diet", Value = "Flexitarian or Semi-Vegetarian Diet"},
-    new SelectListItem { Text = "Cleanse Diets", Value = "Cleanse Diets"},
-    new SelectListItem { Text = "Whole30", Value = "Whole30"},
-    new SelectListItem { Text = "Carnivore Diet", Value = "Carnivore Diet"}
+                    @Html.DropDownListFor(m => m.Lifestyle.Diet, new List<SelectListItem>
+    {   new SelectListItem { Text = "Select Diet Plan", Value = "NotSelected"},
+        new SelectListItem { Text = "The Paleo Diet", Value = "The Paleo Diet"},
+        new SelectListItem { Text = "The Blood Type Diet", Value = "The Blood Type Diet"},
+        new SelectListItem { Text = "The Vegan Diet", Value = "The Vegan Diet"},
+        new SelectListItem { Text = "The South Beach Diet", Value = "The South Beach Diet"},
+        new SelectListItem { Text = "The Mediterranean Diet", Value = "The Mediterranean Diet"},
+        new SelectListItem { Text = "Raw Food Diet", Value = "Raw Food Diet"},
+          new SelectListItem { Text = "The Zone Diet", Value = "The Zone Diet"},
+        new SelectListItem { Text = "The Keto Diet", Value = "The Keto Diet"},
+        new SelectListItem { Text = "Low-Carb Diets", Value = "Low-Carb Diets"},
+        new SelectListItem { Text = "The Ultra-Low-Fat Diet", Value = "The Ultra-Low-Fat Diet"},
+        new SelectListItem { Text = "The Dukan Diet", Value = "The Dukan Diet"},
+        new SelectListItem { Text = "The Atkins Diet", Value = "The Atkins Diet"},
+          new SelectListItem { Text = "The HCG Diet", Value = "The HCG Diet"},
+        new SelectListItem { Text = "Intermittent Fasting", Value = "Intermittent Fasting"},
+        new SelectListItem { Text = "Flexitarian or Semi-Vegetarian Diet", Value = "Flexitarian or Semi-Vegetarian Diet"},
+        new SelectListItem { Text = "Cleanse Diets", Value = "Cleanse Diets"},
+        new SelectListItem { Text = "Whole30", Value = "Whole30"},
+        new SelectListItem { Text = "Carnivore Diet", Value = "Carnivore Diet"}
 
 
-})
-                <span asp-validation-for="Lifestyle.Diet" class="text-danger"></span>
-            </div>
+    })
+                    <span asp-validation-for="Lifestyle.Diet" class="text-danger"></span>
+</div>
             <div class="form-group">
-                How often do you exercise?
-                @Html.DropDownListFor(m => m.Lifestyle.Exercise, new List<SelectListItem>
-{new SelectListItem { Text = "Select Exercise Level", Value = "NotSelected"},
-    new SelectListItem { Text = "Sedentary: little or no exercise", Value = "Sedentary: little or no exercise"},
-    new SelectListItem { Text = "Light: exercise 1-3 times/week", Value = "Light: exercise 1-3 times/week"},
-    new SelectListItem { Text = "Moderate: exercise 4-5 times/week", Value = "Moderate: exercise 4-5 times/week"},
-    new SelectListItem { Text = "Active: daily exercise or intense exercise 3-4 times/week", Value = "Active: daily exercise or intense exercise 3-4 times/week"},
-    new SelectListItem { Text = "Very Active: intense exercise 6-7 times/week", Value = "Very Active: intense exercise 6-7 times/week"},
-    new SelectListItem { Text = "Extra Active: very intense exercise daily, or physical job", Value = "Extra Active: very intense exercise daily, or physical job"}
+                <p style="font-weight:bold">How often do you exercise?</p>
+                    @Html.DropDownListFor(m => m.Lifestyle.Exercise, new List<SelectListItem>
+    {new SelectListItem { Text = "Select Exercise Level", Value = "NotSelected"},
+        new SelectListItem { Text = "Sedentary: little or no exercise", Value = "Sedentary: little or no exercise"},
+        new SelectListItem { Text = "Light: exercise 1-3 times/week", Value = "Light: exercise 1-3 times/week"},
+        new SelectListItem { Text = "Moderate: exercise 4-5 times/week", Value = "Moderate: exercise 4-5 times/week"},
+        new SelectListItem { Text = "Active: daily exercise or intense exercise 3-4 times/week", Value = "Active: daily exercise or intense exercise 3-4 times/week"},
+        new SelectListItem { Text = "Very Active: intense exercise 6-7 times/week", Value = "Very Active: intense exercise 6-7 times/week"},
+        new SelectListItem { Text = "Extra Active: very intense exercise daily, or physical job", Value = "Extra Active: very intense exercise daily, or physical job"}
 
-})
-                <span asp-validation-for="Lifestyle.Exercise" class="text-danger"></span>
-            </div>
+    })
+                    <span asp-validation-for="Lifestyle.Exercise" class="text-danger"></span>
+</div>
         </div>
         <div class="bio-graph-heading-profile">
             COVID History
@@ -508,7 +508,7 @@ new SelectListItem { Text = "A RhD positive (A+)", Value = "A RhD positive (A+)"
 
             <div class="checkboxarea " style="grid-column: 1 / 3">
                 <div class="form-group">
-                    <p> Have you been diagnosed with COVID in the past?</p>
+                    <p style="font-weight:bold">Have you been diagnosed with COVID in the past?</p>
 
                     <div class="checkboxfields">
                         @foreach (var item in ViewBag.CovidHistory)
