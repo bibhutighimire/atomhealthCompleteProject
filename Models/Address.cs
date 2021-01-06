@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,19 +14,23 @@ namespace AtomHealth.Models
         public Guid AddressID { get; set; }
         [PersonalData]
         [Column(TypeName = "varchar(100)")]
+        [Required]
         public string Country { get; set; }
 
         [PersonalData]
+        [Required]
         [Column(TypeName = "varchar(100)")]
         public string Province { get; set; }
 
         public PatientProvinceRec PatientProvinceRec { get; set; }
 
         [PersonalData]
+        [Required]
         [Column(TypeName = "varchar(100)")]
         public string City { get; set; }
 
         [PersonalData]
+        [Required]
         [Column(TypeName = "nvarchar(200)")]
         public string AddressLineOne { get; set; }
 
@@ -34,6 +39,7 @@ namespace AtomHealth.Models
         public string AddressLineTwo { get; set; }
 
         [PersonalData]
+        [Required]
         [Column(TypeName = "nvarchar(200)")]
         public string PostalCode { get; set; }
         public string AtomHealthUserID { get; set; }
