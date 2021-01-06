@@ -62,7 +62,7 @@ namespace AtomHealth.Models
         public string CovidDetails { get; set; }
 
         [PersonalData]
-       
+
         [Column(TypeName = "varchar(100)")]      
         public string BloodType { get; set; }
 

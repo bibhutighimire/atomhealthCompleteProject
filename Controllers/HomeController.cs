@@ -139,8 +139,6 @@ namespace AtomHealth.Controllers
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
             ViewBag.id = user.Id;
-            
-
             //initializing phonenumber table
             var checkPhoneValue = _context.Phonenumbers.Where(x => x.AtomHealthUserID == user.Id).FirstOrDefault();
             if (checkPhoneValue == null)
@@ -398,6 +396,8 @@ namespace AtomHealth.Controllers
             string MaritalStatus = formval["ApplicationUser.MaritalStatus"];
             string Height = formval["ApplicationUser.Height"];
             string Weight = formval["ApplicationUser.Weight"];
+            string WeightMeasure = formval["ApplicationUser.WeightMeasure"];
+            string HeightMeasure = formval["ApplicationUser.HeightMeasure"];
 
             ApplicationUserTarget.FirstName = FirstName;
             ApplicationUserTarget.MiddleName = MiddleName;
@@ -406,6 +406,8 @@ namespace AtomHealth.Controllers
             ApplicationUserTarget.MaritalStatus = MaritalStatus;
             ApplicationUserTarget.Weight =Weight;
             ApplicationUserTarget.Height = Height;
+            ApplicationUserTarget.WeightMeasure = WeightMeasure;
+            ApplicationUserTarget.HeightMeasure = HeightMeasure;
             _context.Update(ApplicationUserTarget);
             _context.SaveChanges();
 
