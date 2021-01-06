@@ -466,7 +466,7 @@ namespace AtomHealth.Controllers
 
             //updating dateofbirth  table
             var DateOfBirthTarget = _context.Dateofbirth.Where(x => x.AtomHealthUserID == edituser.Id).FirstOrDefault();
-            string DOB = formval["MedicalRecord.DOB"];
+            string DOB = formval["Dateofbirth.DOB"];
             DateOfBirthTarget.DOB =DOB;
 
             _context.Update(DateOfBirthTarget);
