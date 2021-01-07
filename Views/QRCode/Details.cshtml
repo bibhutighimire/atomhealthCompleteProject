@@ -1,0 +1,268 @@
+﻿@model AtomHealth.Areas.Identity.Data.AtomHealthUser
+
+<link rel="stylesheet" href="~/css/site.css" />
+<link rel="stylesheet" href="~/css/ViewProfile.css" />
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="rowForProfile">
+    <div class="bio-row">
+        <p><span>First Name</span>@Html.DisplayFor(model => model.ApplicationUser.FirstName)</p>
+    </div>
+    <div class="bio-row">
+        <p><span>Middle Name</span>@Html.DisplayFor(model => model.ApplicationUser.MiddleName)</p>
+    </div>
+    <div class="bio-row">
+        <p><span>Last Name</span>@Html.DisplayFor(model => model.ApplicationUser.LastName)</p>
+    </div>
+    <div class="bio-row">
+        <p><span>Gender</span>@Html.DisplayFor(model => model.ApplicationUser.Gender)</p>
+    </div>
+
+    <div class="bio-row">
+        <p><span>Marital Status</span>@Html.DisplayFor(model => model.ApplicationUser.MaritalStatus)</p>
+    </div>
+
+    <div class="bio-row">
+        <p><span>Height (in cm)</span>@Html.DisplayFor(model => model.ApplicationUser.Height) @Html.DisplayFor(model => model.ApplicationUser.HeightMeasure)</p>
+    </div>
+    <div class="bio-row">
+        <p><span>Weight (in lbs)</span>@Html.DisplayFor(model => model.ApplicationUser.Weight) @Html.DisplayFor(model => model.ApplicationUser.WeightMeasure)</p>
+    </div>
+    <div class="bio-row">
+        <p><span>Blood Type</span>@Html.DisplayFor(model => model.MedicalRecord.BloodType)</p>
+    </div>
+    <div class="bio-row">
+        <p><span>Date of Birth</span>@Html.DisplayFor(model => model.Dateofbirth.DOB)</p>
+    </div>
+</div>
+
+<div class="bio-graph-heading-profile">
+    Address
+</div>
+<div class="rowForProfile">
+    <div class="bio-row">
+        <p><span>Country</span>@Html.DisplayFor(model => model.Address.Country)</p>
+    </div>
+
+    <div class="bio-row">
+        <p><span> Province / State</span>@Html.DisplayFor(model => model.Address.Province)</p>
+    </div>
+
+    <div class="bio-row">
+        <p><span>City</span>@Html.DisplayFor(model => model.Address.City)</p>
+    </div>
+
+    <div class="bio-row">
+        <p><span>Address Line 1</span>@Html.DisplayFor(model => model.Address.AddressLineOne)</p>
+    </div>
+
+    <div class="bio-row">
+        <p><span>Address Line 2</span>@Html.DisplayFor(model => model.Address.AddressLineTwo)</p>
+    </div>
+
+    <div class="bio-row">
+        <p><span>Postal Code</span>@Html.DisplayFor(model => model.Address.PostalCode)</p>
+    </div>
+</div>
+<div class="bio-graph-heading-profile">
+    Contact Details
+</div>
+<div class="rowForProfile">
+    <div class="bio-row">
+        <p><span>Home Phone</span>@Html.DisplayFor(model => model.Phonenumbers.HomePhone)</p>
+    </div>
+
+    <div class="bio-row">
+        <p><span>Mobile Phone</span>@Html.DisplayFor(model => model.Phonenumbers.MobilePhone)</p>
+    </div>
+
+    <div class="bio-row">
+        <p><span>Emergency Contact Person Name</span>@Html.DisplayFor(model => model.Phonenumbers.EmergencyContactName)</p>
+    </div>
+
+    <div class="bio-row">
+        <p><span>Emergency Contact Number</span>@Html.DisplayFor(model => model.Phonenumbers.EmergencyContactPhone)</p>
+    </div>
+
+
+    <div class="bio-row">
+        <p><span>Family Doctor Name</span>@Html.DisplayFor(model => model.Phonenumbers.FamilyDoctorName)</p>
+    </div>
+</div>
+<div class="bio-graph-heading-profile">
+    Medical Details
+</div>
+<div class="rowForProfile">
+
+
+
+
+    <div class="bio-row">
+
+        <p>  <span>Current Medical Condition </span></p>
+        <ul>
+            @foreach (var item in ViewBag.ListOfCurrentMedicalConditionRec)
+                            {
+
+            <li style="list-style: circle;list-style-position: inside;padding: 8px;background-color: lightcyan;list-style-position:inside;">@item</li>
+}
+        </ul>
+    </div>
+
+    <div class="bio-row">
+        <p>
+            <span>Past Medical History </span>
+        </p>
+        <ul>
+            @foreach (var item in ViewBag.ListOfPastMedicalHistoryRec)
+                            {
+            <li style="list-style: circle;list-style-position: inside;padding: 8px;background-color: lightcyan;list-style-position:inside;">@item</li>
+
+
+                            }
+        </ul>
+    </div>
+    <div class="bio-row">
+        <p><span>Past Medical History (if any)</span>@Html.DisplayFor(model => model.MedicalRecord.PastMedicalHistoryDetails)</p>
+    </div>
+
+
+    <div class="bio-row">
+        <p><span>Medical Conditions (if any)</span>@Html.DisplayFor(model => model.MedicalRecord.MedicalConditions)</p>
+    </div>
+
+
+
+
+    <div class="bio-row">
+        <p><span>Are you in medicaion now?</span>@Html.DisplayFor(model => model.MedicalRecord.IsInMedicaion)</p>
+    </div>
+
+    <div class="bio-row">
+        <p><span>Medications (if any)</span>@Html.DisplayFor(model => model.MedicalRecord.Medications)</p>
+    </div>
+
+    <div class="bio-row">
+        <p><span>Have you had surgery in the past?</span>@Html.DisplayFor(model => model.MedicalRecord.HasPastSurgery)</p>
+    </div>
+
+    <div class="bio-row">
+        <p><span>Past Surgeries (if any)</span>@Html.DisplayFor(model => model.MedicalRecord.PastSurgeries)</p>
+    </div>
+
+    <div class="bio-row">
+        <p><span>Do you have any Allergy?</span>@Html.DisplayFor(model => model.MedicalRecord.HasAllergy)</p>
+    </div>
+
+    <div class="bio-row">
+        <p><span>Allergies (if any)</span>@Html.DisplayFor(model => model.MedicalRecord.Allergies)</p>
+    </div>
+
+    <div class="bio-row">
+        <p>
+            <span>Family Medical History </span>
+        </p>
+        <ul>
+            @foreach (var item in ViewBag.ListOfFamilyMedicalHistoryRec)
+                            {
+            <li style="list-style: circle;list-style-position: inside;padding: 8px;background-color: lightcyan;list-style-position:inside;">@item</li>
+
+
+                            }
+        </ul>
+    </div>
+
+    <div class="bio-row">
+        <p><span>Family medical history (if any)</span>@Html.DisplayFor(model => model.MedicalRecord.FamilyHistory)</p>
+    </div>
+
+    <div class="bio-row">
+        <p><span>Has Genetic Test?</span>@Html.DisplayFor(model => model.MedicalRecord.hasGeneticTest)</p>
+    </div>
+
+    <div class="bio-row">
+        <p><span>Genetic Test (if any)</span>@Html.DisplayFor(model => model.MedicalRecord.GeneticTest)</p>
+    </div>
+    <div class="bio-row">
+        <p>
+            <span>Covid History </span>
+        </p>
+        <ul>
+            @foreach (var item in ViewBag.ListOfCovidHistoryRec)
+                            {
+            <li style="list-style: circle;list-style-position: inside;padding: 8px;background-color: lightcyan;list-style-position:inside;">@item</li>
+
+
+                            }
+        </ul>
+    </div>
+
+    <div class="bio-row">
+        <p>
+            <span>Immunization Record</span>
+        </p>
+        <ul>
+            @foreach (var item in ViewBag.ListOfPatientImmunizationRecn)
+                            {
+            <li style="list-style: circle;list-style-position: inside;padding: 8px;background-color: lightcyan;list-style-position:inside;">@item</li>
+
+
+                            }
+        </ul>
+    </div>
+</div>
+<div class="bio-graph-heading-profile">
+    Lifestyle
+</div>
+<div class="rowForProfile">
+    <div class="bio-row">
+        <p><span>Do you smoke?</span>@Html.DisplayFor(model => model.Lifestyle.doYouSmoke)</p>
+    </div>
+
+    <div class="bio-row">
+        <p><span>Have you done illegal drugs?</span>@Html.DisplayFor(model => model.Lifestyle.doYouIllegalDrugs)</p>
+    </div>
+
+    <div class="bio-row">
+        <p><span>Do you consume alcohol?</span>@Html.DisplayFor(model => model.Lifestyle.doYouConsumeAlcohol)</p>
+    </div>
+    <div class="bio-row">
+        <p><span>Do you follow any specific diet?</span>@Html.DisplayFor(model => model.Lifestyle.Diet)</p>
+    </div>
+    <div class="bio-row">
+        <p><span>How often do you exercise?</span>@Html.DisplayFor(model => model.Lifestyle.Exercise)</p>
+    </div>
+
+</div>
+<div class="bio-graph-heading-profile">
+    Medical Coverage
+</div>
+
+<div class="rowForProfile">
+    <div class="bio-row">
+        <p>
+            <span>Medical Coverage Details</span>
+            <table id="customers" style="border:1px solid black; padding:5px;">
+                <tr style="background-color:lightcyan">
+                    <th style="border:1px solid black; padding:5px;"> HealthCare Plan</th>
+                    <th style="border:1px solid black; padding:5px;"> Coverage</th>
+                    <th style="border:1px solid black; padding:5px;">HealthCare ID </th>
+
+                </tr>
+                @foreach (var item in ViewBag.listOfMedicalCoverage)
+                                {
+                <tr style="border:1px solid black">
+                    <td style="border:1px solid black; padding:5px;">  @item.Coverage</td>
+                    <td style="border:1px solid black; padding:5px;">  @item.HealthCarePlan</td>
+                    <td style="border:1px solid black; padding:5px;">  @item.HealthID</td>
+
+
+                </tr>
+
+                                }
+            </table>
+        </p>
+    </div>
+</div>
