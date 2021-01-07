@@ -51,15 +51,17 @@ namespace AtomHealth.Controllers
            return View();
         }
 
-
+        [HttpGet]
         public async Task<IActionResult> AddQRCode()
-     {
+     
+        
+        {
 
          var user = await _userManager.GetUserAsync(HttpContext.User);
           var targetuser = _context.ApplicationUser.Where(x => x.AtomHealthUserID == user.Id).FirstOrDefault();
          ViewBag.id = user.Id;
 
-            return View(targetuser);
+            return View(user);
         }
 
         [HttpPost]
@@ -67,7 +69,10 @@ namespace AtomHealth.Controllers
         {
             if (!string.IsNullOrEmpty(txtQRCode))
             {
-                var qrCodeImage = BarcodeDrawFactory.CodeQr.Draw(txtQRCode, 50);
+               // var txtQRCodes = "https://localhost:44384/QRCode/Details?userid=" + txtQRCode;
+                
+                var txtQRCodes = "https://atomhealthcanada.azurewebsites.net/QRCode/Details?userid=" + txtQRCode;
+                var qrCodeImage = BarcodeDrawFactory.CodeQr.Draw(txtQRCodes, 50);
                 using (MemoryStream memoryStream = new MemoryStream())
                 {
                     qrCodeImage.Save(memoryStream, ImageFormat.Png);
@@ -221,6 +226,7 @@ namespace AtomHealth.Controllers
         
         [HttpGet]
         public async Task<IActionResult> EditUserProfile(string id)
+        
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
             ViewBag.id = user.Id;
@@ -229,7 +235,7 @@ namespace AtomHealth.Controllers
                 ViewBag.ErrorMessage = $"User with id = {id} cannot be found.";
                 return View("Not Found");
             }
-            var AddressTarget = _userManager.Users.Include(u => u.Phonenumbers).Include(V=>V.Address).Include(w => w.Lifestyle).Include(x => x.ApplicationUser).Include(x => x.Dateofbirth).Include(x => x.MedicalRecord).Include(x => x.QRCode).ToList();
+            var AddressTarget = _userManager.Users.Include(u => u.Phonenumbers).Include(V=>V.Address).Include(w => w.Lifestyle).Include(x => x.ApplicationUser).Include(x => x.Dateofbirth).Include(x => x.MedicalRecord).ToList();
             var JoinedTarget = AddressTarget.Where(x => x.Id == user.Id).FirstOrDefault();
            
             //var immunizationDelete = _context.PatientImmunizationRec.Where(x => x.AtomHealthUserID == user.Id).ToList();

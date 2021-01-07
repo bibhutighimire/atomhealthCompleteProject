@@ -16,6 +16,7 @@ namespace AtomHealth.Areas.Identity.Data
         public QRCode QRCode { get; set; }
         public Address Address { get; set; }
         public MedicalRecord MedicalRecord { get; set; }
+    
         public Dateofbirth Dateofbirth { get; set; }
 
         public Phonenumbers Phonenumbers { get; set; }
