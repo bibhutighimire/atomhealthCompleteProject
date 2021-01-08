@@ -69,21 +69,43 @@ namespace AtomHealth.Controllers
         {
             if (!string.IsNullOrEmpty(txtQRCode))
             {
-               // var txtQRCodes = "https://localhost:44384/QRCode/Details?userid=" + txtQRCode;
+                var txtQRCodes = "https://localhost:44384/QRCode/Details?userid=" + txtQRCode;
                 
-                var txtQRCodes = "https://atomhealthcanada.azurewebsites.net/QRCode/Details?userid=" + txtQRCode;
+              //  var txtQRCodes = "https://atomhealthcanada.azurewebsites.net/QRCode/Details?userid=" + txtQRCode;
                 var qrCodeImage = BarcodeDrawFactory.CodeQr.Draw(txtQRCodes, 50);
                 using (MemoryStream memoryStream = new MemoryStream())
                 {
                     qrCodeImage.Save(memoryStream, ImageFormat.Png);
                     ViewBag.QRCodeImage = "data:image/png;base64," + Convert.ToBase64String(memoryStream.ToArray());
+                    //Download(ViewBag.QRCodeImage);
                 }
             }
             return View();
 
+
         }
 
+        public async Task<IActionResult> Download(string imgfile)
+        {
+            var path = imgfile;
+            var memory = new MemoryStream();
+            using (var stream = new FileStream(path, FileMode.Open))
+            {
+                await stream.CopyToAsync(memory);
+            }
+            memory.Position = 0;
+            var ext = Path.GetExtension(path).ToLowerInvariant();
 
+            return File(memory, GetMimeTypes()[ext], Path.GetFileName(path));
+        }
+
+        public Dictionary<string, string> GetMimeTypes()
+        {
+            return new Dictionary<string, string>
+            {
+                {".png", "image/png" }
+            };
+        }
         public IActionResult DeleteCoverage(Guid id)
         {
             var user =  _context.MedicalCoverage.Where(x => x.MedicalCoverageID == id).FirstOrDefault();
