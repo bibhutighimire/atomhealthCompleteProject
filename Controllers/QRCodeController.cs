@@ -14,6 +14,7 @@ using System.Collections.Generic;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
 
 namespace AtomHealth.Controllers
 {
@@ -23,14 +24,37 @@ namespace AtomHealth.Controllers
         //private readonly SignInManager<AtomHealthUser> _signInManager;
         private readonly AtomHealthDBContext _context;
         //private readonly SignInManager<AtomHealthUser> _signInManager;
-        private readonly ILogger<MedicalHistoryController> _logger;
+        private readonly ILogger<QRCodeController> _logger;
 
         public QRCodeController(ILogger<QRCodeController> logger, UserManager<AtomHealthUser> userManager, AtomHealthDBContext context)
         {
-           // _logger = logger;
+            _logger = logger;
             _userManager = userManager;
             _context = context;
             //_signInManager = signInManager;
+        }
+        
+
+        public async Task<IActionResult> Download()
+        {
+            var path = @"C:\Users\18705\Downloads\Banner.png";
+            var memory = new MemoryStream();
+            using(var stream=new FileStream(path,FileMode.Open))
+            {
+                await stream.CopyToAsync(memory);
+            }
+            memory.Position = 0;
+            var ext = Path.GetExtension(path).ToLowerInvariant();
+            
+            return File(memory, GetMimeTypes()[ext], Path.GetFileName(path));
+        }
+
+        public Dictionary<string,string> GetMimeTypes()
+        {
+            return new Dictionary<string, string>
+            {
+                {".png", "image/png" }
+            };
         }
 
         public IActionResult Details(string userid)
