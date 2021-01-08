@@ -72,7 +72,7 @@ namespace AtomHealth.Controllers
 
                 var txtQRCodes = "https://localhost:44384/QRCode/Details?userid=" + txtQRCode;
                 
-               var txtQRCodes = "https://atomhealthcanada.azurewebsites.net/QRCode/Details?userid=" + txtQRCode;
+               //var txtQRCodes = "https://atomhealthcanada.azurewebsites.net/QRCode/Details?userid=" + txtQRCode;
 
                 var qrCodeImage = BarcodeDrawFactory.CodeQr.Draw(txtQRCodes, 50);
                 using (MemoryStream memoryStream = new MemoryStream())
