@@ -7,12 +7,15 @@
     ViewData["Title"] = "Details";
    Layout = "~/Views/Shared/_LayoutQRCode.cshtml";
 
-  
+
 }
+
+
+
 
 <div class="rowForProfile">
     <div class="bio-row">
-        <p><span>First Name</span>@Html.DisplayFor(model => model.ApplicationUser.FirstName)</p>
+      <p><span>First Name</span>@Html.DisplayFor(model => model.ApplicationUser.FirstName)</p>
     </div>
     <div class="bio-row">
         <p><span>Middle Name</span>@Html.DisplayFor(model => model.ApplicationUser.MiddleName)</p>
@@ -108,10 +111,10 @@
         <p>  <span>Current Medical Condition </span></p>
         <ul>
             @foreach (var item in ViewBag.ListOfCurrentMedicalConditionRec)
-                            {
+            {
 
             <li style="list-style: circle;list-style-position: inside;padding: 8px;background-color: lightcyan;list-style-position:inside;">@item</li>
-}
+            }
         </ul>
     </div>
 
@@ -121,11 +124,11 @@
         </p>
         <ul>
             @foreach (var item in ViewBag.ListOfPastMedicalHistoryRec)
-                            {
+            {
             <li style="list-style: circle;list-style-position: inside;padding: 8px;background-color: lightcyan;list-style-position:inside;">@item</li>
 
 
-                            }
+            }
         </ul>
     </div>
     <div class="bio-row">
@@ -170,11 +173,11 @@
         </p>
         <ul>
             @foreach (var item in ViewBag.ListOfFamilyMedicalHistoryRec)
-                            {
+            {
             <li style="list-style: circle;list-style-position: inside;padding: 8px;background-color: lightcyan;list-style-position:inside;">@item</li>
 
 
-                            }
+            }
         </ul>
     </div>
 
@@ -195,11 +198,11 @@
         </p>
         <ul>
             @foreach (var item in ViewBag.ListOfCovidHistoryRec)
-                            {
+            {
             <li style="list-style: circle;list-style-position: inside;padding: 8px;background-color: lightcyan;list-style-position:inside;">@item</li>
 
 
-                            }
+            }
         </ul>
     </div>
 
@@ -209,11 +212,11 @@
         </p>
         <ul>
             @foreach (var item in ViewBag.ListOfPatientImmunizationRecn)
-                            {
+            {
             <li style="list-style: circle;list-style-position: inside;padding: 8px;background-color: lightcyan;list-style-position:inside;">@item</li>
 
 
-                            }
+            }
         </ul>
     </div>
 </div>
@@ -256,7 +259,7 @@
 
                 </tr>
                 @foreach (var item in ViewBag.listOfMedicalCoverage)
-                                {
+                {
                 <tr style="border:1px solid black">
                     <td style="border:1px solid black; padding:5px;">  @item.Coverage</td>
                     <td style="border:1px solid black; padding:5px;">  @item.HealthCarePlan</td>
@@ -265,7 +268,7 @@
 
                 </tr>
 
-                                }
+                }
             </table>
         </p>
     </div>

@@ -140,8 +140,10 @@ footer {
 }
 #menurow {
     font-weight: bold;
-    margin-bottom: 18px;
-    margin-top: 5px;
+    justify-content: center;
+    /*margin-bottom: 18px;
+    margin-top: 20px;
+    margin-left:70px;*/
 }
 
 #menurow > a
@@ -156,7 +158,8 @@ footer {
 }
 
 #privacyrow {
-    margin: 25px 0 0 30px;
+    /*margin: 25px 0 0 55px;*/
+    justify-content: center;
 }
 
 
@@ -549,6 +552,9 @@ html {
         white-space: nowrap;
         line-height: 60px; /* Vertically center the text there */
     }
+    .card {
+        margin-bottom: 205px !important
+    }
 }
 
 @media (min-width: 990px) {
@@ -604,6 +610,9 @@ html {
         .blockBox p {
             font-size: 18px;
         }
+    .card {
+        margin-bottom: 205px !important
+    }
 }
 
 
@@ -720,14 +729,21 @@ html {
         display: flex;
         flex-direction: row;
         justify-content: center;
-        margin-top: 35px;
+       /* margin-top: 35px;*/
     }
 
     #privacyrow {
-        margin: 40px;
+        /*margin: 40px;*/
         display: flex;
         justify-content: center;
     }
+    footer {
+        margin-bottom:-40px !important;
+    }
+    .card {
+        margin-bottom: 205px !important
+    }
+ 
 }
 
 @media (min-width: 1024px) {
@@ -808,7 +824,15 @@ html {
         margin: 14px;
         justify-content: center;
     }
-   
+    .footersocialMedia {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+       
+    }
+    .card {
+        margin-bottom: 104px !important
+    }
 }
 
 
@@ -852,6 +876,15 @@ html {
     #privacyrow {
         margin: 14px;
         justify-content: center;
+    }
+    .footersocialMedia {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+     
+    }
+    .card{
+        margin-bottom:104px !important
     }
 
 }
