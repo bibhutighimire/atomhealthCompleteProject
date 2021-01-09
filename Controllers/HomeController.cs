@@ -68,7 +68,8 @@ namespace AtomHealth.Controllers
                 var user = await _userManager.GetUserAsync(HttpContext.User);
                 var email = user.Email;
                 //var txtQRCodes = "https://localhost:44384/QRCode/GeneratoRandomCodeView";
-                var txtQRCodes = "https://localhost:44384/QRCode/Details?userid=" + txtQRCode+ "&emailaddr="+email;
+                var txtQRCodes = "https://localhost:44384/QRCode/Details?userid=" + txtQRCode;
+                //var txtQRCodes = "https://atomhealthcanada.azurewebsites.net/QRCode/Details?userid=" + txtQRCode;
                 //var txtQRCodes = "https://atomhealthcanada.azurewebsites.net/QRCode/Details?userid=" + txtQRCode;
 
                 var qrCodeImage = BarcodeDrawFactory.CodeQr.Draw(txtQRCodes, 50);
@@ -102,8 +103,11 @@ namespace AtomHealth.Controllers
                 var users = await _userManager.GetUserAsync(HttpContext.User);
                 string emailaddr = users.Email;
                 //var txtQRCodes = "https://localhost:44384/QRCode/GeneratoRandomCodeView";
-                var txtQRCodes = "https://localhost:44384/QRCode/index?userid=" + emailaddr+ "&txtQRCode=" + txtQRCode;
-               //   var txtQRCodes = "https://atomhealthcanada.azurewebsites.net/QRCode/index?userid=" + emailaddr+ "&txtQRCode=" + txtQRCode;
+                // var txtQRCodes = "https://localhost:44384/QRCode/index?userid=" + emailaddr+ "&txtQRCode=" + txtQRCode;
+
+                var txtQRCodes = "https://atomhealthcanada.azurewebsites.net/QRCode/index?userid=" + txtQRCode;
+
+                //   var txtQRCodes = "https://atomhealthcanada.azurewebsites.net/QRCode/index?userid=" + emailaddr+ "&txtQRCode=" + txtQRCode;
 
                 var qrCodeImage = BarcodeDrawFactory.CodeQr.Draw(txtQRCodes, 200);
                 using (MemoryStream memoryStream = new MemoryStream())
