@@ -34,16 +34,18 @@ namespace AtomHealth.Controllers
             _context = context;
             //_signInManager = signInManager;
         }
-        public IActionResult Index(string userid, string txtQRCode)
+        public async Task<IActionResult> Index(string userid)
         {
             Random generator = new Random();
             string r = generator.Next(0, 1000000).ToString("D6");
             HttpContext.Session.SetString("RandomPasscode", r);
 
-            string id = txtQRCode;
+            string id = userid;
             HttpContext.Session.SetString("PatientID", id);
 
-            string to = userid;
+            var user = await _userManager.FindByIdAsync(userid);
+
+            string to = user.Email;
             string subject = "QR Code access!";
             string body =
             $"Hello User!,{Environment.NewLine}" +
