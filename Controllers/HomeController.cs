@@ -65,6 +65,7 @@ namespace AtomHealth.Controllers
         {
             if (!string.IsNullOrEmpty(txtQRCode))
             {
+
                 var user = await _userManager.GetUserAsync(HttpContext.User);
                 var email = user.Email;
                 //var txtQRCodes = "https://localhost:44384/QRCode/GeneratoRandomCodeView";
