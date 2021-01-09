@@ -58,6 +58,7 @@ namespace AtomHealth.Data
 
         public object AtomHealthUser { get; internal set; }
         public object Data { get; internal set; }
+        public DbSet<AtomHealth.Models.GenerateRandomCode> GenerateRandomCode { get; set; }
      
     }
 }

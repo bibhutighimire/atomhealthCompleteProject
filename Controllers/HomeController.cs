@@ -53,26 +53,24 @@ namespace AtomHealth.Controllers
 
         [HttpGet]
         public async Task<IActionResult> AddQRCode()
-     
-        
         {
-
-         var user = await _userManager.GetUserAsync(HttpContext.User);
-          var targetuser = _context.ApplicationUser.Where(x => x.AtomHealthUserID == user.Id).FirstOrDefault();
-         ViewBag.id = user.Id;
-
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var targetuser = _context.ApplicationUser.Where(x => x.AtomHealthUserID == user.Id).FirstOrDefault();
+            ViewBag.id = user.Id;
             return View(user);
         }
 
         [HttpPost]
-        public IActionResult AddQRCode(string txtQRCode)
+        public async Task<IActionResult> AddQRCode(string txtQRCode)
         {
             if (!string.IsNullOrEmpty(txtQRCode))
             {
 
-                var txtQRCodes = "https://localhost:44384/QRCode/Details?userid=" + txtQRCode;
-                
-               //var txtQRCodes = "https://atomhealthcanada.azurewebsites.net/QRCode/Details?userid=" + txtQRCode;
+                var user = await _userManager.GetUserAsync(HttpContext.User);
+                var email = user.Email;
+                //var txtQRCodes = "https://localhost:44384/QRCode/GeneratoRandomCodeView";
+                var txtQRCodes = "https://localhost:44384/QRCode/Details?userid=" + txtQRCode+ "&emailaddr="+email;
+                //var txtQRCodes = "https://atomhealthcanada.azurewebsites.net/QRCode/Details?userid=" + txtQRCode;
 
                 var qrCodeImage = BarcodeDrawFactory.CodeQr.Draw(txtQRCodes, 50);
                 using (MemoryStream memoryStream = new MemoryStream())
@@ -83,12 +81,49 @@ namespace AtomHealth.Controllers
                 }
             }
             return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AddQRCodez()
+
+
+        {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var targetuser = _context.ApplicationUser.Where(x => x.AtomHealthUserID == user.Id).FirstOrDefault();
+            ViewBag.id = user.Id;
+
+            return View(user);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddQRCodez(string txtQRCode)
+        {
+            if (!string.IsNullOrEmpty(txtQRCode))
+            {
+                var users = await _userManager.GetUserAsync(HttpContext.User);
+                string emailaddr = users.Email;
+                //var txtQRCodes = "https://localhost:44384/QRCode/GeneratoRandomCodeView";
+                var txtQRCodes = "https://localhost:44384/QRCode/index?userid=" + emailaddr+ "&txtQRCode=" + txtQRCode;
+               //   var txtQRCodes = "https://atomhealthcanada.azurewebsites.net/QRCode/index?userid=" + emailaddr+ "&txtQRCode=" + txtQRCode;
+
+                var qrCodeImage = BarcodeDrawFactory.CodeQr.Draw(txtQRCodes, 200);
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    qrCodeImage.Save(memoryStream, ImageFormat.Png);
+                    ViewBag.QRCodeImage = "data:image/png;base64," + Convert.ToBase64String(memoryStream.ToArray());
+                }
+            }
+            return View();
 
 
         }
 
         public async Task<IActionResult> Download(string imgfile)
         {
+            var users = await _userManager.GetUserAsync(HttpContext.User);
+            string emailaddr= users.Email;
+            HttpContext.Session.SetString("EmailAddress", emailaddr);
+
             var path = imgfile;
             var memory = new MemoryStream();
             using (var stream = new FileStream(path, FileMode.Open))
