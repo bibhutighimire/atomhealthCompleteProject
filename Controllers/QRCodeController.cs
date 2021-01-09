@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
+using System.Net.Mail;
 
 namespace AtomHealth.Controllers
 {
@@ -33,8 +34,99 @@ namespace AtomHealth.Controllers
             _context = context;
             //_signInManager = signInManager;
         }
-        
+        public IActionResult Index(string userid, string txtQRCode)
+        {
+            Random generator = new Random();
+            string r = generator.Next(0, 1000000).ToString("D6");
+            HttpContext.Session.SetString("RandomPasscode", r);
 
+            string id = txtQRCode;
+            HttpContext.Session.SetString("PatientID", id);
+
+            string to = userid;
+            string subject = "QR Code access!";
+            string body =
+            $"Hello User!,{Environment.NewLine}" +
+            $"{ Environment.NewLine}" +
+                       $"We want to let you know that we received  request to view your Medical Record through QR Code Scan.{Environment.NewLine}" +
+                         $"{ Environment.NewLine}" +
+                               $"Your one time passcode is {r}.{Environment.NewLine}" +
+                               $"{ Environment.NewLine}" +
+                        $"ATOM HEALTH TEAM";
+
+            MailMessage mm = new MailMessage();
+            mm.To.Add(to);
+            mm.Subject = subject;
+            mm.Body = body;
+            mm.From = new MailAddress("atomhealth1@gmail.com", "Atom Health Team");
+            mm.IsBodyHtml = false;
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = 587;
+            smtp.UseDefaultCredentials = false;
+            smtp.EnableSsl = true;
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.Credentials = new System.Net.NetworkCredential("atomhealth1@gmail.com", "Atomhealth@2020");
+            smtp.Send(mm);
+
+            return View();
+        }
+        
+        //public IActionResult GeneratoRandomCodeView()
+        //{
+            
+        //    Random generator = new Random();
+        //    string r = generator.Next(0, 1000000).ToString("D6");
+
+        //    HttpContext.Session.SetString("RandomPasscode", r);
+        //    var email = HttpContext.Session.GetString("EmailAddress");
+
+
+            
+        //    string to = email;
+        //    string subject = "QR Code access!";
+        //    string body =
+        //    $"Hello User!,{Environment.NewLine}" +
+        //    $"{ Environment.NewLine}" +
+        //               $"We want to let you know that we received  request to view your Medical Record through QR Code Scan.{Environment.NewLine}" +
+        //                 $"{ Environment.NewLine}" +
+        //                       $"Your one time passcode is {r}.{Environment.NewLine}" +
+        //                       $"{ Environment.NewLine}" +
+        //                $"ATOM HEALTH TEAM";
+
+        //    MailMessage mm = new MailMessage();
+        //    mm.To.Add(to);
+        //    mm.Subject = subject;
+        //    mm.Body = body;
+        //    mm.From = new MailAddress("atomhealth1@gmail.com", "Atom Health Team");
+        //    mm.IsBodyHtml = false;
+        //    SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+        //    smtp.Host = "smtp.gmail.com";
+        //    smtp.Port = 587;
+        //    smtp.UseDefaultCredentials = false;
+        //    smtp.EnableSsl = true;
+        //    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+        //    smtp.Credentials = new System.Net.NetworkCredential("atomhealth1@gmail.com", "Atomhealth@2020");
+        //    smtp.Send(mm);
+
+        //    return View();
+        //}
+
+   
+        public async Task<IActionResult> GenerateRandomCodeViewWithCheck(string DoctorEnteredCode)
+        {
+           
+
+            string useridval = HttpContext.Session.GetString("PatientID");
+            var MachineGeneratedCode = HttpContext.Session.GetString("RandomPasscode");
+            if(DoctorEnteredCode==MachineGeneratedCode)
+            {
+                return RedirectToAction("Details", new { userid = useridval });
+               
+            }
+        
+            return View();
+        }
         public async Task<IActionResult> Download()
         {
             var path = @"C:\Users\18705\Downloads\Banner.png";
@@ -57,7 +149,7 @@ namespace AtomHealth.Controllers
             };
         }
 
-        public IActionResult Details(string userid)
+            public IActionResult Details(string userid)
         {
             ViewBag.listOfMedicalCoverage = _context.MedicalCoverage.Where(x => x.AtomHealthUserID == userid).ToList();
 

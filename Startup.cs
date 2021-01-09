@@ -30,6 +30,10 @@ namespace AtomHealth
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(10);//You can set Time   
+            });
+
             services.AddDbContext<AtomHealthDBContext>(options =>
                     options.UseSqlServer(
                         Configuration.GetConnectionString("AtomHealthDBContextConnection")));
@@ -39,7 +43,7 @@ namespace AtomHealth
             services.AddIdentity<AtomHealthUser, IdentityRole>(options => {
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
-                options.SignIn.RequireConfirmedAccount = false;
+                options.SignIn.RequireConfirmedAccount = true;
             })
                   .AddDefaultTokenProviders()
                  .AddDefaultUI()
@@ -82,11 +86,11 @@ namespace AtomHealth
           
 
             app.UseStaticFiles();
-
+            
             app.UseRouting();
 
             app.UseAuthentication();
-
+            app.UseSession();
 
             app.UseAuthorization();
 

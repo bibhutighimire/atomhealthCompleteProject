@@ -1,0 +1,30 @@
+﻿@model AtomHealth.Areas.Identity.Data.AtomHealthUser
+@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "AddQRCode";
+}
+
+<h1>QR Code Generation Centerz</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddQRCodez" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" name="txtQRCode" />
+            <div class="form-group">
+
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Generate" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<img src="@ViewBag.QRCodeImage" />
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
