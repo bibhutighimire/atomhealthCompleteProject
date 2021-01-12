@@ -3,7 +3,7 @@
 
 @inject SignInManager<AtomHealthUser> SignInManager
 @inject UserManager<AtomHealthUser> UserManager
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -26,7 +26,8 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/LogoDarkBig.png" alt="logoimage" /></a>
+              
+                <a class="navbar-brand" href="https://www.atomhealth.ca/"><img src="~/images/LogoDarkBig.png" alt="logoimage" /></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -39,7 +40,7 @@
                                 <a href="https://www.facebook.com/" target="_blank"><img src="~/images/facebook.png" style="width:30px; height:30px;margin-right:10px;" /></a>
                                 <a href="https://www.instagram.com/" target="_blank"><img src="~/images/instagram.png" style="width:30px; height:30px;margin-right:10px;" /></a>
                                 <a href="https://www.twitter.com/" target="_blank"><img src="~/images/twitter.png" style="width:30px; height:30px" /></a>
-                            </div>
+                    </div>
 
                         </div>
 
@@ -86,27 +87,14 @@
 
                                 <ul class="navbar-nav col-md-12 col-sm-12">
                                     <li class="nav-item">
-                                        <a class="nav-link" asp-controller="Home" asp-action="Index">HOME</a>
+                                        <a class="nav-link" href="https://www.atomhealth.ca/">HOME</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" asp-controller="Home" asp-action="JoinUs">JOIN US</a>
+                                        <a class="nav-link" href="https://www.atomhealth.ca/join-us">JOIN US</a>
                                     </li>
 
-                                    @*
-                                            <li class="nav-item">
-                                                <a class="nav-link" asp-controller="Home" asp-action="OurSolution">OUR SOLUTION</a>
-                                            </li>
-
-                                             <li class="nav-item">
-                                            <a class="nav-link" asp-controller="Home" asp-action="News">HEALTH NEWS</a>
-                                        </li>
-                                                                         <li class="nav-item">
-                                                                        <a class="nav-link" asp-controller="Home" asp-action="ContactUs">CONTACT US</a>
-                                                                    </li>
-                                    *@
-
                                     <li class="nav-item">
-                                        <a class="nav-link" asp-controller="Home" asp-action="FAQ">FAQ</a>
+                                        <a class="nav-link" href="https://www.atomhealth.ca/faq">FAQ</a>
                                     </li>
 
 
@@ -122,6 +110,7 @@
                     </div>
 
                 </div>
+                  
             </div>
         </nav>
     </header>
@@ -138,28 +127,20 @@
 
 <footer id="footer1" style="margin-top:332px !important">
     <div class="container">
-        @*<div class="row" id="logorow">
-
-                <a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" alt="logoimage" style="width:80px;height:80px;" /></a>
-            </div>*@
+      
         <div class="row" id="menurow">
-            <a class="nav-link" asp-controller="Home" asp-action="Index">HOME</a>
-            @*<a class="nav-link" asp-controller="Home" asp-action="OurSolution">OUR SOLUTION</a>
-        <a class="nav-link" asp-controller="Home" asp-action="JoinUs">JOIN US</a>
-                   <a class="nav-link" asp-controller="Home" asp-action="News">HEALTH NEWS</a>
-                   <a class="nav-link" asp-controller="Home" asp-action="ContactUs">CONTACT US</a>
-            *@
-            <a class="nav-link" asp-controller="Home" asp-action="JoinUs">JOIN US</a>
-            <a class="nav-link" asp-controller="Home" asp-action="FAQ">FAQ</a>
+            <a class="nav-link" href="https://www.atomhealth.ca/">HOME</a>          
+            <a class="nav-link" href="https://www.atomhealth.ca/join-us">JOIN US</a>
+            <a class="nav-link" href="https://www.atomhealth.ca/faq">FAQ</a>
 
 
         </div>
 
         <div class="footersocialMedia">
-            <a href="https://www.linkedin.com/" target="_blank"><img src="~/images/linkedin.png" style="width:30px; height:30px; margin-right:10px;" /></a>
-            <a href="https://www.facebook.com/" target="_blank"><img src="~/images/facebook.png" style="width:30px; height:30px;margin-right:10px;" /></a>
-            <a href="https://www.instagram.com/" target="_blank"><img src="~/images/instagram.png" style="width:30px; height:30px;margin-right:10px;" /></a>
-            <a href="https://www.twitter.com/" target="_blank"><img src="~/images/twitter.png" style="width:30px; height:30px" /></a>
+            <a href="https://www.linkedin.com/company/atomhealth" target="_blank"><img src="~/images/linkedin.png" style="width:30px; height:30px; margin-right:10px;" /></a>
+                    <a href="https://www.facebook.com/Atom-Health-100437355349341" target="_blank"><img src="~/images/facebook.png" style="width:30px; height:30px;margin-right:10px;" /></a>
+                    <a href="https://www.instagram.com/atomhealth/" target="_blank"><img src="~/images/instagram.png" style="width:30px; height:30px;margin-right:10px;" /></a>
+                    <a href="https://twitter.com/HealthAtom" target="_blank"><img src="~/images/twitter.png" style="width:30px; height:30px" /></a>
         </div>
 
         <div class="row" id="privacyrow">
@@ -177,22 +158,17 @@
                         <a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo.png" alt="logoimage" style="width:80px;height:80px;" /></a>
                     </div>*@
                 <div class="row" id="menurow">
-                    <a class="nav-link" asp-controller="Home" asp-action="Index">HOME</a>
-                    @*<a class="nav-link" asp-controller="Home" asp-action="OurSolution">OUR SOLUTION</a>
-                           <a class="nav-link" asp-controller="Home" asp-action="ContactUs">CONTACT US</a>
-        <a class="nav-link" asp-controller="Home" asp-action="News">HEALTH NEWS</a>
-                    *@
-                    <a class="nav-link" asp-controller="Home" asp-action="JoinUs">JOIN US</a>
-                    <a class="nav-link" asp-controller="Home" asp-action="FAQ">FAQ</a>
-
-
-                </div>
+                    <a class="nav-link" href="https://www.atomhealth.ca">HOME</a>
+                  
+                    <a class="nav-link" href="https://www.atomhealth.ca/join-us">JOIN US</a>
+                    <a class="nav-link" href="https://www.atomhealth.ca/faq">FAQ</a>
+                      </div>
 
                 <div class="footersocialMedia">
-                    <a href="https://www.linkedin.com/" target="_blank"><img src="~/images/linkedin.png" style="width:30px; height:30px; margin-right:10px;" /></a>
-                    <a href="https://www.facebook.com/" target="_blank"><img src="~/images/facebook.png" style="width:30px; height:30px;margin-right:10px;" /></a>
-                    <a href="https://www.instagram.com/" target="_blank"><img src="~/images/instagram.png" style="width:30px; height:30px;margin-right:10px;" /></a>
-                    <a href="https://www.twitter.com/" target="_blank"><img src="~/images/twitter.png" style="width:30px; height:30px" /></a>
+                    <a href="https://www.linkedin.com/company/atomhealth" target="_blank"><img src="~/images/linkedin.png" style="width:30px; height:30px; margin-right:10px;" /></a>
+                    <a href="https://www.facebook.com/Atom-Health-100437355349341" target="_blank"><img src="~/images/facebook.png" style="width:30px; height:30px;margin-right:10px;" /></a>
+                    <a href="https://www.instagram.com/atomhealth/" target="_blank"><img src="~/images/instagram.png" style="width:30px; height:30px;margin-right:10px;" /></a>
+                    <a href="https://twitter.com/HealthAtom" target="_blank"><img src="~/images/twitter.png" style="width:30px; height:30px" /></a>
                 </div>
 
                 <div class="row" id="privacyrow">

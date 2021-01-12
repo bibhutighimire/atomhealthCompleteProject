@@ -43,7 +43,7 @@ namespace AtomHealth
             services.AddIdentity<AtomHealthUser, IdentityRole>(options => {
                 options.Password.RequireLowercase = false;
                 options.Password.RequireUppercase = false;
-                options.SignIn.RequireConfirmedAccount = true;
+                options.SignIn.RequireConfirmedAccount = false;
             })
                   .AddDefaultTokenProviders()
                  .AddDefaultUI()
